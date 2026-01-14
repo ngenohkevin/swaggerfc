@@ -355,7 +355,7 @@ function GalleryCard({ image, year, title, description }: { image: string; year:
 
 function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
-    <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+    <Link href="/design-3/shop" className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group block cursor-pointer">
       <div className="relative h-80 overflow-hidden">
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         {isNew && (
@@ -375,7 +375,7 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
           <span className="text-[#1d4d2c] text-sm font-medium">View in Shop →</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

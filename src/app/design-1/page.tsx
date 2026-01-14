@@ -327,7 +327,7 @@ function AchievementCard({ image, year, title, description }: { image: string; y
 
 function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
-    <div className="group bg-[#2d3548] overflow-hidden">
+    <Link href="/design-1/shop" className="group bg-[#2d3548] overflow-hidden block cursor-pointer">
       <div className="relative h-80 overflow-hidden bg-[#1a1f2e]">
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         {isNew && (
@@ -344,7 +344,7 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
           <span className="text-[#c9a227] text-sm font-medium">View in Shop →</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

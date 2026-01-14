@@ -354,7 +354,7 @@ function AchievementCard({ image, year, yearColor, title, description }: { image
 
 function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
-    <div className="group">
+    <Link href="/design-2/shop" className="group block cursor-pointer">
       <div className="glass rounded-3xl overflow-hidden">
         <div className="relative h-80 overflow-hidden">
           <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -376,7 +376,7 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
