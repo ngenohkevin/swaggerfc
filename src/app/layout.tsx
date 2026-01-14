@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Oswald, Source_Sans_3, DM_Sans, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,11 +40,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <body
         className={`${inter.variable} ${oswald.variable} ${sourceSans.variable} ${dmSans.variable} ${dmSerifDisplay.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );
