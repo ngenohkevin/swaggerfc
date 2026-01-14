@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function DesignA() {
   return (
     <div className="bg-[#1a1f2e] text-white font-source">
+      <ThemeToggle />
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
