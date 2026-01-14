@@ -42,11 +42,11 @@ export default function Home() {
         </div>
 
         {/* Design Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Design A */}
-          <Link href="/design-a" className="group block">
-            <div className="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-all hover:shadow-2xl hover:shadow-amber-500/10">
-              <div className="h-64 bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden">
+          <Link href="/design-a" className="group block h-full">
+            <div className="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-all hover:shadow-2xl hover:shadow-amber-500/10 h-full flex flex-col">
+              <div className="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-slate-800 to-slate-900 relative overflow-hidden flex-shrink-0">
                 <Image
                   src="https://images.unsplash.com/photo-1560969961-bc5368188cb9?w=600&q=80"
                   alt="Stadium"
@@ -61,15 +61,15 @@ export default function Home() {
                   <span className="text-amber-400 text-xs uppercase tracking-wider">Preview</span>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-amber-500/20 text-amber-400 text-xs px-2 py-1 rounded">OPTION A</span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-amber-400 transition-colors">Classic Club</h3>
-                <p className="text-slate-400 text-sm mb-4">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-amber-400 transition-colors">Classic Club</h3>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">
                   Traditional football club aesthetic with dark tones, gold accents, and bold typography. Timeless and professional.
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mt-auto">
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Dark Theme</span>
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Gold Accents</span>
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Bold Typography</span>
@@ -79,9 +79,9 @@ export default function Home() {
           </Link>
 
           {/* Design B */}
-          <Link href="/design-b" className="group block">
-            <div className="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-emerald-500/50 transition-all hover:shadow-2xl hover:shadow-emerald-500/10">
-              <div className="h-64 bg-gradient-to-br from-zinc-900 to-black relative overflow-hidden">
+          <Link href="/design-b" className="group block h-full">
+            <div className="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-emerald-500/50 transition-all hover:shadow-2xl hover:shadow-emerald-500/10 h-full flex flex-col">
+              <div className="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-zinc-900 to-black relative overflow-hidden flex-shrink-0">
                 <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-emerald-500/30 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-1/4 right-1/4 w-32 h-32 bg-blue-500/30 rounded-full blur-3xl"></div>
                 <div className="absolute bottom-4 left-4 right-4">
@@ -91,16 +91,16 @@ export default function Home() {
                   <span className="text-emerald-400 text-xs uppercase tracking-wider">Preview</span>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-emerald-500/20 text-emerald-400 text-xs px-2 py-1 rounded">OPTION B</span>
                   <span className="bg-blue-500/20 text-blue-400 text-xs px-2 py-1 rounded">RECOMMENDED</span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">Modern Energy</h3>
-                <p className="text-slate-400 text-sm mb-4">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">Modern Energy</h3>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">
                   Dynamic design with gradient accents, glassmorphism effects, and vibrant colors. Contemporary and engaging.
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mt-auto">
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Gradients</span>
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Glass Effects</span>
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Modern UI</span>
@@ -110,9 +110,9 @@ export default function Home() {
           </Link>
 
           {/* Design C */}
-          <Link href="/design-c" className="group block">
-            <div className="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-green-600/50 transition-all hover:shadow-2xl hover:shadow-green-600/10">
-              <div className="h-64 bg-gradient-to-br from-[#faf8f5] to-[#f5f0e8] relative overflow-hidden">
+          <Link href="/design-c" className="group block h-full">
+            <div className="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-green-600/50 transition-all hover:shadow-2xl hover:shadow-green-600/10 h-full flex flex-col">
+              <div className="h-48 sm:h-56 lg:h-64 bg-gradient-to-br from-[#faf8f5] to-[#f5f0e8] relative overflow-hidden flex-shrink-0">
                 <Image
                   src="https://images.unsplash.com/photo-1629977007371-0ba395424741?w=600&q=80"
                   alt="Football"
@@ -126,15 +126,15 @@ export default function Home() {
                   <span className="text-[#1d4d2c] text-xs uppercase tracking-wider font-medium">Preview</span>
                 </div>
               </div>
-              <div className="p-6">
+              <div className="p-5 sm:p-6 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-green-700/20 text-green-500 text-xs px-2 py-1 rounded">OPTION C</span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-green-500 transition-colors">Community Focus</h3>
-                <p className="text-slate-400 text-sm mb-4">
+                <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-green-500 transition-colors">Community Focus</h3>
+                <p className="text-slate-400 text-sm mb-4 flex-grow">
                   Warm, welcoming design with cream tones, organic shapes, and serif typography. Approachable and inviting.
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-2 mt-auto">
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Light Theme</span>
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Warm Colors</span>
                   <span className="bg-slate-700 text-xs px-2 py-1 rounded">Friendly Feel</span>
@@ -142,18 +142,6 @@ export default function Home() {
               </div>
             </div>
           </Link>
-        </div>
-
-        {/* Next Steps */}
-        <div className="mt-16 bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-2xl p-8 text-center">
-          <h3 className="text-2xl font-bold mb-4">Like what you see?</h3>
-          <p className="text-slate-400 mb-6 max-w-xl mx-auto">
-            Once you pick a design, we&apos;ll build it with Next.js, Tailwind CSS, and Strapi CMS.
-            The carousel will auto-scroll with smooth animations using Embla Carousel.
-          </p>
-          <p className="text-slate-500 text-sm">
-            Note: Club name, colors, and content are all customizable to match your brand.
-          </p>
         </div>
 
         {/* Footer */}
