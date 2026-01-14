@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-oswald);
+  --font-source: var(--font-source-sans);
+  --font-dm-sans: var(--font-dm-sans);
+  --font-serif: var(--font-dm-serif);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+/* Font families */
+.font-inter { font-family: var(--font-inter), sans-serif; }
+.font-oswald { font-family: var(--font-oswald), sans-serif; }
+.font-source { font-family: var(--font-source-sans), sans-serif; }
+.font-dm-sans { font-family: var(--font-dm-sans), sans-serif; }
+.font-dm-serif { font-family: var(--font-dm-serif), serif; }
+
+/* Hide scrollbar but keep functionality */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #10b981 0%, #3b82f6 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Line clamp utilities */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
