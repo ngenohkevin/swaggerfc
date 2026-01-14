@@ -60,15 +60,15 @@ export default function ShopPage() {
       <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 backdrop-blur-sm border-b border-black/5">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/design-3" className="flex items-center gap-3">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#1d4d2c] rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-lg sm:text-xl">SF</span>
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
+              <span className="text-[#1a1f2e] font-bold text-lg sm:text-xl">SF</span>
             </div>
             <div>
               <span className="font-dm-serif text-lg sm:text-xl">Swagger FC</span>
               <p className="text-xs text-[#6b6560] hidden sm:block">Est. 2018</p>
             </div>
           </Link>
-          <Link href="/design-3" className="text-[#6b6560] hover:text-[#1d4d2c] transition-colors text-sm font-medium">
+          <Link href="/design-3" className="text-[#6b6560] hover:text-[#c9a227] transition-colors text-sm font-medium">
             Back to Home
           </Link>
         </div>
@@ -77,7 +77,7 @@ export default function ShopPage() {
       {/* Header */}
       <div className="pt-24 sm:pt-28 pb-8 sm:pb-12 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <span className="text-[#1d4d2c] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
+          <span className="text-[#c9a227] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
           <h1 className="font-dm-serif text-4xl sm:text-5xl md:text-6xl mt-2">Club Shop</h1>
           <p className="text-[#6b6560] mt-4 max-w-xl">
             Wear your support. Select your size and order through WhatsApp.
@@ -95,7 +95,7 @@ export default function ShopPage() {
       </div>
 
       {/* Back to designs link */}
-      <Link href="/" className="fixed bottom-6 left-6 bg-[#1d4d2c] text-white px-4 py-2 rounded-full font-medium flex items-center gap-2 hover:bg-[#164023] transition-colors z-50">
+      <Link href="/" className="fixed bottom-6 left-6 bg-[#c9a227] text-[#1a1f2e] px-4 py-2 rounded-full font-medium flex items-center gap-2 hover:bg-[#d4af37] transition-colors z-50">
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -131,7 +131,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         />
         {product.isNew && (
           <div className="absolute top-4 left-4">
-            <span className="bg-[#1d4d2c] text-white px-3 py-1 rounded-full text-sm font-medium">New</span>
+            <span className="bg-[#c9a227] text-[#1a1f2e] px-3 py-1 rounded-full text-sm font-medium">New</span>
           </div>
         )}
       </div>
@@ -152,8 +152,8 @@ function ProductCard({ product }: { product: typeof products[0] }) {
                 }}
                 className={`px-3 py-1.5 text-sm font-medium rounded-full transition-all ${
                   selectedSize === size
-                    ? "bg-[#1d4d2c] text-white"
-                    : "bg-[#f5f0e8] text-[#6b6560] hover:bg-[#1d4d2c]/10 hover:text-[#1d4d2c]"
+                    ? "bg-[#c9a227] text-[#1a1f2e]"
+                    : "bg-[#f5f0e8] text-[#6b6560] hover:bg-[#c9a227]/10 hover:text-[#c9a227]"
                 }`}
               >
                 {size}
@@ -165,7 +165,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         <div className="flex items-center justify-between mt-6">
           <div>
             <span className="text-sm text-[#6b6560]">Price</span>
-            <p className="font-dm-serif text-2xl text-[#1d4d2c]">KES {product.price}</p>
+            <p className="font-dm-serif text-2xl text-[#c9a227]">KES {product.price}</p>
           </div>
           <div className="relative">
             <a
@@ -183,9 +183,9 @@ function ProductCard({ product }: { product: typeof products[0] }) {
               Order
             </a>
             {showTooltip && (
-              <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-[#1d4d2c] text-white text-sm font-medium rounded-full shadow-lg whitespace-nowrap animate-pulse">
+              <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-[#c9a227] text-[#1a1f2e] text-sm font-medium rounded-full shadow-lg whitespace-nowrap animate-pulse">
                 Please select a size first!
-                <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#1d4d2c]"></div>
+                <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#c9a227]"></div>
               </div>
             )}
           </div>

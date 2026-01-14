@@ -11,16 +11,16 @@ export default function DesignB() {
       <nav className="fixed top-0 w-full z-50 bg-zinc-950/80 dark:bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#c9a227] to-[#d4af37] flex items-center justify-center">
               <span className="font-bold text-white text-lg">S</span>
             </div>
-            <span className="text-xl font-bold">Swagger<span className="text-emerald-400">FC</span></span>
+            <span className="text-xl font-bold">Swagger<span className="text-[#c9a227]">FC</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8">
             <a href="#news" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">News</a>
             <a href="#achievements" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">Achievements</a>
             <a href="#team" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">Team</a>
-            <a href="#shop" className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">Shop</a>
+            <a href="#shop" className="bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">Shop</a>
             <ThemeToggle className="text-zinc-400 hover:text-white hover:bg-white/10" />
           </div>
         </div>
@@ -30,16 +30,16 @@ export default function DesignB() {
       <section className="relative min-h-screen flex items-center overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-purple-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a227]/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#c9a227]/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
-                <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></span>
+                <span className="w-2 h-2 bg-[#c9a227] rounded-full animate-pulse"></span>
                 <span className="text-sm text-zinc-300">Season 2025/26 Now Live</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
@@ -49,7 +49,7 @@ export default function DesignB() {
                 Join the movement. Experience football like never before with Swagger FC.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href="#news" className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-opacity inline-flex items-center gap-2">
+                <a href="#news" className="bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-opacity inline-flex items-center gap-2">
                   Latest Updates
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -61,7 +61,7 @@ export default function DesignB() {
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(16,185,129,0.3)]">
+              <div className="aspect-square rounded-3xl overflow-hidden shadow-[0_0_40px_rgba(201,162,39,0.3)]">
                 <Image
                   src="https://images.unsplash.com/photo-1677119966332-8c6e9fb0efab?w=800&q=80"
                   alt="Football Player"
@@ -72,11 +72,11 @@ export default function DesignB() {
               </div>
               {/* Stats Floating Cards */}
               <div className="absolute -left-8 top-1/4 glass rounded-2xl p-4">
-                <div className="text-3xl font-bold text-emerald-400">24</div>
+                <div className="text-3xl font-bold text-[#c9a227]">24</div>
                 <div className="text-sm text-zinc-400">Matches Won</div>
               </div>
               <div className="absolute -right-4 bottom-1/4 glass rounded-2xl p-4">
-                <div className="text-3xl font-bold text-blue-400">87</div>
+                <div className="text-3xl font-bold text-[#d4af37]">87</div>
                 <div className="text-sm text-zinc-400">Goals Scored</div>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default function DesignB() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end justify-between mb-12">
             <div>
-              <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase">Stay Updated</span>
+              <span className="text-[#c9a227] text-sm font-semibold tracking-wider uppercase">Stay Updated</span>
               <h2 className="text-4xl md:text-5xl font-bold mt-2">Latest News</h2>
             </div>
             <a href="#" className="hidden md:flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
@@ -113,10 +113,10 @@ export default function DesignB() {
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <div className="flex items-center gap-3 mb-4">
-                    <span className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Featured</span>
+                    <span className="bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white text-xs font-semibold px-3 py-1 rounded-full">Featured</span>
                     <span className="text-zinc-400 text-sm">Jan 10, 2026</span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold group-hover:text-emerald-400 transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#c9a227] transition-colors">
                     Championship Glory: Our Road to Victory
                   </h3>
                   <p className="text-zinc-400 mt-3 line-clamp-2">
@@ -131,21 +131,21 @@ export default function DesignB() {
               <NewsCard
                 image="https://images.unsplash.com/photo-1629977007371-0ba395424741?w=300&q=80"
                 category="TRAINING"
-                categoryColor="text-emerald-400"
+                categoryColor="text-[#c9a227]"
                 title="Pre-Season Camp Dates Announced"
                 date="Jan 8, 2026"
               />
               <NewsCard
                 image="https://images.unsplash.com/photo-1757031299944-5028e556613d?w=300&q=80"
                 category="MATCH REPORT"
-                categoryColor="text-blue-400"
+                categoryColor="text-[#d4af37]"
                 title="Dominant Display in Local Derby"
                 date="Jan 5, 2026"
               />
               <NewsCard
                 image="https://images.unsplash.com/photo-1629977007398-a17feb6ddf14?w=300&q=80"
                 category="ACADEMY"
-                categoryColor="text-purple-400"
+                categoryColor="text-[#c9a227]"
                 title="Youth Academy Trials Open"
                 date="Jan 3, 2026"
               />
@@ -158,7 +158,7 @@ export default function DesignB() {
       <section id="achievements" className="py-24 bg-zinc-950 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-12">
           <div className="text-center">
-            <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase">Hall of Fame</span>
+            <span className="text-[#c9a227] text-sm font-semibold tracking-wider uppercase">Hall of Fame</span>
             <h2 className="text-4xl md:text-5xl font-bold mt-2">Our Achievements</h2>
             <p className="text-zinc-400 mt-4 max-w-xl mx-auto">
               Celebrating the milestones that define our journey
@@ -174,28 +174,28 @@ export default function DesignB() {
                 <AchievementCard
                   image="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=800&q=80"
                   year="2025"
-                  yearColor="bg-gradient-to-r from-emerald-500 to-blue-500"
+                  yearColor="bg-gradient-to-r from-[#c9a227] to-[#d4af37]"
                   title="League Champions"
                   description="First ever league title with an unbeaten run of 18 matches."
                 />
                 <AchievementCard
                   image="https://images.unsplash.com/photo-1620567253244-6f340f675bca?w=800&q=80"
                   year="2024"
-                  yearColor="bg-blue-500"
+                  yearColor="bg-[#d4af37]"
                   title="Cup Winners"
                   description="Thrilling 2-1 victory in the cup final against defending champions."
                 />
                 <AchievementCard
                   image="https://images.unsplash.com/photo-1718246425786-894821186deb?w=800&q=80"
                   year="2023"
-                  yearColor="bg-purple-500"
+                  yearColor="bg-[#c9a227]"
                   title="New Home Ground"
                   description="Opened our state-of-the-art 15,000 seat stadium."
                 />
                 <AchievementCard
                   image="https://images.unsplash.com/photo-1647101678383-9f179e1dd2c0?w=800&q=80"
                   year="2022"
-                  yearColor="bg-amber-500"
+                  yearColor="bg-[#d4af37]"
                   title="Community Award"
                   description="Recognized for excellence in youth development and community outreach."
                 />
@@ -209,7 +209,7 @@ export default function DesignB() {
       <section id="shop" className="py-24 bg-zinc-900/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase">Official Store</span>
+            <span className="text-[#c9a227] text-sm font-semibold tracking-wider uppercase">Official Store</span>
             <h2 className="text-4xl md:text-5xl font-bold mt-2">Get the Gear</h2>
             <p className="text-zinc-400 mt-4 max-w-xl mx-auto">
               Premium club merchandise. Select your size and order via WhatsApp.
@@ -236,7 +236,7 @@ export default function DesignB() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/design-2/shop" className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-opacity">
+            <Link href="/design-2/shop" className="inline-flex items-center gap-2 bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-opacity">
               View All Products
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -252,10 +252,10 @@ export default function DesignB() {
           <div className="grid md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 flex items-center justify-center">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#c9a227] to-[#d4af37] flex items-center justify-center">
                   <span className="font-bold text-white text-lg">S</span>
                 </div>
-                <span className="text-xl font-bold">Swagger<span className="text-emerald-400">FC</span></span>
+                <span className="text-xl font-bold">Swagger<span className="text-[#c9a227]">FC</span></span>
               </div>
               <p className="text-zinc-500 max-w-md">
                 Building champions on and off the pitch. Join our community of passionate supporters.
@@ -275,10 +275,10 @@ export default function DesignB() {
             <div>
               <h4 className="font-semibold mb-4">Club</h4>
               <ul className="space-y-3 text-zinc-500">
-                <li><a href="#" className="hover:text-emerald-400 transition-colors">About Us</a></li>
-                <li><a href="#" className="hover:text-emerald-400 transition-colors">Fixtures</a></li>
-                <li><a href="#" className="hover:text-emerald-400 transition-colors">Results</a></li>
-                <li><a href="#" className="hover:text-emerald-400 transition-colors">Academy</a></li>
+                <li><a href="#" className="hover:text-[#c9a227] transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-[#c9a227] transition-colors">Fixtures</a></li>
+                <li><a href="#" className="hover:text-[#c9a227] transition-colors">Results</a></li>
+                <li><a href="#" className="hover:text-[#c9a227] transition-colors">Academy</a></li>
               </ul>
             </div>
             <div>
@@ -297,7 +297,7 @@ export default function DesignB() {
       </footer>
 
       {/* Back to designs link */}
-      <Link href="/" className="fixed bottom-6 left-6 bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity z-50">
+      <Link href="/" className="fixed bottom-6 left-6 bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity z-50">
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -362,7 +362,7 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
           <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           {isNew && (
             <div className="absolute top-4 left-4">
-              <span className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">NEW SEASON</span>
+              <span className="bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white text-xs font-semibold px-3 py-1 rounded-full">NEW SEASON</span>
             </div>
           )}
         </div>
@@ -372,9 +372,9 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
           <div className="flex items-center justify-between mt-6">
             <div>
               <span className="text-sm text-zinc-500">From</span>
-              <span className="text-2xl font-bold text-emerald-400 ml-2">KES {price}</span>
+              <span className="text-2xl font-bold text-[#c9a227] ml-2">KES {price}</span>
             </div>
-            <span className="text-emerald-400 text-sm font-medium">View in Shop →</span>
+            <span className="text-[#c9a227] text-sm font-medium">View in Shop →</span>
           </div>
         </div>
       </div>

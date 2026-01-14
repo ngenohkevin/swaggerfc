@@ -60,10 +60,10 @@ export default function ShopPage() {
       <nav className="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/design-2" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#c9a227] to-[#d4af37] flex items-center justify-center">
               <span className="font-bold text-white text-lg">S</span>
             </div>
-            <span className="text-xl font-bold">Swagger<span className="text-emerald-400">FC</span></span>
+            <span className="text-xl font-bold">Swagger<span className="text-[#c9a227]">FC</span></span>
           </Link>
           <Link href="/design-2" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">
             Back to Home
@@ -73,10 +73,10 @@ export default function ShopPage() {
 
       {/* Header */}
       <div className="pt-24 sm:pt-28 pb-8 sm:pb-12 relative overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#c9a227]/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#d4af37]/10 rounded-full blur-3xl"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative">
-          <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase">Official Store</span>
+          <span className="text-[#c9a227] text-sm font-semibold tracking-wider uppercase">Official Store</span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mt-2">Get the Gear</h1>
           <p className="text-zinc-400 mt-4 max-w-xl">
             Premium club merchandise. Select your size and order easily via WhatsApp.
@@ -94,7 +94,7 @@ export default function ShopPage() {
       </div>
 
       {/* Back to designs link */}
-      <Link href="/" className="fixed bottom-6 left-6 bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity z-50">
+      <Link href="/" className="fixed bottom-6 left-6 bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white px-4 py-2 rounded-full font-semibold flex items-center gap-2 hover:opacity-90 transition-opacity z-50">
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -130,7 +130,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         />
         {product.isNew && (
           <div className="absolute top-4 left-4">
-            <span className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white text-xs font-semibold px-3 py-1 rounded-full">NEW SEASON</span>
+            <span className="bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white text-xs font-semibold px-3 py-1 rounded-full">NEW SEASON</span>
           </div>
         )}
       </div>
@@ -151,7 +151,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
                 }}
                 className={`px-3 py-1.5 text-sm font-medium rounded-lg transition-all ${
                   selectedSize === size
-                    ? "bg-gradient-to-r from-emerald-500 to-blue-500 text-white"
+                    ? "bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white"
                     : "bg-zinc-800 text-zinc-400 hover:bg-zinc-700 hover:text-white"
                 }`}
               >
@@ -164,7 +164,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         <div className="flex items-center justify-between mt-6">
           <div>
             <span className="text-sm text-zinc-500">From</span>
-            <span className="text-2xl font-bold text-emerald-400 ml-2">KES {product.price}</span>
+            <span className="text-2xl font-bold text-[#c9a227] ml-2">KES {product.price}</span>
           </div>
           <div className="relative">
             <a
@@ -182,9 +182,9 @@ function ProductCard({ product }: { product: typeof products[0] }) {
               Order
             </a>
             {showTooltip && (
-              <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-emerald-500 text-white text-sm font-medium rounded-lg shadow-lg whitespace-nowrap animate-pulse">
+              <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-[#c9a227] text-[#1a1f2e] text-sm font-medium rounded-lg shadow-lg whitespace-nowrap animate-pulse">
                 Please select a size first!
-                <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-emerald-500"></div>
+                <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#c9a227]"></div>
               </div>
             )}
           </div>

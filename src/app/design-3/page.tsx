@@ -11,8 +11,8 @@ export default function DesignC() {
       <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-[#1d4d2c] rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-xl">SF</span>
+            <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
+              <span className="text-[#1a1f2e] font-bold text-xl">SF</span>
             </div>
             <div>
               <span className="font-dm-serif text-xl">Swagger FC</span>
@@ -20,11 +20,11 @@ export default function DesignC() {
             </div>
           </a>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#news" className="text-[#6b6560] dark:text-white/70 hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] transition-colors">News</a>
-            <a href="#achievements" className="text-[#6b6560] dark:text-white/70 hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] transition-colors">Gallery</a>
-            <a href="#about" className="text-[#6b6560] dark:text-white/70 hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] transition-colors">About</a>
-            <a href="#shop" className="bg-[#1d4d2c] text-white px-6 py-2.5 rounded-full hover:bg-[#164023] transition-colors">Shop</a>
-            <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] hover:bg-black/5 dark:hover:bg-white/10" />
+            <a href="#news" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors">News</a>
+            <a href="#achievements" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors">Gallery</a>
+            <a href="#about" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors">About</a>
+            <a href="#shop" className="bg-[#c9a227] text-[#1a1f2e] px-6 py-2.5 rounded-full hover:bg-[#d4af37] transition-colors font-medium">Shop</a>
+            <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
           </div>
         </div>
       </nav>
@@ -34,21 +34,21 @@ export default function DesignC() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             <div className="order-2 lg:order-1">
-              <span className="inline-block bg-[#1d4d2c]/10 dark:bg-[#1d4d2c]/30 text-[#1d4d2c] dark:text-[#9ce2b0] px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <span className="inline-block bg-[#c9a227]/10 dark:bg-[#c9a227]/30 text-[#c9a227] dark:text-[#fcd34d] px-4 py-2 rounded-full text-sm font-medium mb-6">
                 Welcome to our family
               </span>
               <h1 className="font-dm-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-6">
                 More Than<br/>
-                <span className="text-[#1d4d2c] dark:text-[#9ce2b0]">Just Football</span>
+                <span className="text-[#c9a227] dark:text-[#fcd34d]">Just Football</span>
               </h1>
               <p className="text-[#6b6560] dark:text-white/70 text-lg mb-8 max-w-md leading-relaxed">
                 A community united by passion for the beautiful game. Where every supporter is family and every match day is a celebration.
               </p>
               <div className="flex flex-wrap gap-4">
-                <a href="#news" className="bg-[#1d4d2c] text-white px-8 py-4 rounded-full font-medium hover:bg-[#164023] transition-colors">
+                <a href="#news" className="bg-[#c9a227] text-[#1a1f2e] px-8 py-4 rounded-full font-medium hover:bg-[#d4af37] transition-colors">
                   Read Our Story
                 </a>
-                <a href="#shop" className="border-2 border-[#2d2926]/20 dark:border-white/20 text-[#2d2926] dark:text-white px-8 py-4 rounded-full font-medium hover:border-[#1d4d2c] dark:hover:border-[#9ce2b0] hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] transition-colors">
+                <a href="#shop" className="border-2 border-[#2d2926]/20 dark:border-white/20 text-[#2d2926] dark:text-white px-8 py-4 rounded-full font-medium hover:border-[#c9a227] dark:hover:border-[#fcd34d] hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors">
                   Visit Shop
                 </a>
               </div>
@@ -67,13 +67,13 @@ export default function DesignC() {
                 {/* Floating Card */}
                 <div className="absolute -bottom-6 -left-6 bg-white dark:bg-[#2d3548] p-6 rounded-2xl shadow-xl max-w-[250px]">
                   <div className="flex items-center gap-4 mb-3">
-                    <div className="w-12 h-12 bg-[#1d4d2c]/10 dark:bg-[#1d4d2c]/30 rounded-full flex items-center justify-center">
-                      <svg className="w-6 h-6 text-[#1d4d2c] dark:text-[#9ce2b0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-12 h-12 bg-[#c9a227]/10 dark:bg-[#c9a227]/30 rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-[#c9a227] dark:text-[#fcd34d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
                       </svg>
                     </div>
                     <div>
-                      <p className="font-dm-serif text-2xl text-[#1d4d2c] dark:text-[#9ce2b0]">5,000+</p>
+                      <p className="font-dm-serif text-2xl text-[#c9a227] dark:text-[#fcd34d]">5,000+</p>
                       <p className="text-sm text-[#6b6560] dark:text-white/60">Supporters</p>
                     </div>
                   </div>
@@ -90,10 +90,10 @@ export default function DesignC() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
-              <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium uppercase tracking-wider">What&apos;s Happening</span>
+              <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">What&apos;s Happening</span>
               <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Club News</h2>
             </div>
-            <a href="#" className="text-[#1d4d2c] dark:text-[#9ce2b0] font-medium hover:underline mt-4 md:mt-0 flex items-center gap-2">
+            <a href="#" className="text-[#c9a227] dark:text-[#fcd34d] font-medium hover:underline mt-4 md:mt-0 flex items-center gap-2">
               All Articles
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
@@ -114,8 +114,8 @@ export default function DesignC() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                   <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <span className="bg-white text-[#1d4d2c] px-4 py-1.5 rounded-full text-sm font-medium">Match Day</span>
-                    <h3 className="font-dm-serif text-2xl md:text-3xl text-white mt-4 group-hover:text-[#9ce2b0] transition-colors">
+                    <span className="bg-[#c9a227] text-[#1a1f2e] px-4 py-1.5 rounded-full text-sm font-medium">Match Day</span>
+                    <h3 className="font-dm-serif text-2xl md:text-3xl text-white mt-4 group-hover:text-[#fcd34d] transition-colors">
                       A Night to Remember: Championship Glory
                     </h3>
                     <p className="text-white/70 mt-3 line-clamp-2">
@@ -139,8 +139,8 @@ export default function DesignC() {
                   />
                 </div>
                 <div className="p-6">
-                  <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium">Training</span>
-                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#1d4d2c] dark:group-hover:text-[#9ce2b0] transition-colors">
+                  <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">Training</span>
+                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors">
                     Youth Academy Open Day Success
                   </h4>
                   <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
@@ -163,8 +163,8 @@ export default function DesignC() {
                   />
                 </div>
                 <div className="p-6">
-                  <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium">Community</span>
-                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#1d4d2c] dark:group-hover:text-[#9ce2b0] transition-colors">
+                  <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">Community</span>
+                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors">
                     Season Ticket Renewals Now Open
                   </h4>
                   <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
@@ -179,10 +179,10 @@ export default function DesignC() {
       </section>
 
       {/* Achievements Gallery */}
-      <section id="achievements" className="py-20 bg-[#1d4d2c] overflow-hidden">
+      <section id="achievements" className="py-20 bg-[#1a1f2e] overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 mb-12">
           <div className="text-center text-white">
-            <span className="text-[#9ce2b0] text-sm font-medium uppercase tracking-wider">Our Journey</span>
+            <span className="text-[#fcd34d] text-sm font-medium uppercase tracking-wider">Our Journey</span>
             <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Moments of Glory</h2>
             <p className="text-white/60 mt-4 max-w-xl mx-auto">
               Every trophy tells a story of dedication, teamwork, and the unwavering support of our community.
@@ -229,7 +229,7 @@ export default function DesignC() {
       <section id="shop" className="py-20 bg-[#faf8f5] dark:bg-[#1a1f2e]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
+            <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
             <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Club Shop</h2>
             <p className="text-[#6b6560] dark:text-white/60 mt-4 max-w-md mx-auto">
               Wear your support. Order easily through WhatsApp.
@@ -256,7 +256,7 @@ export default function DesignC() {
           </div>
 
           <div className="text-center mt-12">
-            <Link href="/design-3/shop" className="inline-flex items-center gap-2 bg-[#1d4d2c] text-white px-8 py-4 rounded-full font-medium hover:bg-[#164023] transition-colors">
+            <Link href="/design-3/shop" className="inline-flex items-center gap-2 bg-[#c9a227] text-[#1a1f2e] px-8 py-4 rounded-full font-medium hover:bg-[#d4af37] transition-colors">
               View All Products
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -267,13 +267,13 @@ export default function DesignC() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1d4d2c] text-white py-16">
+      <footer className="bg-[#1a1f2e] text-white py-16">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center">
-                  <span className="text-[#1d4d2c] font-bold text-xl">SF</span>
+                <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
+                  <span className="text-[#1a1f2e] font-bold text-xl">SF</span>
                 </div>
                 <div>
                   <span className="font-dm-serif text-xl">Swagger FC</span>
@@ -315,7 +315,7 @@ export default function DesignC() {
       </footer>
 
       {/* Back to designs link */}
-      <Link href="/" className="fixed bottom-6 left-6 bg-[#1d4d2c] text-white px-4 py-2 rounded-full font-medium flex items-center gap-2 hover:bg-[#164023] transition-colors z-50">
+      <Link href="/" className="fixed bottom-6 left-6 bg-[#c9a227] text-[#1a1f2e] px-4 py-2 rounded-full font-medium flex items-center gap-2 hover:bg-[#d4af37] transition-colors z-50">
         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
         </svg>
@@ -346,7 +346,7 @@ function GalleryCard({ image, year, title, description }: { image: string; year:
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
         <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[#9ce2b0] text-sm font-medium">{year}</span>
+          <span className="text-[#fcd34d] text-sm font-medium">{year}</span>
           <h3 className="text-white font-dm-serif text-xl mt-1">{title}</h3>
           <p className="text-white/60 text-sm mt-2">{description}</p>
         </div>
@@ -362,7 +362,7 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         {isNew && (
           <div className="absolute top-4 left-4">
-            <span className="bg-[#1d4d2c] text-white px-3 py-1 rounded-full text-sm font-medium">New</span>
+            <span className="bg-[#c9a227] text-[#1a1f2e] px-3 py-1 rounded-full text-sm font-medium">New</span>
           </div>
         )}
       </div>
@@ -372,9 +372,9 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
         <div className="flex items-center justify-between mt-6">
           <div>
             <span className="text-sm text-[#6b6560] dark:text-white/50">From</span>
-            <p className="font-dm-serif text-2xl text-[#1d4d2c] dark:text-[#9ce2b0]">KES {price}</p>
+            <p className="font-dm-serif text-2xl text-[#c9a227] dark:text-[#fcd34d]">KES {price}</p>
           </div>
-          <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium">View in Shop →</span>
+          <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">View in Shop →</span>
         </div>
       </div>
     </Link>
