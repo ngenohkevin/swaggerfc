@@ -34,21 +34,21 @@ export default function DesignC() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             <div className="order-2 lg:order-1">
-              <span className="inline-block bg-[#1d4d2c]/10 text-[#1d4d2c] px-4 py-2 rounded-full text-sm font-medium mb-6">
+              <span className="inline-block bg-[#1d4d2c]/10 dark:bg-[#1d4d2c]/30 text-[#1d4d2c] dark:text-[#9ce2b0] px-4 py-2 rounded-full text-sm font-medium mb-6">
                 Welcome to our family
               </span>
               <h1 className="font-dm-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-6">
                 More Than<br/>
-                <span className="text-[#1d4d2c]">Just Football</span>
+                <span className="text-[#1d4d2c] dark:text-[#9ce2b0]">Just Football</span>
               </h1>
-              <p className="text-[#6b6560] text-lg mb-8 max-w-md leading-relaxed">
+              <p className="text-[#6b6560] dark:text-white/70 text-lg mb-8 max-w-md leading-relaxed">
                 A community united by passion for the beautiful game. Where every supporter is family and every match day is a celebration.
               </p>
               <div className="flex flex-wrap gap-4">
                 <a href="#news" className="bg-[#1d4d2c] text-white px-8 py-4 rounded-full font-medium hover:bg-[#164023] transition-colors">
                   Read Our Story
                 </a>
-                <a href="#shop" className="border-2 border-[#2d2926]/20 text-[#2d2926] px-8 py-4 rounded-full font-medium hover:border-[#1d4d2c] hover:text-[#1d4d2c] transition-colors">
+                <a href="#shop" className="border-2 border-[#2d2926]/20 dark:border-white/20 text-[#2d2926] dark:text-white px-8 py-4 rounded-full font-medium hover:border-[#1d4d2c] dark:hover:border-[#9ce2b0] hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] transition-colors">
                   Visit Shop
                 </a>
               </div>
@@ -65,19 +65,19 @@ export default function DesignC() {
                   />
                 </div>
                 {/* Floating Card */}
-                <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-[250px]">
+                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-[#2d3548] p-6 rounded-2xl shadow-xl max-w-[250px]">
                   <div className="flex items-center gap-4 mb-3">
-                    <div className="w-12 h-12 bg-[#1d4d2c]/10 rounded-full flex items-center justify-center">
-                      <svg className="w-6 h-6 text-[#1d4d2c]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-12 h-12 bg-[#1d4d2c]/10 dark:bg-[#1d4d2c]/30 rounded-full flex items-center justify-center">
+                      <svg className="w-6 h-6 text-[#1d4d2c] dark:text-[#9ce2b0]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
                       </svg>
                     </div>
                     <div>
-                      <p className="font-dm-serif text-2xl text-[#1d4d2c]">5,000+</p>
-                      <p className="text-sm text-[#6b6560]">Supporters</p>
+                      <p className="font-dm-serif text-2xl text-[#1d4d2c] dark:text-[#9ce2b0]">5,000+</p>
+                      <p className="text-sm text-[#6b6560] dark:text-white/60">Supporters</p>
                     </div>
                   </div>
-                  <p className="text-sm text-[#6b6560]">Growing stronger every matchday</p>
+                  <p className="text-sm text-[#6b6560] dark:text-white/60">Growing stronger every matchday</p>
                 </div>
               </div>
             </div>
@@ -86,14 +86,14 @@ export default function DesignC() {
       </section>
 
       {/* News Section */}
-      <section id="news" className="py-20 bg-white">
+      <section id="news" className="py-20 bg-white dark:bg-[#0f1219]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
             <div>
-              <span className="text-[#1d4d2c] text-sm font-medium uppercase tracking-wider">What&apos;s Happening</span>
+              <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium uppercase tracking-wider">What&apos;s Happening</span>
               <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Club News</h2>
             </div>
-            <a href="#" className="text-[#1d4d2c] font-medium hover:underline mt-4 md:mt-0 flex items-center gap-2">
+            <a href="#" className="text-[#1d4d2c] dark:text-[#9ce2b0] font-medium hover:underline mt-4 md:mt-0 flex items-center gap-2">
               All Articles
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
@@ -129,7 +129,7 @@ export default function DesignC() {
 
             {/* News Card */}
             <article className="group">
-              <div className="bg-[#f5f0e8] rounded-2xl overflow-hidden">
+              <div className="bg-[#f5f0e8] dark:bg-[#2d3548] rounded-2xl overflow-hidden">
                 <div className="h-48 overflow-hidden relative">
                   <Image
                     src="https://images.unsplash.com/photo-1757031299944-5028e556613d?w=500&q=80"
@@ -139,21 +139,21 @@ export default function DesignC() {
                   />
                 </div>
                 <div className="p-6">
-                  <span className="text-[#1d4d2c] text-sm font-medium">Training</span>
-                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#1d4d2c] transition-colors">
+                  <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium">Training</span>
+                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#1d4d2c] dark:group-hover:text-[#9ce2b0] transition-colors">
                     Youth Academy Open Day Success
                   </h4>
-                  <p className="text-[#6b6560] text-sm mt-2 line-clamp-2">
+                  <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
                     Over 200 young players attended our talent identification program.
                   </p>
-                  <p className="text-[#6b6560]/60 text-sm mt-4">January 8, 2026</p>
+                  <p className="text-[#6b6560]/60 dark:text-white/40 text-sm mt-4">January 8, 2026</p>
                 </div>
               </div>
             </article>
 
             {/* News Card */}
             <article className="group">
-              <div className="bg-[#f5f0e8] rounded-2xl overflow-hidden">
+              <div className="bg-[#f5f0e8] dark:bg-[#2d3548] rounded-2xl overflow-hidden">
                 <div className="h-48 overflow-hidden relative">
                   <Image
                     src="https://images.unsplash.com/photo-1629977007398-a17feb6ddf14?w=500&q=80"
@@ -163,14 +163,14 @@ export default function DesignC() {
                   />
                 </div>
                 <div className="p-6">
-                  <span className="text-[#1d4d2c] text-sm font-medium">Community</span>
-                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#1d4d2c] transition-colors">
+                  <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium">Community</span>
+                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#1d4d2c] dark:group-hover:text-[#9ce2b0] transition-colors">
                     Season Ticket Renewals Now Open
                   </h4>
-                  <p className="text-[#6b6560] text-sm mt-2 line-clamp-2">
+                  <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
                     Secure your seat for another season of unforgettable moments.
                   </p>
-                  <p className="text-[#6b6560]/60 text-sm mt-4">January 5, 2026</p>
+                  <p className="text-[#6b6560]/60 dark:text-white/40 text-sm mt-4">January 5, 2026</p>
                 </div>
               </div>
             </article>
@@ -226,12 +226,12 @@ export default function DesignC() {
       </section>
 
       {/* Shop Section */}
-      <section id="shop" className="py-20 bg-[#faf8f5]">
+      <section id="shop" className="py-20 bg-[#faf8f5] dark:bg-[#1a1f2e]">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <span className="text-[#1d4d2c] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
+            <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
             <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Club Shop</h2>
-            <p className="text-[#6b6560] mt-4 max-w-md mx-auto">
+            <p className="text-[#6b6560] dark:text-white/60 mt-4 max-w-md mx-auto">
               Wear your support. Order easily through WhatsApp.
             </p>
           </div>
@@ -357,7 +357,7 @@ function GalleryCard({ image, year, title, description }: { image: string; year:
 
 function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
-    <Link href="/design-3/shop" className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group block cursor-pointer">
+    <Link href="/design-3/shop" className="bg-white dark:bg-[#2d3548] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group block cursor-pointer">
       <div className="relative h-80 overflow-hidden">
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         {isNew && (
@@ -368,13 +368,13 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
       </div>
       <div className="p-6">
         <h3 className="font-dm-serif text-xl">{title}</h3>
-        <p className="text-[#6b6560] text-sm mt-2">Available in S, M, L, XL, XXL</p>
+        <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2">Available in S, M, L, XL, XXL</p>
         <div className="flex items-center justify-between mt-6">
           <div>
-            <span className="text-sm text-[#6b6560]">From</span>
-            <p className="font-dm-serif text-2xl text-[#1d4d2c]">KES {price}</p>
+            <span className="text-sm text-[#6b6560] dark:text-white/50">From</span>
+            <p className="font-dm-serif text-2xl text-[#1d4d2c] dark:text-[#9ce2b0]">KES {price}</p>
           </div>
-          <span className="text-[#1d4d2c] text-sm font-medium">View in Shop →</span>
+          <span className="text-[#1d4d2c] dark:text-[#9ce2b0] text-sm font-medium">View in Shop →</span>
         </div>
       </div>
     </Link>
@@ -388,4 +388,3 @@ function SocialIcon({ href, children }: { href: string; children: React.ReactNod
     </a>
   );
 }
-
