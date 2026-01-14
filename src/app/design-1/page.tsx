@@ -6,9 +6,9 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function DesignA() {
   return (
-    <div className="bg-[#1a1f2e] dark:bg-[#0f1219] text-white font-source min-h-screen transition-colors">
+    <div className="bg-white dark:bg-[#1a1f2e] text-[#1a1f2e] dark:text-white font-source min-h-screen transition-colors">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-[#1a1f2e]/95 dark:bg-[#0f1219]/95 backdrop-blur-sm border-b border-white/10">
+      <nav className="fixed top-0 w-full z-50 bg-white/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/10 dark:border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
@@ -17,11 +17,11 @@ export default function DesignA() {
             <span className="font-oswald text-2xl font-bold tracking-wide">SWAGGER FC</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#news" className="text-white/80 hover:text-[#c9a227] transition-colors font-medium">News</a>
-            <a href="#achievements" className="text-white/80 hover:text-[#c9a227] transition-colors font-medium">Achievements</a>
-            <a href="#team" className="text-white/80 hover:text-[#c9a227] transition-colors font-medium">Team</a>
+            <a href="#news" className="text-[#1a1f2e]/80 dark:text-white/80 hover:text-[#c9a227] transition-colors font-medium">News</a>
+            <a href="#achievements" className="text-[#1a1f2e]/80 dark:text-white/80 hover:text-[#c9a227] transition-colors font-medium">Achievements</a>
+            <a href="#team" className="text-[#1a1f2e]/80 dark:text-white/80 hover:text-[#c9a227] transition-colors font-medium">Team</a>
             <a href="#shop" className="bg-[#c9a227] text-[#1a1f2e] px-6 py-2 font-oswald font-semibold hover:bg-[#d4af37] transition-colors">SHOP</a>
-            <ThemeToggle className="text-white/80 hover:text-[#c9a227] hover:bg-white/10" />
+            <ThemeToggle className="text-[#1a1f2e]/80 dark:text-white/80 hover:text-[#c9a227] hover:bg-black/5 dark:hover:bg-white/10" />
           </div>
         </div>
       </nav>
@@ -36,7 +36,7 @@ export default function DesignA() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#1a1f2e]/30 to-[#1a1f2e]/95"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-white/30 dark:from-[#1a1f2e]/30 to-white/95 dark:to-[#1a1f2e]/95"></div>
         </div>
         <div className="relative z-10 h-full flex flex-col justify-center items-center text-center px-6">
           <div className="w-24 h-24 bg-[#c9a227] rounded-full flex items-center justify-center mb-6">
@@ -45,27 +45,27 @@ export default function DesignA() {
           <h1 className="font-oswald text-6xl md:text-8xl font-bold tracking-tight mb-4">
             SWAGGER FC
           </h1>
-          <p className="text-xl md:text-2xl text-white/70 max-w-2xl mb-8">
+          <p className="text-xl md:text-2xl text-[#1a1f2e]/70 dark:text-white/70 max-w-2xl mb-8">
             Passion. Pride. Excellence. Since 2018.
           </p>
           <div className="flex gap-4">
             <a href="#news" className="bg-[#c9a227] text-[#1a1f2e] px-8 py-3 font-oswald font-semibold text-lg hover:bg-[#d4af37] transition-colors">
               LATEST NEWS
             </a>
-            <a href="#shop" className="border-2 border-white/30 text-white px-8 py-3 font-oswald font-semibold text-lg hover:border-[#c9a227] hover:text-[#c9a227] transition-colors">
+            <a href="#shop" className="border-2 border-[#1a1f2e]/30 dark:border-white/30 px-8 py-3 font-oswald font-semibold text-lg hover:border-[#c9a227] hover:text-[#c9a227] transition-colors">
               SHOP NOW
             </a>
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <svg className="w-8 h-8 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-8 h-8 text-[#1a1f2e]/50 dark:text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
           </svg>
         </div>
       </section>
 
       {/* News Section */}
-      <section id="news" className="py-20 bg-[#0f1219]">
+      <section id="news" className="py-20 bg-gray-100 dark:bg-[#0f1219]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-center justify-between mb-12">
             <div>
@@ -83,7 +83,7 @@ export default function DesignA() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Featured News Card */}
             <div className="lg:col-span-2 lg:row-span-2 group cursor-pointer">
-              <div className="relative h-full min-h-[400px] overflow-hidden bg-[#2d3548]">
+              <div className="relative h-full min-h-[400px] overflow-hidden bg-gray-200 dark:bg-[#2d3548]">
                 <Image
                   src="https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=1200&q=80"
                   alt="Match Day"
@@ -93,13 +93,13 @@ export default function DesignA() {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1a1f2e] via-transparent to-transparent"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <span className="bg-[#c9a227] text-[#1a1f2e] px-3 py-1 text-sm font-oswald font-semibold">FEATURED</span>
-                  <h3 className="font-oswald text-2xl md:text-3xl font-bold mt-4 group-hover:text-[#c9a227] transition-colors">
+                  <h3 className="font-oswald text-2xl md:text-3xl font-bold mt-4 group-hover:text-[#c9a227] transition-colors text-white">
                     Historic Victory Against City Rivals in Championship Final
                   </h3>
-                  <p className="text-white/60 mt-3 line-clamp-2">
+                  <p className="text-white/80 mt-3 line-clamp-2">
                     A memorable night at the stadium as Swagger FC secured a 3-1 victory, clinching the league title for the first time in club history.
                   </p>
-                  <div className="flex items-center gap-4 mt-4 text-sm text-white/50">
+                  <div className="flex items-center gap-4 mt-4 text-sm text-white/70">
                     <span>January 10, 2026</span>
                     <span>|</span>
                     <span>Match Report</span>
@@ -110,7 +110,7 @@ export default function DesignA() {
 
             {/* News Card 2 */}
             <div className="group cursor-pointer">
-              <div className="bg-[#2d3548] overflow-hidden">
+              <div className="bg-white dark:bg-[#2d3548] overflow-hidden rounded-lg shadow-md">
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src="https://images.unsplash.com/photo-1629977007371-0ba395424741?w=600&q=80"
@@ -124,14 +124,14 @@ export default function DesignA() {
                   <h3 className="font-oswald text-xl font-bold mt-2 group-hover:text-[#c9a227] transition-colors">
                     Pre-Season Training Camp Announced for February
                   </h3>
-                  <p className="text-white/50 text-sm mt-2">January 8, 2026</p>
+                  <p className="text-[#1a1f2e]/50 dark:text-white/50 text-sm mt-2">January 8, 2026</p>
                 </div>
               </div>
             </div>
 
             {/* News Card 3 */}
             <div className="group cursor-pointer">
-              <div className="bg-[#2d3548] overflow-hidden">
+              <div className="bg-white dark:bg-[#2d3548] overflow-hidden rounded-lg shadow-md">
                 <div className="relative h-48 overflow-hidden">
                   <Image
                     src="https://images.unsplash.com/photo-1757031299944-5028e556613d?w=600&q=80"
@@ -145,7 +145,7 @@ export default function DesignA() {
                   <h3 className="font-oswald text-xl font-bold mt-2 group-hover:text-[#c9a227] transition-colors">
                     Youth Academy Tryouts Open for New Season
                   </h3>
-                  <p className="text-white/50 text-sm mt-2">January 5, 2026</p>
+                  <p className="text-[#1a1f2e]/50 dark:text-white/50 text-sm mt-2">January 5, 2026</p>
                 </div>
               </div>
             </div>
@@ -154,12 +154,12 @@ export default function DesignA() {
       </section>
 
       {/* Achievements Carousel Section */}
-      <section id="achievements" className="py-20 bg-[#1a1f2e]">
+      <section id="achievements" className="py-20 bg-gray-200 dark:bg-[#1a1f2e]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <span className="text-[#c9a227] font-oswald text-sm tracking-widest uppercase">Our Glory</span>
             <h2 className="font-oswald text-4xl md:text-5xl font-bold mt-2">ACHIEVEMENTS</h2>
-            <p className="text-white/60 mt-4 max-w-2xl mx-auto">
+            <p className="text-[#1a1f2e]/60 dark:text-white/60 mt-4 max-w-2xl mx-auto">
               Celebrating the moments that define our club&apos;s legacy
             </p>
           </div>
@@ -201,12 +201,12 @@ export default function DesignA() {
       </section>
 
       {/* Shop Section */}
-      <section id="shop" className="py-20 bg-[#0f1219]">
+      <section id="shop" className="py-20 bg-gray-100 dark:bg-[#0f1219]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
             <span className="text-[#c9a227] font-oswald text-sm tracking-widest uppercase">Official Merchandise</span>
             <h2 className="font-oswald text-4xl md:text-5xl font-bold mt-2">CLUB SHOP</h2>
-            <p className="text-white/60 mt-4 max-w-2xl mx-auto">
+            <p className="text-[#1a1f2e]/60 dark:text-white/60 mt-4 max-w-2xl mx-auto">
               Wear your colors with pride. Select your size and order via WhatsApp.
             </p>
           </div>
@@ -242,7 +242,7 @@ export default function DesignA() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1a1f2e] border-t border-white/10 py-12">
+      <footer className="bg-gray-200 dark:bg-[#1a1f2e] border-t border-black/10 dark:border-white/10 py-12">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-8">
             <div className="md:col-span-2">
@@ -252,13 +252,13 @@ export default function DesignA() {
                 </div>
                 <span className="font-oswald text-2xl font-bold">SWAGGER FC</span>
               </div>
-              <p className="text-white/50 max-w-md">
+              <p className="text-[#1a1f2e]/50 dark:text-white/50 max-w-md">
                 A community football club dedicated to developing talent and bringing people together through the beautiful game.
               </p>
             </div>
             <div>
               <h4 className="font-oswald font-bold mb-4">Quick Links</h4>
-              <ul className="space-y-2 text-white/50">
+              <ul className="space-y-2 text-[#1a1f2e]/50 dark:text-white/50">
                 <li><a href="#" className="hover:text-[#c9a227] transition-colors">Fixtures</a></li>
                 <li><a href="#" className="hover:text-[#c9a227] transition-colors">Results</a></li>
                 <li><a href="#" className="hover:text-[#c9a227] transition-colors">Team</a></li>
@@ -280,7 +280,7 @@ export default function DesignA() {
               </div>
             </div>
           </div>
-          <div className="border-t border-white/10 mt-8 pt-8 text-center text-white/40 text-sm">
+          <div className="border-t border-black/10 dark:border-white/10 mt-8 pt-8 text-center text-[#1a1f2e]/40 dark:text-white/40 text-sm">
             <p>&copy; 2026 Swagger FC. All rights reserved.</p>
           </div>
         </div>
@@ -314,12 +314,12 @@ export default function DesignA() {
 function AchievementCard({ image, year, title, description }: { image: string; year: string; title: string; description: string }) {
   return (
     <div className="flex-shrink-0 w-[350px] md:w-[400px] group">
-      <div className="relative h-[500px] overflow-hidden">
+      <div className="relative h-[500px] overflow-hidden rounded-lg shadow-lg">
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a1f2e] via-[#1a1f2e]/20 to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <span className="text-[#c9a227] font-oswald text-sm">{year}</span>
-          <h3 className="font-oswald text-2xl font-bold mt-1">{title}</h3>
+          <h3 className="font-oswald text-2xl font-bold mt-1 text-white">{title}</h3>
           <p className="text-white/60 mt-2">{description}</p>
         </div>
       </div>
@@ -329,8 +329,8 @@ function AchievementCard({ image, year, title, description }: { image: string; y
 
 function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
-    <Link href="/design-1/shop" className="group bg-[#2d3548] overflow-hidden block cursor-pointer">
-      <div className="relative h-80 overflow-hidden bg-[#1a1f2e]">
+    <Link href="/design-1/shop" className="group bg-white dark:bg-[#2d3548] overflow-hidden block cursor-pointer rounded-lg shadow-md">
+      <div className="relative h-80 overflow-hidden bg-gray-100 dark:bg-[#1a1f2e]">
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         {isNew && (
           <div className="absolute top-4 right-4 bg-[#c9a227] text-[#1a1f2e] px-3 py-1 font-oswald text-sm font-semibold">
@@ -340,7 +340,7 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
       </div>
       <div className="p-6">
         <h3 className="font-oswald text-xl font-bold">{title}</h3>
-        <p className="text-white/50 mt-2">Available in S, M, L, XL, XXL</p>
+        <p className="text-[#1a1f2e]/50 dark:text-white/50 mt-2">Available in S, M, L, XL, XXL</p>
         <div className="flex items-center justify-between mt-4">
           <span className="font-oswald text-2xl font-bold text-[#c9a227]">KES {price}</span>
           <span className="text-[#c9a227] text-sm font-medium">View in Shop →</span>
@@ -352,7 +352,7 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
 
 function SocialIcon({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} className="w-10 h-10 border border-white/20 flex items-center justify-center hover:border-[#c9a227] hover:text-[#c9a227] transition-colors">
+    <a href={href} className="w-10 h-10 border border-black/20 dark:border-white/20 flex items-center justify-center hover:border-[#c9a227] hover:text-[#c9a227] transition-colors">
       <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">{children}</svg>
     </a>
   );

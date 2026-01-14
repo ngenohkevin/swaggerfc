@@ -6,9 +6,9 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function DesignB() {
   return (
-    <div className="bg-zinc-950 dark:bg-black text-white font-inter min-h-screen transition-colors">
+    <div className="bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white font-inter min-h-screen transition-colors">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-zinc-950/80 dark:bg-black/80 backdrop-blur-md border-b border-white/5">
+      <nav className="fixed top-0 w-full z-50 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md border-b border-black/5 dark:border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-[#c9a227] to-[#d4af37] flex items-center justify-center">
@@ -17,35 +17,35 @@ export default function DesignB() {
             <span className="text-xl font-bold">Swagger<span className="text-[#c9a227]">FC</span></span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#news" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">News</a>
-            <a href="#achievements" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">Achievements</a>
-            <a href="#team" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">Team</a>
+            <a href="#news" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors text-sm font-medium">News</a>
+            <a href="#achievements" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors text-sm font-medium">Achievements</a>
+            <a href="#team" className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors text-sm font-medium">Team</a>
             <a href="#shop" className="bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">Shop</a>
-            <ThemeToggle className="text-zinc-400 hover:text-white hover:bg-white/10" />
+            <ThemeToggle className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-black/5 dark:hover:bg-white/10" />
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center overflow-hidden bg-gray-50 dark:bg-transparent">
         {/* Animated Background */}
         <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a227]/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#d4af37]/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#c9a227]/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#c9a227]/10 dark:bg-[#c9a227]/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#d4af37]/10 dark:bg-[#d4af37]/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-[#c9a227]/5 dark:bg-[#c9a227]/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
+              <div className="inline-flex items-center gap-2 bg-gray-100 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full mb-6 border border-black/5 dark:border-white/10">
                 <span className="w-2 h-2 bg-[#c9a227] rounded-full animate-pulse"></span>
-                <span className="text-sm text-zinc-300">Season 2025/26 Now Live</span>
+                <span className="text-sm text-zinc-600 dark:text-zinc-300">Season 2025/26 Now Live</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-extrabold leading-tight mb-6">
                 Where <span className="gradient-text">Passion</span> Meets Performance
               </h1>
-              <p className="text-xl text-zinc-400 mb-8 max-w-lg">
+              <p className="text-xl text-zinc-600 dark:text-zinc-400 mb-8 max-w-lg">
                 Join the movement. Experience football like never before with Swagger FC.
               </p>
               <div className="flex flex-wrap gap-4">
@@ -55,7 +55,7 @@ export default function DesignB() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                   </svg>
                 </a>
-                <a href="#shop" className="glass text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white/10 transition-colors">
+                <a href="#shop" className="bg-gray-200 dark:bg-white/10 text-zinc-900 dark:text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-gray-300 dark:hover:bg-white/20 transition-colors border border-black/5 dark:border-white/10 backdrop-blur-sm">
                   Get Merch
                 </a>
               </div>
@@ -71,13 +71,13 @@ export default function DesignB() {
                 />
               </div>
               {/* Stats Floating Cards */}
-              <div className="absolute -left-8 top-1/4 glass rounded-2xl p-4">
+              <div className="absolute -left-8 top-1/4 bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-4 shadow-lg dark:shadow-none border border-black/5 dark:border-white/10">
                 <div className="text-3xl font-bold text-[#c9a227]">24</div>
-                <div className="text-sm text-zinc-400">Matches Won</div>
+                <div className="text-sm text-zinc-600 dark:text-zinc-400">Matches Won</div>
               </div>
-              <div className="absolute -right-4 bottom-1/4 glass rounded-2xl p-4">
+              <div className="absolute -right-4 bottom-1/4 bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl p-4 shadow-lg dark:shadow-none border border-black/5 dark:border-white/10">
                 <div className="text-3xl font-bold text-[#d4af37]">87</div>
-                <div className="text-sm text-zinc-400">Goals Scored</div>
+                <div className="text-sm text-zinc-600 dark:text-zinc-400">Goals Scored</div>
               </div>
             </div>
           </div>
@@ -85,14 +85,14 @@ export default function DesignB() {
       </section>
 
       {/* News Section */}
-      <section id="news" className="py-24 bg-zinc-900/50">
+      <section id="news" className="py-24 bg-gray-100 dark:bg-zinc-900/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex items-end justify-between mb-12">
             <div>
               <span className="text-[#c9a227] text-sm font-semibold tracking-wider uppercase">Stay Updated</span>
               <h2 className="text-4xl md:text-5xl font-bold mt-2">Latest News</h2>
             </div>
-            <a href="#" className="hidden md:flex items-center gap-2 text-zinc-400 hover:text-white transition-colors">
+            <a href="#" className="hidden md:flex items-center gap-2 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">
               All Articles
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
@@ -103,7 +103,7 @@ export default function DesignB() {
           <div className="grid md:grid-cols-12 gap-6">
             {/* Featured Article */}
             <div className="md:col-span-7 group cursor-pointer">
-              <div className="relative h-[500px] rounded-3xl overflow-hidden">
+              <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-lg">
                 <Image
                   src="https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=1200&q=80"
                   alt="Championship Victory"
@@ -114,12 +114,12 @@ export default function DesignB() {
                 <div className="absolute bottom-0 left-0 right-0 p-8">
                   <div className="flex items-center gap-3 mb-4">
                     <span className="bg-gradient-to-r from-[#c9a227] to-[#d4af37] text-white text-xs font-semibold px-3 py-1 rounded-full">Featured</span>
-                    <span className="text-zinc-400 text-sm">Jan 10, 2026</span>
+                    <span className="text-zinc-300 text-sm">Jan 10, 2026</span>
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#c9a227] transition-colors">
+                  <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#c9a227] transition-colors">
                     Championship Glory: Our Road to Victory
                   </h3>
-                  <p className="text-zinc-400 mt-3 line-clamp-2">
+                  <p className="text-zinc-300 mt-3 line-clamp-2">
                     Relive the incredible journey that led to our historic championship win this season.
                   </p>
                 </div>
@@ -155,12 +155,12 @@ export default function DesignB() {
       </section>
 
       {/* Achievements Carousel Section */}
-      <section id="achievements" className="py-24 bg-zinc-950 overflow-hidden">
+      <section id="achievements" className="py-24 bg-gray-200 dark:bg-zinc-950 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 mb-12">
           <div className="text-center">
             <span className="text-[#c9a227] text-sm font-semibold tracking-wider uppercase">Hall of Fame</span>
             <h2 className="text-4xl md:text-5xl font-bold mt-2">Our Achievements</h2>
-            <p className="text-zinc-400 mt-4 max-w-xl mx-auto">
+            <p className="text-zinc-600 dark:text-zinc-400 mt-4 max-w-xl mx-auto">
               Celebrating the milestones that define our journey
             </p>
           </div>
@@ -206,12 +206,12 @@ export default function DesignB() {
       </section>
 
       {/* Shop Section */}
-      <section id="shop" className="py-24 bg-zinc-900/50">
+      <section id="shop" className="py-24 bg-gray-100 dark:bg-zinc-900/50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
             <span className="text-[#c9a227] text-sm font-semibold tracking-wider uppercase">Official Store</span>
             <h2 className="text-4xl md:text-5xl font-bold mt-2">Get the Gear</h2>
-            <p className="text-zinc-400 mt-4 max-w-xl mx-auto">
+            <p className="text-zinc-600 dark:text-zinc-400 mt-4 max-w-xl mx-auto">
               Premium club merchandise. Select your size and order via WhatsApp.
             </p>
           </div>
@@ -247,7 +247,7 @@ export default function DesignB() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-zinc-950 border-t border-white/5 py-16">
+      <footer className="bg-gray-200 dark:bg-zinc-950 border-t border-black/5 dark:border-white/5 py-16">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
@@ -257,7 +257,7 @@ export default function DesignB() {
                 </div>
                 <span className="text-xl font-bold">Swagger<span className="text-[#c9a227]">FC</span></span>
               </div>
-              <p className="text-zinc-500 max-w-md">
+              <p className="text-zinc-600 dark:text-zinc-500 max-w-md">
                 Building champions on and off the pitch. Join our community of passionate supporters.
               </p>
               <div className="flex gap-4 mt-6">
@@ -274,7 +274,7 @@ export default function DesignB() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Club</h4>
-              <ul className="space-y-3 text-zinc-500">
+              <ul className="space-y-3 text-zinc-600 dark:text-zinc-500">
                 <li><a href="#" className="hover:text-[#c9a227] transition-colors">About Us</a></li>
                 <li><a href="#" className="hover:text-[#c9a227] transition-colors">Fixtures</a></li>
                 <li><a href="#" className="hover:text-[#c9a227] transition-colors">Results</a></li>
@@ -283,14 +283,14 @@ export default function DesignB() {
             </div>
             <div>
               <h4 className="font-semibold mb-4">Contact</h4>
-              <ul className="space-y-3 text-zinc-500">
+              <ul className="space-y-3 text-zinc-600 dark:text-zinc-500">
                 <li>Stadium Address</li>
                 <li>info@swaggerfc.com</li>
                 <li>+254 700 000 000</li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-white/5 mt-12 pt-8 text-center text-zinc-600 text-sm">
+          <div className="border-t border-black/5 dark:border-white/5 mt-12 pt-8 text-center text-zinc-500 dark:text-zinc-600 text-sm">
             <p>&copy; 2026 SwaggerFC. All rights reserved.</p>
           </div>
         </div>
@@ -323,7 +323,7 @@ export default function DesignB() {
 
 function NewsCard({ image, category, categoryColor, title, date }: { image: string; category: string; categoryColor: string; title: string; date: string }) {
   return (
-    <div className="group cursor-pointer glass rounded-2xl overflow-hidden flex">
+    <div className="group cursor-pointer bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-2xl overflow-hidden flex shadow-md dark:shadow-none border border-black/5 dark:border-white/10">
       <div className="w-32 h-32 flex-shrink-0 relative">
         <Image src={image} alt={title} fill className="object-cover" />
       </div>
@@ -332,7 +332,7 @@ function NewsCard({ image, category, categoryColor, title, date }: { image: stri
         <h4 className={`font-semibold mt-1 group-hover:${categoryColor} transition-colors line-clamp-2`}>
           {title}
         </h4>
-        <span className="text-zinc-500 text-sm mt-2">{date}</span>
+        <span className="text-zinc-600 dark:text-zinc-500 text-sm mt-2">{date}</span>
       </div>
     </div>
   );
@@ -341,13 +341,13 @@ function NewsCard({ image, category, categoryColor, title, date }: { image: stri
 function AchievementCard({ image, year, yearColor, title, description }: { image: string; year: string; yearColor: string; title: string; description: string }) {
   return (
     <div className="flex-shrink-0 w-[420px] group">
-      <div className="relative h-[550px] rounded-3xl overflow-hidden">
+      <div className="relative h-[550px] rounded-3xl overflow-hidden shadow-lg">
         <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent"></div>
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <div className={`inline-block ${yearColor} text-white text-xs font-semibold px-3 py-1 rounded-full mb-3`}>{year}</div>
-          <h3 className="text-2xl font-bold">{title}</h3>
-          <p className="text-zinc-400 mt-2">{description}</p>
+          <h3 className="text-2xl font-bold text-white">{title}</h3>
+          <p className="text-zinc-300 mt-2">{description}</p>
         </div>
       </div>
     </div>
@@ -357,7 +357,7 @@ function AchievementCard({ image, year, yearColor, title, description }: { image
 function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
     <Link href="/design-2/shop" className="group block cursor-pointer">
-      <div className="glass rounded-3xl overflow-hidden">
+      <div className="bg-white dark:bg-white/5 dark:backdrop-blur-md rounded-3xl overflow-hidden shadow-md dark:shadow-none border border-black/5 dark:border-white/10">
         <div className="relative h-80 overflow-hidden">
           <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
           {isNew && (
@@ -368,7 +368,7 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
         </div>
         <div className="p-6">
           <h3 className="text-xl font-bold">{title}</h3>
-          <p className="text-zinc-400 text-sm mt-2">Available in S, M, L, XL, XXL</p>
+          <p className="text-zinc-600 dark:text-zinc-400 text-sm mt-2">Available in S, M, L, XL, XXL</p>
           <div className="flex items-center justify-between mt-6">
             <div>
               <span className="text-sm text-zinc-500">From</span>
@@ -384,8 +384,8 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
 
 function SocialIcon({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} className="w-10 h-10 glass rounded-xl flex items-center justify-center hover:bg-white/10 transition-colors">
-      <svg className="w-5 h-5 text-zinc-400" fill="currentColor" viewBox="0 0 24 24">{children}</svg>
+    <a href={href} className="w-10 h-10 bg-gray-100 dark:bg-white/5 dark:backdrop-blur-md rounded-xl flex items-center justify-center hover:bg-gray-200 dark:hover:bg-white/10 transition-colors border border-black/5 dark:border-white/10">
+      <svg className="w-5 h-5 text-zinc-600 dark:text-zinc-400" fill="currentColor" viewBox="0 0 24 24">{children}</svg>
     </a>
   );
 }
