@@ -104,9 +104,18 @@ export default function ShopPage() {
 
 function ProductCard({ product }: { product: typeof products[0] }) {
   const [selectedSize, setSelectedSize] = useState<string>("");
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const whatsappMessage = `Hi! I want to order: ${product.name} - Size: ${selectedSize || "Not selected"} - Price: KES ${product.price}`;
   const whatsappLink = `https://wa.me/254700000000?text=${encodeURIComponent(whatsappMessage)}`;
+
+  const handleOrderClick = (e: React.MouseEvent) => {
+    if (!selectedSize) {
+      e.preventDefault();
+      setShowTooltip(true);
+      setTimeout(() => setShowTooltip(false), 2000);
+    }
+  };
 
   return (
     <div className="bg-[#2d3548] rounded-xl overflow-hidden group">
@@ -134,7 +143,10 @@ function ProductCard({ product }: { product: typeof products[0] }) {
             {sizes.map((size) => (
               <button
                 key={size}
-                onClick={() => setSelectedSize(size)}
+                onClick={() => {
+                  setSelectedSize(size);
+                  setShowTooltip(false);
+                }}
                 className={`px-3 py-1.5 text-sm font-medium rounded transition-all ${
                   selectedSize === size
                     ? "bg-[#c9a227] text-[#1a1f2e]"
@@ -149,24 +161,29 @@ function ProductCard({ product }: { product: typeof products[0] }) {
 
         <div className="flex items-center justify-between mt-6">
           <span className="font-oswald text-2xl font-bold text-[#c9a227]">KES {product.price}</span>
-          <a
-            href={selectedSize ? whatsappLink : "#"}
-            target={selectedSize ? "_blank" : undefined}
-            rel="noopener noreferrer"
-            onClick={(e) => !selectedSize && e.preventDefault()}
-            className={`px-4 py-2 font-medium flex items-center gap-2 transition-colors rounded ${
-              selectedSize
-                ? "bg-[#25D366] text-white hover:bg-[#22c55e]"
-                : "bg-gray-600 text-gray-400 cursor-not-allowed"
-            }`}
-          >
-            <WhatsAppIcon />
-            Order
-          </a>
+          <div className="relative">
+            <a
+              href={selectedSize ? whatsappLink : "#"}
+              target={selectedSize ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              onClick={handleOrderClick}
+              className={`px-4 py-2 font-medium flex items-center gap-2 transition-colors rounded ${
+                selectedSize
+                  ? "bg-[#25D366] text-white hover:bg-[#22c55e]"
+                  : "bg-gray-600 text-gray-400 cursor-not-allowed"
+              }`}
+            >
+              <WhatsAppIcon />
+              Order
+            </a>
+            {showTooltip && (
+              <div className="absolute bottom-full right-0 mb-2 px-3 py-2 bg-[#c9a227] text-[#1a1f2e] text-sm font-medium rounded shadow-lg whitespace-nowrap animate-pulse">
+                Please select a size first!
+                <div className="absolute top-full right-4 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-[#c9a227]"></div>
+              </div>
+            )}
+          </div>
         </div>
-        {!selectedSize && (
-          <p className="text-[#c9a227]/70 text-xs mt-2">Please select a size to order</p>
-        )}
       </div>
     </div>
   );
