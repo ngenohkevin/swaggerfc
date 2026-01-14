@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function DesignC() {
   return (
-    <div className="bg-[#faf8f5] text-[#2d2926] font-dm-sans">
+    <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 backdrop-blur-sm border-b border-black/5">
+      <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3">
             <div className="w-12 h-12 bg-[#1d4d2c] rounded-full flex items-center justify-center">
@@ -15,14 +16,15 @@ export default function DesignC() {
             </div>
             <div>
               <span className="font-dm-serif text-xl">Swagger FC</span>
-              <p className="text-xs text-[#6b6560]">Est. 2018</p>
+              <p className="text-xs text-[#6b6560] dark:text-white/50">Est. 2018</p>
             </div>
           </a>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#news" className="text-[#6b6560] hover:text-[#1d4d2c] transition-colors">News</a>
-            <a href="#achievements" className="text-[#6b6560] hover:text-[#1d4d2c] transition-colors">Gallery</a>
-            <a href="#about" className="text-[#6b6560] hover:text-[#1d4d2c] transition-colors">About</a>
+            <a href="#news" className="text-[#6b6560] dark:text-white/70 hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] transition-colors">News</a>
+            <a href="#achievements" className="text-[#6b6560] dark:text-white/70 hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] transition-colors">Gallery</a>
+            <a href="#about" className="text-[#6b6560] dark:text-white/70 hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] transition-colors">About</a>
             <a href="#shop" className="bg-[#1d4d2c] text-white px-6 py-2.5 rounded-full hover:bg-[#164023] transition-colors">Shop</a>
+            <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#1d4d2c] dark:hover:text-[#9ce2b0] hover:bg-black/5 dark:hover:bg-white/10" />
           </div>
         </div>
       </nav>

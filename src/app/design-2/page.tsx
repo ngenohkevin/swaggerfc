@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function DesignB() {
   return (
-    <div className="bg-zinc-950 text-white font-inter">
+    <div className="bg-zinc-950 dark:bg-black text-white font-inter min-h-screen transition-colors">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-white/5">
+      <nav className="fixed top-0 w-full z-50 bg-zinc-950/80 dark:bg-black/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-xl bg-gradient-to-r from-emerald-500 to-blue-500 flex items-center justify-center">
@@ -20,6 +21,7 @@ export default function DesignB() {
             <a href="#achievements" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">Achievements</a>
             <a href="#team" className="text-zinc-400 hover:text-white transition-colors text-sm font-medium">Team</a>
             <a href="#shop" className="bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-5 py-2 rounded-full text-sm font-semibold hover:opacity-90 transition-opacity">Shop</a>
+            <ThemeToggle className="text-zinc-400 hover:text-white hover:bg-white/10" />
           </div>
         </div>
       </nav>

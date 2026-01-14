@@ -2,12 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export default function DesignA() {
   return (
-    <div className="bg-[#1a1f2e] text-white font-source">
+    <div className="bg-[#1a1f2e] dark:bg-[#0f1219] text-white font-source min-h-screen transition-colors">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-white/10">
+      <nav className="fixed top-0 w-full z-50 bg-[#1a1f2e]/95 dark:bg-[#0f1219]/95 backdrop-blur-sm border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
@@ -20,6 +21,7 @@ export default function DesignA() {
             <a href="#achievements" className="text-white/80 hover:text-[#c9a227] transition-colors font-medium">Achievements</a>
             <a href="#team" className="text-white/80 hover:text-[#c9a227] transition-colors font-medium">Team</a>
             <a href="#shop" className="bg-[#c9a227] text-[#1a1f2e] px-6 py-2 font-oswald font-semibold hover:bg-[#d4af37] transition-colors">SHOP</a>
+            <ThemeToggle className="text-white/80 hover:text-[#c9a227] hover:bg-white/10" />
           </div>
         </div>
       </nav>
