@@ -210,33 +210,36 @@ export default function DesignB() {
             <span className="text-emerald-400 text-sm font-semibold tracking-wider uppercase">Official Store</span>
             <h2 className="text-4xl md:text-5xl font-bold mt-2">Get the Gear</h2>
             <p className="text-zinc-400 mt-4 max-w-xl mx-auto">
-              Premium club merchandise. Order easily via WhatsApp.
+              Premium club merchandise. Select your size and order via WhatsApp.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <ShopCard
+            <ShopPreviewCard
               image="https://images.unsplash.com/photo-1763656812756-3539efd3e301?w=600&q=80"
               title="Home Jersey 25/26"
-              description="Match-day performance fabric with breathable mesh"
               price="3,500"
               isNew
-              whatsappText="Hi! I'd like to order the Home Jersey 25/26"
             />
-            <ShopCard
+            <ShopPreviewCard
               image="https://images.unsplash.com/photo-1759447946445-397b1c034768?w=600&q=80"
               title="Premium Hoodie"
-              description="Heavy cotton with embroidered crest"
               price="2,800"
-              whatsappText="Hi! I'd like to order the Premium Hoodie"
             />
-            <ShopCard
+            <ShopPreviewCard
               image="https://images.unsplash.com/photo-1763656813028-3eb492fa7bcf?w=600&q=80"
               title="Classic Polo"
-              description="Pique cotton with woven club badge"
               price="2,200"
-              whatsappText="Hi! I'd like to order the Classic Polo"
             />
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/design-2/shop" className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition-opacity">
+              View All Products
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -349,7 +352,7 @@ function AchievementCard({ image, year, yearColor, title, description }: { image
   );
 }
 
-function ShopCard({ image, title, description, price, isNew, whatsappText }: { image: string; title: string; description: string; price: string; isNew?: boolean; whatsappText: string }) {
+function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
     <div className="group">
       <div className="glass rounded-3xl overflow-hidden">
@@ -363,21 +366,13 @@ function ShopCard({ image, title, description, price, isNew, whatsappText }: { i
         </div>
         <div className="p-6">
           <h3 className="text-xl font-bold">{title}</h3>
-          <p className="text-zinc-400 text-sm mt-2">{description}</p>
+          <p className="text-zinc-400 text-sm mt-2">Available in S, M, L, XL, XXL</p>
           <div className="flex items-center justify-between mt-6">
             <div>
               <span className="text-sm text-zinc-500">From</span>
               <span className="text-2xl font-bold text-emerald-400 ml-2">KES {price}</span>
             </div>
-            <a
-              href={`https://wa.me/254700000000?text=${encodeURIComponent(whatsappText)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-[#25D366] hover:bg-[#22c55e] text-white px-5 py-3 rounded-xl font-semibold flex items-center gap-2 transition-colors"
-            >
-              <WhatsAppIcon />
-              Order
-            </a>
+            <span className="text-emerald-400 text-sm font-medium">View in Shop →</span>
           </div>
         </div>
       </div>
@@ -393,10 +388,3 @@ function SocialIcon({ href, children }: { href: string; children: React.ReactNod
   );
 }
 
-function WhatsAppIcon() {
-  return (
-    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  );
-}

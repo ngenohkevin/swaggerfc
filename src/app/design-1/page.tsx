@@ -205,33 +205,36 @@ export default function DesignA() {
             <span className="text-[#c9a227] font-oswald text-sm tracking-widest uppercase">Official Merchandise</span>
             <h2 className="font-oswald text-4xl md:text-5xl font-bold mt-2">CLUB SHOP</h2>
             <p className="text-white/60 mt-4 max-w-2xl mx-auto">
-              Wear your colors with pride. Order via WhatsApp for easy delivery.
+              Wear your colors with pride. Select your size and order via WhatsApp.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <ShopCard
+            <ShopPreviewCard
               image="https://images.unsplash.com/photo-1763656812756-3539efd3e301?w=600&q=80"
               title="Home Jersey 2025/26"
-              description="Official match-day jersey with club crest"
               price="3,500"
               isNew
-              whatsappText="Hi! I want to order a Home Jersey 2025/26"
             />
-            <ShopCard
+            <ShopPreviewCard
               image="https://images.unsplash.com/photo-1759447946445-397b1c034768?w=600&q=80"
               title="Club Hoodie"
-              description="Premium cotton blend with embroidered crest"
               price="2,800"
-              whatsappText="Hi! I want to order a Club Hoodie"
             />
-            <ShopCard
+            <ShopPreviewCard
               image="https://images.unsplash.com/photo-1763656813028-3eb492fa7bcf?w=600&q=80"
               title="Club Polo Shirt"
-              description="Classic polo with woven club badge"
               price="2,200"
-              whatsappText="Hi! I want to order a Club Polo Shirt"
             />
+          </div>
+
+          <div className="text-center mt-12">
+            <Link href="/design-1/shop" className="inline-flex items-center gap-2 bg-[#c9a227] text-[#1a1f2e] px-8 py-4 font-oswald font-semibold text-lg hover:bg-[#d4af37] transition-colors">
+              VIEW ALL PRODUCTS
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+              </svg>
+            </Link>
           </div>
         </div>
       </section>
@@ -322,7 +325,7 @@ function AchievementCard({ image, year, title, description }: { image: string; y
   );
 }
 
-function ShopCard({ image, title, description, price, isNew, whatsappText }: { image: string; title: string; description: string; price: string; isNew?: boolean; whatsappText: string }) {
+function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
     <div className="group bg-[#2d3548] overflow-hidden">
       <div className="relative h-80 overflow-hidden bg-[#1a1f2e]">
@@ -335,18 +338,10 @@ function ShopCard({ image, title, description, price, isNew, whatsappText }: { i
       </div>
       <div className="p-6">
         <h3 className="font-oswald text-xl font-bold">{title}</h3>
-        <p className="text-white/50 mt-2">{description}</p>
+        <p className="text-white/50 mt-2">Available in S, M, L, XL, XXL</p>
         <div className="flex items-center justify-between mt-4">
           <span className="font-oswald text-2xl font-bold text-[#c9a227]">KES {price}</span>
-          <a
-            href={`https://wa.me/254700000000?text=${encodeURIComponent(whatsappText)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-[#25D366] text-white px-4 py-2 font-medium flex items-center gap-2 hover:bg-[#22c55e] transition-colors"
-          >
-            <WhatsAppIcon />
-            Order
-          </a>
+          <span className="text-[#c9a227] text-sm font-medium">View in Shop →</span>
         </div>
       </div>
     </div>
