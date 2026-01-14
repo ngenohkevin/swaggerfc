@@ -2,12 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Home() {
   return (
     <div className="bg-gray-50 dark:bg-black text-zinc-900 dark:text-white min-h-screen font-inter transition-colors duration-300">
-      <ThemeToggle />
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
         {/* Header */}
         <div className="text-center mb-10 sm:mb-16">
@@ -67,7 +65,7 @@ export default function Home() {
               </div>
               <div className="p-4 sm:p-5 lg:p-6 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 text-xs px-2 py-1 rounded">OPTION A</span>
+                  <span className="bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 text-xs px-2 py-1 rounded">DESIGN 1</span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">Classic Club</h3>
                 <p className="text-zinc-600 dark:text-gray-400 text-sm mb-4 flex-grow">
@@ -97,7 +95,7 @@ export default function Home() {
               </div>
               <div className="p-4 sm:p-5 lg:p-6 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-2 flex-wrap">
-                  <span className="bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 text-xs px-2 py-1 rounded">OPTION B</span>
+                  <span className="bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 text-xs px-2 py-1 rounded">DESIGN 2</span>
                   <span className="bg-yellow-500/30 text-yellow-700 dark:text-yellow-300 text-xs px-2 py-1 rounded">RECOMMENDED</span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">Modern Energy</h3>
@@ -132,7 +130,7 @@ export default function Home() {
               </div>
               <div className="p-4 sm:p-5 lg:p-6 flex flex-col flex-grow">
                 <div className="flex items-center gap-2 mb-2">
-                  <span className="bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 text-xs px-2 py-1 rounded">OPTION C</span>
+                  <span className="bg-yellow-500/20 text-yellow-600 dark:text-yellow-400 text-xs px-2 py-1 rounded">DESIGN 3</span>
                 </div>
                 <h3 className="text-lg sm:text-xl font-bold mb-2 group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors">Community Focus</h3>
                 <p className="text-zinc-600 dark:text-gray-400 text-sm mb-4 flex-grow">
