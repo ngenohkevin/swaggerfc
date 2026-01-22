@@ -380,18 +380,18 @@ export default function Home() {
               <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">What&apos;s Happening</span>
               <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Club News</h2>
             </div>
-            <a href="#" className="text-[#c9a227] dark:text-[#fcd34d] font-medium hover:underline mt-4 md:mt-0 flex items-center gap-2">
+            <Link href="/news" className="text-[#c9a227] dark:text-[#fcd34d] font-medium hover:underline mt-4 md:mt-0 flex items-center gap-2">
               All Articles
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"/>
               </svg>
-            </a>
+            </Link>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Featured News */}
             {articles[0] && (
-              <div className="md:col-span-2 md:row-span-2 group">
+              <Link href={`/news/${articles[0].slug}`} className="md:col-span-2 md:row-span-2 group block">
                 <article className="h-full">
                   <div className="relative h-[400px] md:h-full rounded-3xl overflow-hidden">
                     <Image
@@ -413,33 +413,35 @@ export default function Home() {
                     </div>
                   </div>
                 </article>
-              </div>
+              </Link>
             )}
 
             {/* News Cards */}
             {articles.slice(1, 3).map((article) => (
-              <article key={article.id} className="group">
-                <div className="bg-[#f5f0e8] dark:bg-[#2d3548] rounded-2xl overflow-hidden">
-                  <div className="h-48 overflow-hidden relative">
-                    <Image
-                      src={article.image}
-                      alt={article.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+              <Link key={article.id} href={`/news/${article.slug}`} className="group block">
+                <article>
+                  <div className="bg-[#f5f0e8] dark:bg-[#2d3548] rounded-2xl overflow-hidden">
+                    <div className="h-48 overflow-hidden relative">
+                      <Image
+                        src={article.image}
+                        alt={article.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    </div>
+                    <div className="p-6">
+                      <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">{article.category}</span>
+                      <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors">
+                        {article.title}
+                      </h4>
+                      <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
+                        {article.excerpt}
+                      </p>
+                      <p className="text-[#6b6560]/60 dark:text-white/40 text-sm mt-4">{new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">{article.category}</span>
-                    <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors">
-                      {article.title}
-                    </h4>
-                    <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
-                      {article.excerpt}
-                    </p>
-                    <p className="text-[#6b6560]/60 dark:text-white/40 text-sm mt-4">{new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                  </div>
-                </div>
-              </article>
+                </article>
+              </Link>
             ))}
           </div>
         </div>
