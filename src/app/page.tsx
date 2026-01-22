@@ -89,13 +89,10 @@ const fallbackSettings = {
   foundedYear: 2018,
 };
 
-// Fallback images
+// Fallback images (used when Strapi doesn't have images)
 const fallbackImages = {
   hero: "https://images.unsplash.com/photo-1629977007371-0ba395424741?w=800&q=80",
   about: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
-  news1: "https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=1000&q=80",
-  news2: "https://images.unsplash.com/photo-1757031299944-5028e556613d?w=500&q=80",
-  news3: "https://images.unsplash.com/photo-1629977007398-a17feb6ddf14?w=500&q=80",
 };
 
 // Fallback articles
@@ -149,6 +146,8 @@ export default function Home() {
   const [settings, setSettings] = useState<typeof fallbackSettings>(fallbackSettings);
   const [shopProducts, setShopProducts] = useState<typeof fallbackProducts>(fallbackProducts);
   const [articles, setArticles] = useState<DisplayArticle[]>(fallbackArticles);
+  const [heroImage, setHeroImage] = useState<string>(fallbackImages.hero);
+  const [aboutImage, setAboutImage] = useState<string>(fallbackImages.about);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -211,6 +210,21 @@ export default function Home() {
           publishedAt: article.publishedAt || fallbackArticles[index % fallbackArticles.length].publishedAt,
         }));
         setArticles(displayArticles);
+      }
+
+      // Set hero image: prefer site settings, fallback to first gallery item
+      const heroImgUrl = getStrapiImageUrl(settingsData?.heroImage);
+      if (heroImgUrl) {
+        setHeroImage(heroImgUrl);
+      } else if (galleryData.length > 0 && galleryData[0].image) {
+        setHeroImage(getStrapiImageUrl(galleryData[0].image) || fallbackImages.hero);
+      }
+
+      // Set about image: use second gallery item if available
+      if (galleryData.length > 1 && galleryData[1].image) {
+        setAboutImage(getStrapiImageUrl(galleryData[1].image) || fallbackImages.about);
+      } else if (galleryData.length > 0 && galleryData[0].image) {
+        setAboutImage(getStrapiImageUrl(galleryData[0].image) || fallbackImages.about);
       }
 
       setLoading(false);
@@ -316,7 +330,7 @@ export default function Home() {
                 {/* Main image */}
                 <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/20 dark:shadow-black/40 relative">
                   <Image
-                    src="https://images.unsplash.com/photo-1629977007371-0ba395424741?w=800&q=80"
+                    src={heroImage}
                     alt="Football Action"
                     fill
                     className="object-cover"
@@ -472,7 +486,7 @@ export default function Home() {
             <div className="relative">
               <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-xl">
                 <Image
-                  src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80"
+                  src={aboutImage}
                   alt="Team celebrating"
                   fill
                   className="object-cover"
