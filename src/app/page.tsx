@@ -1,10 +1,7 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { ImageLightbox } from "@/components/ImageLightbox";
+import { GallerySection, type DisplayGalleryItem } from "@/components/GallerySection";
 import { SocialLinks } from "@/components/SocialLinks";
 import {
   getGalleryItems,
@@ -13,19 +10,7 @@ import {
   getProducts,
   getArticles,
   getStrapiImageUrl,
-  type GalleryItem as StrapiGalleryItem,
-  type SiteSettings,
-  type AboutPage,
-  type Product,
-  type Article,
 } from "@/lib/strapi";
-
-interface DisplayGalleryItem {
-  image: string;
-  year: string;
-  title: string;
-  description: string;
-}
 
 // Fallback gallery items when Strapi is empty
 const fallbackGalleryItems: DisplayGalleryItem[] = [
@@ -79,10 +64,10 @@ const fallbackProducts = [
 
 // Fallback settings
 const fallbackSettings = {
-  siteName: "Swagger FC",
+  siteName: "Swagger Sports Academy",
   tagline: "More Than Just Football",
   heroSubtitle: "Welcome to our family",
-  heroDescription: "A community united by passion for the beautiful game. Where every supporter is family and every match day is a celebration.",
+  heroDescription: "A community united by passion for the beautiful game. Where every player is family and every training day is a celebration.",
   supportersCount: "5K+",
   yearsStrong: "7+",
   trophiesWon: "12",
@@ -91,7 +76,7 @@ const fallbackSettings = {
   foundedYear: 2018,
 };
 
-// Fallback images (used when Strapi doesn't have images)
+// Fallback images
 const fallbackImages = {
   hero: "https://images.unsplash.com/photo-1629977007371-0ba395424741?w=800&q=80",
   about: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
@@ -142,108 +127,92 @@ const fallbackArticles: DisplayArticle[] = [
   },
 ];
 
-export default function Home() {
-  const [selectedImage, setSelectedImage] = useState<DisplayGalleryItem | null>(null);
-  const [galleryItems, setGalleryItems] = useState<DisplayGalleryItem[]>(fallbackGalleryItems);
-  const [settings, setSettings] = useState<typeof fallbackSettings>(fallbackSettings);
-  const [shopProducts, setShopProducts] = useState<typeof fallbackProducts>(fallbackProducts);
-  const [articles, setArticles] = useState<DisplayArticle[]>(fallbackArticles);
-  const [heroImage, setHeroImage] = useState<string>(fallbackImages.hero);
-  const [aboutImage, setAboutImage] = useState<string>(fallbackImages.about);
-  const [loading, setLoading] = useState(true);
+export default async function Home() {
+  // Fetch all data on the server
+  const [galleryData, settingsData, aboutData, productsData, articlesData] = await Promise.all([
+    getGalleryItems(),
+    getSiteSettings(),
+    getAboutPage(),
+    getProducts(),
+    getArticles(),
+  ]);
 
-  useEffect(() => {
-    async function fetchData() {
-      const [galleryData, settingsData, aboutData, productsData, articlesData] = await Promise.all([
-        getGalleryItems(),
-        getSiteSettings(),
-        getAboutPage(),
-        getProducts(),
-        getArticles(),
-      ]);
+  // Transform gallery items from Strapi
+  const galleryItems: DisplayGalleryItem[] = galleryData.length > 0
+    ? galleryData.map((item, index) => ({
+        image: getStrapiImageUrl(item.image) || fallbackGalleryItems[index % fallbackGalleryItems.length].image,
+        year: item.year || fallbackGalleryItems[index % fallbackGalleryItems.length].year,
+        title: item.title || fallbackGalleryItems[index % fallbackGalleryItems.length].title,
+        description: item.description || fallbackGalleryItems[index % fallbackGalleryItems.length].description,
+      }))
+    : fallbackGalleryItems;
 
-      // Transform gallery items from Strapi
-      if (galleryData.length > 0) {
-        const displayGallery: DisplayGalleryItem[] = galleryData.map((item, index) => ({
-          image: getStrapiImageUrl(item.image) || fallbackGalleryItems[index % fallbackGalleryItems.length].image,
-          year: item.year || fallbackGalleryItems[index % fallbackGalleryItems.length].year,
-          title: item.title || fallbackGalleryItems[index % fallbackGalleryItems.length].title,
-          description: item.description || fallbackGalleryItems[index % fallbackGalleryItems.length].description,
-        }));
-        setGalleryItems(displayGallery);
-      }
+  // Use site settings from Strapi or fallback
+  const settings = settingsData ? {
+    siteName: settingsData.siteName || fallbackSettings.siteName,
+    tagline: settingsData.tagline || fallbackSettings.tagline,
+    heroSubtitle: settingsData.heroSubtitle || fallbackSettings.heroSubtitle,
+    heroDescription: settingsData.heroDescription || fallbackSettings.heroDescription,
+    supportersCount: settingsData.supportersCount || fallbackSettings.supportersCount,
+    yearsStrong: settingsData.yearsStrong || fallbackSettings.yearsStrong,
+    trophiesWon: settingsData.trophiesWon || fallbackSettings.trophiesWon,
+    championsTitle: settingsData.championsTitle || fallbackSettings.championsTitle,
+    championsSubtitle: settingsData.championsSubtitle || fallbackSettings.championsSubtitle,
+    foundedYear: settingsData.foundedYear || fallbackSettings.foundedYear,
+  } : fallbackSettings;
 
-      // Use site settings from Strapi or fallback
-      if (settingsData) {
-        setSettings({
-          siteName: settingsData.siteName || fallbackSettings.siteName,
-          tagline: settingsData.tagline || fallbackSettings.tagline,
-          heroSubtitle: settingsData.heroSubtitle || fallbackSettings.heroSubtitle,
-          heroDescription: settingsData.heroDescription || fallbackSettings.heroDescription,
-          supportersCount: settingsData.supportersCount || fallbackSettings.supportersCount,
-          yearsStrong: settingsData.yearsStrong || fallbackSettings.yearsStrong,
-          trophiesWon: settingsData.trophiesWon || fallbackSettings.trophiesWon,
-          championsTitle: settingsData.championsTitle || fallbackSettings.championsTitle,
-          championsSubtitle: settingsData.championsSubtitle || fallbackSettings.championsSubtitle,
-          foundedYear: settingsData.foundedYear || fallbackSettings.foundedYear,
-        });
-      }
+  // Get logo URL from Strapi
+  const logoUrl = getStrapiImageUrl(settingsData?.logo);
 
-      // Transform products for shop preview
-      if (productsData.length > 0) {
-        const displayProducts = productsData.slice(0, 3).map((product, index) => ({
-          image: getStrapiImageUrl(product.image) || fallbackProducts[index % fallbackProducts.length].image,
-          title: product.name || fallbackProducts[index % fallbackProducts.length].title,
-          price: product.price?.toLocaleString() || fallbackProducts[index % fallbackProducts.length].price,
-          isNew: product.isNew || false,
-        }));
-        setShopProducts(displayProducts);
-      }
+  // Transform products for shop preview
+  const shopProducts = productsData.length > 0
+    ? productsData.slice(0, 3).map((product, index) => ({
+        image: getStrapiImageUrl(product.image) || fallbackProducts[index % fallbackProducts.length].image,
+        title: product.name || fallbackProducts[index % fallbackProducts.length].title,
+        price: product.price?.toLocaleString() || fallbackProducts[index % fallbackProducts.length].price,
+        isNew: product.isNew || false,
+      }))
+    : fallbackProducts;
 
-      // Transform articles from Strapi
-      if (articlesData.length > 0) {
-        const displayArticles: DisplayArticle[] = articlesData.slice(0, 3).map((article, index) => ({
-          id: article.id,
-          title: article.title || fallbackArticles[index % fallbackArticles.length].title,
-          slug: article.slug || fallbackArticles[index % fallbackArticles.length].slug,
-          excerpt: article.excerpt || fallbackArticles[index % fallbackArticles.length].excerpt,
-          category: article.category || fallbackArticles[index % fallbackArticles.length].category,
-          image: getStrapiImageUrl(article.image) || fallbackArticles[index % fallbackArticles.length].image,
-          featured: article.featured || false,
-          publishedAt: article.publishedAt || fallbackArticles[index % fallbackArticles.length].publishedAt,
-        }));
-        setArticles(displayArticles);
-      }
+  // Transform articles from Strapi
+  const articles: DisplayArticle[] = articlesData.length > 0
+    ? articlesData.slice(0, 3).map((article, index) => ({
+        id: article.id,
+        title: article.title || fallbackArticles[index % fallbackArticles.length].title,
+        slug: article.slug || fallbackArticles[index % fallbackArticles.length].slug,
+        excerpt: article.excerpt || fallbackArticles[index % fallbackArticles.length].excerpt,
+        category: article.category || fallbackArticles[index % fallbackArticles.length].category,
+        image: getStrapiImageUrl(article.image) || fallbackArticles[index % fallbackArticles.length].image,
+        featured: article.featured || false,
+        publishedAt: article.publishedAt || fallbackArticles[index % fallbackArticles.length].publishedAt,
+      }))
+    : fallbackArticles;
 
-      // Set hero image: use About Page heroImage (main hero for homepage)
-      const heroImgUrl = getStrapiImageUrl(aboutData?.heroImage);
-      if (heroImgUrl) {
-        setHeroImage(heroImgUrl);
-      } else if (galleryData.length > 0 && galleryData[0].image) {
-        setHeroImage(getStrapiImageUrl(galleryData[0].image) || fallbackImages.hero);
-      }
+  // Set hero image: use About Page heroImage
+  const heroImage = getStrapiImageUrl(aboutData?.heroImage)
+    || (galleryData.length > 0 ? getStrapiImageUrl(galleryData[0].image) : null)
+    || fallbackImages.hero;
 
-      // Set about section image: use About Page teamPhoto
-      const aboutImgUrl = getStrapiImageUrl(aboutData?.teamPhoto);
-      if (aboutImgUrl) {
-        setAboutImage(aboutImgUrl);
-      } else if (galleryData.length > 0 && galleryData[0].image) {
-        setAboutImage(getStrapiImageUrl(galleryData[0].image) || fallbackImages.about);
-      }
+  // Set about section image: use About Page teamPhoto
+  const aboutImage = getStrapiImageUrl(aboutData?.teamPhoto)
+    || (galleryData.length > 0 ? getStrapiImageUrl(galleryData[0].image) : null)
+    || fallbackImages.about;
 
-      setLoading(false);
-    }
-    fetchData();
-  }, []);
   return (
     <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <a href="#" className="flex items-center gap-3">
-            <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
-              <span className="text-[#1a1f2e] font-bold text-xl">SF</span>
-            </div>
+            {logoUrl ? (
+              <div className="w-12 h-12 rounded-full overflow-hidden relative">
+                <Image src={logoUrl} alt={settings.siteName} fill className="object-cover" sizes="48px" />
+              </div>
+            ) : (
+              <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
+                <span className="text-[#1a1f2e] font-bold text-xl">SS</span>
+              </div>
+            )}
             <div>
               <span className="font-dm-serif text-xl">{settings.siteName}</span>
               <p className="text-xs text-[#6b6560] dark:text-white/50">Est. {settings.foundedYear}</p>
@@ -337,6 +306,7 @@ export default function Home() {
                     src={heroImage}
                     alt="Football Action"
                     fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                     className="object-cover"
                     priority
                   />
@@ -402,6 +372,7 @@ export default function Home() {
                       src={articles[0].image}
                       alt={articles[0].title}
                       fill
+                      sizes="(max-width: 768px) 100vw, 66vw"
                       className="object-cover group-hover:scale-105 transition-transform duration-700"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -430,6 +401,7 @@ export default function Home() {
                         src={article.image}
                         alt={article.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
@@ -463,26 +435,8 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Auto-scrolling Gallery */}
-        <div className="relative overflow-hidden">
-          <div className="carousel-auto flex gap-4">
-            {[...Array(2)].map((_, setIndex) => (
-              <div key={setIndex} className="flex gap-4">
-                {galleryItems.map((item, index) => (
-                  <GalleryCard
-                    key={`${setIndex}-${index}`}
-                    item={item}
-                    onClick={() => setSelectedImage(item)}
-                  />
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <GallerySection items={galleryItems} />
       </section>
-
-      {/* Lightbox Modal */}
-      <ImageLightbox item={selectedImage} onClose={() => setSelectedImage(null)} />
 
       {/* About Section */}
       <section id="about" className="py-20 bg-white dark:bg-[#0f1219]">
@@ -495,6 +449,7 @@ export default function Home() {
                   src={aboutImage}
                   alt="Team celebrating"
                   fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                   className="object-cover"
                 />
               </div>
@@ -608,9 +563,15 @@ export default function Home() {
           <div className="grid md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
-                  <span className="text-[#1a1f2e] font-bold text-xl">SF</span>
-                </div>
+                {logoUrl ? (
+                  <div className="w-12 h-12 rounded-full overflow-hidden relative">
+                    <Image src={logoUrl} alt={settings.siteName} fill className="object-cover" sizes="48px" />
+                  </div>
+                ) : (
+                  <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
+                    <span className="text-[#1a1f2e] font-bold text-xl">SS</span>
+                  </div>
+                )}
                 <div>
                   <span className="font-dm-serif text-xl">{settings.siteName}</span>
                   <p className="text-white/50 text-sm">Est. {settings.foundedYear}</p>
@@ -640,70 +601,7 @@ export default function Home() {
         </div>
       </footer>
 
-      <style jsx global>{`
-        @keyframes scrollRight {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(calc(-380px * 4 - 4rem)); }
-        }
-        .carousel-auto {
-          animation: scrollRight 30s linear infinite;
-          width: calc(380px * 8 + 7rem);
-        }
-        .carousel-auto:hover {
-          animation-play-state: paused;
-        }
-        @keyframes fade-in {
-          from {
-            opacity: 0;
-            transform: scale(0.95);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-        .animate-fade-in {
-          animation: fade-in 0.3s ease-out forwards;
-        }
-        @keyframes spin-slow {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        .animate-spin-slow {
-          animation: spin-slow 30s linear infinite;
-        }
-      `}</style>
     </div>
-  );
-}
-
-function GalleryCard({ item, onClick }: { item: DisplayGalleryItem; onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      className="flex-shrink-0 w-[380px] group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fcd34d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1f2e] rounded-2xl"
-    >
-      <div className="relative h-[480px] rounded-2xl overflow-hidden">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent group-hover:from-black/80 transition-colors duration-300"></div>
-        <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[#fcd34d] text-sm font-medium">{item.year}</span>
-          <h3 className="text-white font-dm-serif text-xl mt-1 group-hover:text-[#fcd34d] transition-colors">{item.title}</h3>
-          <p className="text-white/60 text-sm mt-2 line-clamp-2">{item.description}</p>
-        </div>
-        {/* Click indicator */}
-        <div className="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
-          </svg>
-        </div>
-      </div>
-    </button>
   );
 }
 

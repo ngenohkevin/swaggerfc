@@ -1,0 +1,27 @@
+{
+  "name": "Swagger Sports Academy",
+  "short_name": "SwaggerSA",
+  "description": "More than just football. A community united by passion for the beautiful game.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#1a1f2e",
+  "theme_color": "#c9a227",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/logo.png",
+      "sizes": "475x525",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["sports", "news"],
+  "lang": "en",
+  "dir": "ltr"
+}
