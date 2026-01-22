@@ -40,6 +40,11 @@ export interface GalleryItem {
   updatedAt: string;
 }
 
+export interface ProductSize {
+  size: string;
+  available: boolean;
+}
+
 export interface Product {
   id: number;
   documentId: string;
@@ -48,7 +53,7 @@ export interface Product {
   price: number;
   image: StrapiImage;
   isNew: boolean;
-  sizes: string[];
+  sizes: ProductSize[];
   inStock: boolean;
   order: number;
   createdAt: string;
@@ -89,12 +94,10 @@ export interface AboutPage {
   vision: string;
   heroImage: StrapiImage;
   teamPhoto: StrapiImage;
-  stats: {
-    years: number;
-    trophies: number;
-    supporters: number;
-    matches: number;
-  };
+  statsYears: number;
+  statsTrophies: number;
+  statsSupporters: number;
+  statsMatches: number;
 }
 
 export interface SiteSettings {
@@ -103,6 +106,15 @@ export interface SiteSettings {
   siteName: string;
   tagline: string;
   logo: StrapiImage;
+  heroImage: StrapiImage;
+  heroSubtitle: string;
+  heroDescription: string;
+  supportersCount: string;
+  yearsStrong: string;
+  trophiesWon: string;
+  championsTitle: string;
+  championsSubtitle: string;
+  foundedYear: number;
   whatsappNumber: string;
   email: string;
   address: string;
@@ -237,7 +249,7 @@ export async function getAboutPage(): Promise<AboutPage | null> {
 export async function getSiteSettings(): Promise<SiteSettings | null> {
   try {
     const response = await fetchFromStrapi<StrapiResponse<SiteSettings>>(
-      '/site-setting?populate=logo'
+      '/site-setting?populate=*'
     );
     return response.data;
   } catch (error) {

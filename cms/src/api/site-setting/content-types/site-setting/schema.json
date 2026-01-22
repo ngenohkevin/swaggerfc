@@ -26,6 +26,43 @@
       "multiple": false,
       "allowedTypes": ["images"]
     },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "heroSubtitle": {
+      "type": "string",
+      "default": "Welcome to our family"
+    },
+    "heroDescription": {
+      "type": "text",
+      "default": "A community united by passion for the beautiful game. Where every supporter is family and every match day is a celebration."
+    },
+    "supportersCount": {
+      "type": "string",
+      "default": "5K+"
+    },
+    "yearsStrong": {
+      "type": "string",
+      "default": "7+"
+    },
+    "trophiesWon": {
+      "type": "string",
+      "default": "12"
+    },
+    "championsTitle": {
+      "type": "string",
+      "default": "Champions"
+    },
+    "championsSubtitle": {
+      "type": "string",
+      "default": "2025 League Winners"
+    },
+    "foundedYear": {
+      "type": "integer",
+      "default": 2018
+    },
     "whatsappNumber": {
       "type": "string",
       "default": "254700000000"

@@ -2,75 +2,167 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { getProducts, getSiteSettings, getStrapiImageUrl, type Product, type ProductSize, type SiteSettings } from "@/lib/strapi";
 
-const products = [
+// Fallback products when Strapi is empty
+const fallbackProducts = [
   {
     id: 1,
     name: "Home Jersey 2025/26",
     description: "Official match-day jersey with breathable fabric and embroidered club crest",
-    price: "3,500",
+    price: 3500,
     image: "https://images.unsplash.com/photo-1763656812756-3539efd3e301?w=600&q=80",
     isNew: true,
+    sizes: [
+      { size: "S", available: true },
+      { size: "M", available: true },
+      { size: "L", available: true },
+      { size: "XL", available: true },
+      { size: "XXL", available: true },
+    ],
   },
   {
     id: 2,
     name: "Away Jersey 2025/26",
     description: "Premium away kit with moisture-wicking technology",
-    price: "3,500",
+    price: 3500,
     image: "https://images.unsplash.com/photo-1759447946445-397b1c034768?w=600&q=80",
     isNew: true,
+    sizes: [
+      { size: "S", available: true },
+      { size: "M", available: true },
+      { size: "L", available: true },
+      { size: "XL", available: true },
+      { size: "XXL", available: true },
+    ],
   },
   {
     id: 3,
     name: "Supporters Hoodie",
     description: "Premium cotton blend hoodie with embroidered crest and kangaroo pocket",
-    price: "2,800",
+    price: 2800,
     image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80",
+    isNew: false,
+    sizes: [
+      { size: "S", available: true },
+      { size: "M", available: true },
+      { size: "L", available: true },
+      { size: "XL", available: true },
+      { size: "XXL", available: true },
+    ],
   },
   {
     id: 4,
     name: "Training Jacket",
     description: "Lightweight training jacket with full zip and club branding",
-    price: "3,200",
+    price: 3200,
     image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80",
+    isNew: false,
+    sizes: [
+      { size: "S", available: true },
+      { size: "M", available: true },
+      { size: "L", available: true },
+      { size: "XL", available: true },
+      { size: "XXL", available: true },
+    ],
   },
   {
     id: 5,
     name: "Classic Polo Shirt",
     description: "Classic polo with woven club badge, perfect for match days",
-    price: "2,200",
+    price: 2200,
     image: "https://images.unsplash.com/photo-1763656813028-3eb492fa7bcf?w=600&q=80",
+    isNew: false,
+    sizes: [
+      { size: "S", available: true },
+      { size: "M", available: true },
+      { size: "L", available: true },
+      { size: "XL", available: true },
+      { size: "XXL", available: true },
+    ],
   },
   {
     id: 6,
     name: "Club T-Shirt",
     description: "Comfortable cotton t-shirt with printed club logo",
-    price: "1,500",
+    price: 1500,
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
+    isNew: false,
+    sizes: [
+      { size: "S", available: true },
+      { size: "M", available: true },
+      { size: "L", available: true },
+      { size: "XL", available: true },
+      { size: "XXL", available: true },
+    ],
   },
 ];
 
-const sizes = ["S", "M", "L", "XL", "XXL"];
+interface DisplayProduct {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  isNew: boolean;
+  sizes: ProductSize[];
+}
 
 export default function ShopPage() {
+  const [products, setProducts] = useState<DisplayProduct[]>([]);
+  const [settings, setSettings] = useState<SiteSettings | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const [productsData, settingsData] = await Promise.all([
+        getProducts(),
+        getSiteSettings(),
+      ]);
+
+      // Transform Strapi products to display format
+      if (productsData.length > 0) {
+        const displayProducts: DisplayProduct[] = productsData.map((p) => ({
+          id: p.id,
+          name: p.name,
+          description: p.description,
+          price: p.price,
+          image: getStrapiImageUrl(p.image) || fallbackProducts[0].image,
+          isNew: p.isNew,
+          sizes: Array.isArray(p.sizes) ? p.sizes : fallbackProducts[0].sizes,
+        }));
+        setProducts(displayProducts);
+      } else {
+        setProducts(fallbackProducts);
+      }
+
+      setSettings(settingsData);
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
+
+  const whatsappNumber = settings?.whatsappNumber || "254700000000";
+  const foundedYear = settings?.foundedYear || 2018;
+
   return (
     <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <Link href="/design-3" className="flex items-center gap-3">
+          <Link href="/" className="flex items-center gap-3">
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
               <span className="text-[#1a1f2e] font-bold text-lg sm:text-xl">SF</span>
             </div>
             <div>
-              <span className="font-dm-serif text-lg sm:text-xl">Swagger FC</span>
-              <p className="text-xs text-[#6b6560] dark:text-white/50 hidden sm:block">Est. 2018</p>
+              <span className="font-dm-serif text-lg sm:text-xl">{settings?.siteName || "Swagger FC"}</span>
+              <p className="text-xs text-[#6b6560] dark:text-white/50 hidden sm:block">Est. {foundedYear}</p>
             </div>
           </Link>
           <div className="flex items-center gap-4">
-            <Link href="/design-3" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors text-sm font-medium">
+            <Link href="/" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors text-sm font-medium">
               Back to Home
             </Link>
             <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
@@ -91,11 +183,17 @@ export default function ShopPage() {
 
       {/* Products Grid */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#c9a227]"></div>
+          </div>
+        ) : (
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} whatsappNumber={whatsappNumber} />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Footer */}
@@ -112,24 +210,19 @@ export default function ShopPage() {
           </div>
         </div>
       </footer>
-
-      {/* Back to designs link */}
-      <Link href="/" className="fixed bottom-6 left-6 bg-[#c9a227] text-[#1a1f2e] px-4 py-2 rounded-full font-medium flex items-center gap-2 hover:bg-[#d4af37] transition-colors z-50">
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7"/>
-        </svg>
-        All Designs
-      </Link>
     </div>
   );
 }
 
-function ProductCard({ product }: { product: typeof products[0] }) {
+function ProductCard({ product, whatsappNumber }: { product: DisplayProduct; whatsappNumber: string }) {
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [showTooltip, setShowTooltip] = useState(false);
 
-  const whatsappMessage = `Hi! I want to order: ${product.name} - Size: ${selectedSize || "Not selected"} - Price: KES ${product.price}`;
-  const whatsappLink = `https://wa.me/254700000000?text=${encodeURIComponent(whatsappMessage)}`;
+  const whatsappMessage = `Hi! I want to order: ${product.name} - Size: ${selectedSize || "Not selected"} - Price: KES ${product.price.toLocaleString()}`;
+  const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+
+  // Get available sizes
+  const availableSizes = product.sizes.filter((s) => s.available);
 
   const handleOrderClick = (e: React.MouseEvent) => {
     if (!selectedSize) {
@@ -162,20 +255,25 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         <div className="mt-4">
           <p className="text-[#6b6560] dark:text-white/60 text-sm mb-2">Select Size:</p>
           <div className="flex flex-wrap gap-2">
-            {sizes.map((size) => (
+            {product.sizes.map((sizeObj) => (
               <button
-                key={size}
+                key={sizeObj.size}
                 onClick={() => {
-                  setSelectedSize(size);
-                  setShowTooltip(false);
+                  if (sizeObj.available) {
+                    setSelectedSize(sizeObj.size);
+                    setShowTooltip(false);
+                  }
                 }}
+                disabled={!sizeObj.available}
                 className={`px-3 py-1.5 text-sm font-medium rounded-full transition-all ${
-                  selectedSize === size
+                  !sizeObj.available
+                    ? "bg-gray-200 dark:bg-white/5 text-gray-400 dark:text-white/30 cursor-not-allowed line-through"
+                    : selectedSize === sizeObj.size
                     ? "bg-[#c9a227] text-[#1a1f2e]"
                     : "bg-[#f5f0e8] dark:bg-white/10 text-[#6b6560] dark:text-white/70 hover:bg-[#c9a227]/10 dark:hover:bg-[#c9a227]/20 hover:text-[#c9a227] dark:hover:text-[#fcd34d]"
                 }`}
               >
-                {size}
+                {sizeObj.size}
               </button>
             ))}
           </div>
@@ -184,7 +282,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
         <div className="flex items-center justify-between mt-6">
           <div>
             <span className="text-sm text-[#6b6560] dark:text-white/50">Price</span>
-            <p className="font-dm-serif text-2xl text-[#c9a227] dark:text-[#fcd34d]">KES {product.price}</p>
+            <p className="font-dm-serif text-2xl text-[#c9a227] dark:text-[#fcd34d]">KES {product.price.toLocaleString()}</p>
           </div>
           <div className="relative">
             <a

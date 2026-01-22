@@ -36,7 +36,13 @@
     },
     "sizes": {
       "type": "json",
-      "default": ["S", "M", "L", "XL", "XXL"]
+      "default": [
+        {"size": "S", "available": true},
+        {"size": "M", "available": true},
+        {"size": "L", "available": true},
+        {"size": "XL", "available": true},
+        {"size": "XXL", "available": true}
+      ]
     },
     "inStock": {
       "type": "boolean",
