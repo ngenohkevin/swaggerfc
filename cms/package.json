@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "@sensinum/strapi-plugin-mcp": "^1.1.0",
-    "@strapi/strapi": "5.33.2",
-    "@strapi/plugin-cloud": "5.33.2",
-    "@strapi/plugin-users-permissions": "5.33.2",
+    "@strapi/strapi": "5.33.4",
+    "@strapi/plugin-cloud": "5.33.4",
+    "@strapi/plugin-users-permissions": "5.33.4",
     "better-sqlite3": "11.7.0",
     "pg": "8.8.0"
   },
