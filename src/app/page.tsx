@@ -2,19 +2,29 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { ImageLightbox } from "@/components/ImageLightbox";
 import { SocialLinks } from "@/components/SocialLinks";
+import {
+  getGalleryItems,
+  getSiteSettings,
+  getProducts,
+  getStrapiImageUrl,
+  type GalleryItem as StrapiGalleryItem,
+  type SiteSettings,
+  type Product,
+} from "@/lib/strapi";
 
-interface GalleryItem {
+interface DisplayGalleryItem {
   image: string;
   year: string;
   title: string;
   description: string;
 }
 
-const galleryItems: GalleryItem[] = [
+// Fallback gallery items when Strapi is empty
+const fallbackGalleryItems: DisplayGalleryItem[] = [
   {
     image: "https://images.unsplash.com/photo-1560003991-545650ee5f07?w=700&q=80",
     year: "2025",
@@ -41,8 +51,108 @@ const galleryItems: GalleryItem[] = [
   },
 ];
 
+// Fallback products for shop preview
+const fallbackProducts = [
+  {
+    image: "https://images.unsplash.com/photo-1763656812756-3539efd3e301?w=600&q=80",
+    title: "Home Jersey 25/26",
+    price: "3,500",
+    isNew: true,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1759447946445-397b1c034768?w=600&q=80",
+    title: "Supporters Hoodie",
+    price: "2,800",
+    isNew: false,
+  },
+  {
+    image: "https://images.unsplash.com/photo-1763656813028-3eb492fa7bcf?w=600&q=80",
+    title: "Classic Polo Shirt",
+    price: "2,200",
+    isNew: false,
+  },
+];
+
+// Fallback settings
+const fallbackSettings = {
+  siteName: "Swagger FC",
+  tagline: "More Than Just Football",
+  heroSubtitle: "Welcome to our family",
+  heroDescription: "A community united by passion for the beautiful game. Where every supporter is family and every match day is a celebration.",
+  supportersCount: "5K+",
+  yearsStrong: "7+",
+  trophiesWon: "12",
+  championsTitle: "Champions",
+  championsSubtitle: "2025 League Winners",
+  foundedYear: 2018,
+};
+
+// Fallback images
+const fallbackImages = {
+  hero: "https://images.unsplash.com/photo-1629977007371-0ba395424741?w=800&q=80",
+  about: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=800&q=80",
+  news1: "https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=1000&q=80",
+  news2: "https://images.unsplash.com/photo-1757031299944-5028e556613d?w=500&q=80",
+  news3: "https://images.unsplash.com/photo-1629977007398-a17feb6ddf14?w=500&q=80",
+};
+
 export default function Home() {
-  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
+  const [selectedImage, setSelectedImage] = useState<DisplayGalleryItem | null>(null);
+  const [galleryItems, setGalleryItems] = useState<DisplayGalleryItem[]>(fallbackGalleryItems);
+  const [settings, setSettings] = useState<typeof fallbackSettings>(fallbackSettings);
+  const [shopProducts, setShopProducts] = useState<typeof fallbackProducts>(fallbackProducts);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchData() {
+      const [galleryData, settingsData, productsData] = await Promise.all([
+        getGalleryItems(),
+        getSiteSettings(),
+        getProducts(),
+      ]);
+
+      // Transform gallery items from Strapi
+      if (galleryData.length > 0) {
+        const displayGallery: DisplayGalleryItem[] = galleryData.map((item, index) => ({
+          image: getStrapiImageUrl(item.image) || fallbackGalleryItems[index % fallbackGalleryItems.length].image,
+          year: item.year || fallbackGalleryItems[index % fallbackGalleryItems.length].year,
+          title: item.title || fallbackGalleryItems[index % fallbackGalleryItems.length].title,
+          description: item.description || fallbackGalleryItems[index % fallbackGalleryItems.length].description,
+        }));
+        setGalleryItems(displayGallery);
+      }
+
+      // Use site settings from Strapi or fallback
+      if (settingsData) {
+        setSettings({
+          siteName: settingsData.siteName || fallbackSettings.siteName,
+          tagline: settingsData.tagline || fallbackSettings.tagline,
+          heroSubtitle: settingsData.heroSubtitle || fallbackSettings.heroSubtitle,
+          heroDescription: settingsData.heroDescription || fallbackSettings.heroDescription,
+          supportersCount: settingsData.supportersCount || fallbackSettings.supportersCount,
+          yearsStrong: settingsData.yearsStrong || fallbackSettings.yearsStrong,
+          trophiesWon: settingsData.trophiesWon || fallbackSettings.trophiesWon,
+          championsTitle: settingsData.championsTitle || fallbackSettings.championsTitle,
+          championsSubtitle: settingsData.championsSubtitle || fallbackSettings.championsSubtitle,
+          foundedYear: settingsData.foundedYear || fallbackSettings.foundedYear,
+        });
+      }
+
+      // Transform products for shop preview
+      if (productsData.length > 0) {
+        const displayProducts = productsData.slice(0, 3).map((product, index) => ({
+          image: getStrapiImageUrl(product.image) || fallbackProducts[index % fallbackProducts.length].image,
+          title: product.name || fallbackProducts[index % fallbackProducts.length].title,
+          price: product.price?.toLocaleString() || fallbackProducts[index % fallbackProducts.length].price,
+          isNew: product.isNew || false,
+        }));
+        setShopProducts(displayProducts);
+      }
+
+      setLoading(false);
+    }
+    fetchData();
+  }, []);
   return (
     <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
       {/* Navigation */}
@@ -53,8 +163,8 @@ export default function Home() {
               <span className="text-[#1a1f2e] font-bold text-xl">SF</span>
             </div>
             <div>
-              <span className="font-dm-serif text-xl">Swagger FC</span>
-              <p className="text-xs text-[#6b6560] dark:text-white/50">Est. 2018</p>
+              <span className="font-dm-serif text-xl">{settings.siteName}</span>
+              <p className="text-xs text-[#6b6560] dark:text-white/50">Est. {settings.foundedYear}</p>
             </div>
           </a>
           <div className="hidden md:flex items-center gap-8">
@@ -82,21 +192,27 @@ export default function Home() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c9a227] opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#c9a227]"></span>
                 </span>
-                Welcome to our family
+                {settings.heroSubtitle}
               </div>
 
               <h1 className="font-dm-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-6">
-                More Than<br/>
-                <span className="text-[#c9a227] dark:text-[#fcd34d] relative">
-                  Just Football
-                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#c9a227]/30 dark:text-[#fcd34d]/30" viewBox="0 0 200 12" preserveAspectRatio="none">
-                    <path d="M0,8 Q50,0 100,8 T200,8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
-                  </svg>
-                </span>
+                {settings.tagline.includes(" ") ? (
+                  <>
+                    {settings.tagline.split(" ").slice(0, -2).join(" ")}<br/>
+                    <span className="text-[#c9a227] dark:text-[#fcd34d] relative">
+                      {settings.tagline.split(" ").slice(-2).join(" ")}
+                      <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#c9a227]/30 dark:text-[#fcd34d]/30" viewBox="0 0 200 12" preserveAspectRatio="none">
+                        <path d="M0,8 Q50,0 100,8 T200,8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+                      </svg>
+                    </span>
+                  </>
+                ) : (
+                  settings.tagline
+                )}
               </h1>
 
               <p className="text-[#6b6560] dark:text-white/70 text-lg mb-8 max-w-md leading-relaxed">
-                A community united by passion for the beautiful game. Where every supporter is family and every match day is a celebration.
+                {settings.heroDescription}
               </p>
 
               <div className="flex flex-wrap gap-4 mb-12">
@@ -114,15 +230,15 @@ export default function Home() {
               {/* Stats row */}
               <div className="flex gap-8 pt-8 border-t border-black/10 dark:border-white/10">
                 <div>
-                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">7+</p>
+                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.yearsStrong}</p>
                   <p className="text-sm text-[#6b6560] dark:text-white/60">Years Strong</p>
                 </div>
                 <div>
-                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">12</p>
+                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.trophiesWon}</p>
                   <p className="text-sm text-[#6b6560] dark:text-white/60">Trophies Won</p>
                 </div>
                 <div>
-                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">5K+</p>
+                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.supportersCount}</p>
                   <p className="text-sm text-[#6b6560] dark:text-white/60">Supporters</p>
                 </div>
               </div>
@@ -155,7 +271,7 @@ export default function Home() {
                       </svg>
                     </div>
                     <div>
-                      <p className="font-dm-serif text-xl text-[#c9a227] dark:text-[#fcd34d]">5,000+</p>
+                      <p className="font-dm-serif text-xl text-[#c9a227] dark:text-[#fcd34d]">{settings.supportersCount}</p>
                       <p className="text-xs text-[#6b6560] dark:text-white/60">Active Supporters</p>
                     </div>
                   </div>
@@ -168,9 +284,9 @@ export default function Home() {
                     <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
-                    <span className="font-dm-serif text-lg">Champions</span>
+                    <span className="font-dm-serif text-lg">{settings.championsTitle}</span>
                   </div>
-                  <p className="text-xs opacity-80 mt-1">2025 League Winners</p>
+                  <p className="text-xs opacity-80 mt-1">{settings.championsSubtitle}</p>
                 </div>
               </div>
             </div>
@@ -320,7 +436,7 @@ export default function Home() {
               </div>
               {/* Floating stat card */}
               <div className="absolute -bottom-6 -right-6 bg-[#c9a227] text-[#1a1f2e] p-6 rounded-2xl shadow-lg max-w-[200px]">
-                <p className="font-dm-serif text-4xl">2018</p>
+                <p className="font-dm-serif text-4xl">{settings.foundedYear}</p>
                 <p className="text-sm opacity-80">Year Founded</p>
               </div>
             </div>
@@ -328,9 +444,9 @@ export default function Home() {
             {/* Content Side */}
             <div>
               <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">Our Story</span>
-              <h2 className="font-dm-serif text-4xl md:text-5xl mt-2 mb-6">About Swagger FC</h2>
+              <h2 className="font-dm-serif text-4xl md:text-5xl mt-2 mb-6">About {settings.siteName}</h2>
               <p className="text-[#6b6560] dark:text-white/70 text-lg mb-6 leading-relaxed">
-                Founded in 2018, Swagger FC started as a group of friends with a shared passion for football. What began as casual weekend matches has grown into a community of over 5,000 supporters who believe in the beautiful game.
+                Founded in {settings.foundedYear}, {settings.siteName} started as a group of friends with a shared passion for football. What began as casual weekend matches has grown into a community of over {settings.supportersCount} supporters who believe in the beautiful game.
               </p>
               <p className="text-[#6b6560] dark:text-white/70 mb-8 leading-relaxed">
                 Our mission is simple: to provide a platform where talent meets opportunity, where community comes first, and where every match day is a celebration of what we can achieve together.
@@ -400,22 +516,15 @@ export default function Home() {
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            <ShopPreviewCard
-              image="https://images.unsplash.com/photo-1763656812756-3539efd3e301?w=600&q=80"
-              title="Home Jersey 25/26"
-              price="3,500"
-              isNew
-            />
-            <ShopPreviewCard
-              image="https://images.unsplash.com/photo-1759447946445-397b1c034768?w=600&q=80"
-              title="Supporters Hoodie"
-              price="2,800"
-            />
-            <ShopPreviewCard
-              image="https://images.unsplash.com/photo-1763656813028-3eb492fa7bcf?w=600&q=80"
-              title="Classic Polo Shirt"
-              price="2,200"
-            />
+            {shopProducts.map((product, index) => (
+              <ShopPreviewCard
+                key={index}
+                image={product.image}
+                title={product.title}
+                price={product.price}
+                isNew={product.isNew}
+              />
+            ))}
           </div>
 
           <div className="text-center mt-12">
@@ -439,8 +548,8 @@ export default function Home() {
                   <span className="text-[#1a1f2e] font-bold text-xl">SF</span>
                 </div>
                 <div>
-                  <span className="font-dm-serif text-xl">Swagger FC</span>
-                  <p className="text-white/50 text-sm">Est. 2018</p>
+                  <span className="font-dm-serif text-xl">{settings.siteName}</span>
+                  <p className="text-white/50 text-sm">Est. {settings.foundedYear}</p>
                 </div>
               </div>
               <p className="text-white/60 max-w-sm">
@@ -462,7 +571,7 @@ export default function Home() {
             </div>
           </div>
           <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/40 text-sm">
-            <p>&copy; 2026 Swagger FC. Built with passion.</p>
+            <p>&copy; {new Date().getFullYear()} {settings.siteName}. Built with passion.</p>
           </div>
         </div>
       </footer>
@@ -504,7 +613,7 @@ export default function Home() {
   );
 }
 
-function GalleryCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
+function GalleryCard({ item, onClick }: { item: DisplayGalleryItem; onClick: () => void }) {
   return (
     <button
       onClick={onClick}
