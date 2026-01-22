@@ -10,10 +10,12 @@ import {
   getGalleryItems,
   getSiteSettings,
   getProducts,
+  getArticles,
   getStrapiImageUrl,
   type GalleryItem as StrapiGalleryItem,
   type SiteSettings,
   type Product,
+  type Article,
 } from "@/lib/strapi";
 
 interface DisplayGalleryItem {
@@ -96,19 +98,66 @@ const fallbackImages = {
   news3: "https://images.unsplash.com/photo-1629977007398-a17feb6ddf14?w=500&q=80",
 };
 
+// Fallback articles
+interface DisplayArticle {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  category: string;
+  image: string;
+  featured: boolean;
+  publishedAt: string;
+}
+
+const fallbackArticles: DisplayArticle[] = [
+  {
+    id: 1,
+    title: "A Night to Remember: Championship Glory",
+    slug: "championship-glory",
+    excerpt: "Our supporters made their voices heard as we lifted the trophy under the lights.",
+    category: "Match Day",
+    image: "https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=1000&q=80",
+    featured: true,
+    publishedAt: "2026-01-10",
+  },
+  {
+    id: 2,
+    title: "Youth Academy Open Day Success",
+    slug: "youth-academy-open-day",
+    excerpt: "Over 200 young players attended our talent identification program.",
+    category: "Training",
+    image: "https://images.unsplash.com/photo-1757031299944-5028e556613d?w=500&q=80",
+    featured: false,
+    publishedAt: "2026-01-08",
+  },
+  {
+    id: 3,
+    title: "Season Ticket Renewals Now Open",
+    slug: "season-ticket-renewals",
+    excerpt: "Secure your seat for another season of unforgettable moments.",
+    category: "Community",
+    image: "https://images.unsplash.com/photo-1629977007398-a17feb6ddf14?w=500&q=80",
+    featured: false,
+    publishedAt: "2026-01-05",
+  },
+];
+
 export default function Home() {
   const [selectedImage, setSelectedImage] = useState<DisplayGalleryItem | null>(null);
   const [galleryItems, setGalleryItems] = useState<DisplayGalleryItem[]>(fallbackGalleryItems);
   const [settings, setSettings] = useState<typeof fallbackSettings>(fallbackSettings);
   const [shopProducts, setShopProducts] = useState<typeof fallbackProducts>(fallbackProducts);
+  const [articles, setArticles] = useState<DisplayArticle[]>(fallbackArticles);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchData() {
-      const [galleryData, settingsData, productsData] = await Promise.all([
+      const [galleryData, settingsData, productsData, articlesData] = await Promise.all([
         getGalleryItems(),
         getSiteSettings(),
         getProducts(),
+        getArticles(),
       ]);
 
       // Transform gallery items from Strapi
@@ -147,6 +196,21 @@ export default function Home() {
           isNew: product.isNew || false,
         }));
         setShopProducts(displayProducts);
+      }
+
+      // Transform articles from Strapi
+      if (articlesData.length > 0) {
+        const displayArticles: DisplayArticle[] = articlesData.slice(0, 3).map((article, index) => ({
+          id: article.id,
+          title: article.title || fallbackArticles[index % fallbackArticles.length].title,
+          slug: article.slug || fallbackArticles[index % fallbackArticles.length].slug,
+          excerpt: article.excerpt || fallbackArticles[index % fallbackArticles.length].excerpt,
+          category: article.category || fallbackArticles[index % fallbackArticles.length].category,
+          image: getStrapiImageUrl(article.image) || fallbackArticles[index % fallbackArticles.length].image,
+          featured: article.featured || false,
+          publishedAt: article.publishedAt || fallbackArticles[index % fallbackArticles.length].publishedAt,
+        }));
+        setArticles(displayArticles);
       }
 
       setLoading(false);
@@ -312,77 +376,57 @@ export default function Home() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Featured News */}
-            <div className="md:col-span-2 md:row-span-2 group">
-              <article className="h-full">
-                <div className="relative h-[400px] md:h-full rounded-3xl overflow-hidden">
-                  <Image
-                    src="https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=1000&q=80"
-                    alt="Championship"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-8">
-                    <span className="bg-[#c9a227] text-[#1a1f2e] px-4 py-1.5 rounded-full text-sm font-medium">Match Day</span>
-                    <h3 className="font-dm-serif text-2xl md:text-3xl text-white mt-4 group-hover:text-[#fcd34d] transition-colors">
-                      A Night to Remember: Championship Glory
-                    </h3>
-                    <p className="text-white/70 mt-3 line-clamp-2">
-                      Our supporters made their voices heard as we lifted the trophy under the lights.
+            {articles[0] && (
+              <div className="md:col-span-2 md:row-span-2 group">
+                <article className="h-full">
+                  <div className="relative h-[400px] md:h-full rounded-3xl overflow-hidden">
+                    <Image
+                      src={articles[0].image}
+                      alt={articles[0].title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-8">
+                      <span className="bg-[#c9a227] text-[#1a1f2e] px-4 py-1.5 rounded-full text-sm font-medium">{articles[0].category}</span>
+                      <h3 className="font-dm-serif text-2xl md:text-3xl text-white mt-4 group-hover:text-[#fcd34d] transition-colors">
+                        {articles[0].title}
+                      </h3>
+                      <p className="text-white/70 mt-3 line-clamp-2">
+                        {articles[0].excerpt}
+                      </p>
+                      <p className="text-white/50 text-sm mt-4">{new Date(articles[0].publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            )}
+
+            {/* News Cards */}
+            {articles.slice(1, 3).map((article) => (
+              <article key={article.id} className="group">
+                <div className="bg-[#f5f0e8] dark:bg-[#2d3548] rounded-2xl overflow-hidden">
+                  <div className="h-48 overflow-hidden relative">
+                    <Image
+                      src={article.image}
+                      alt={article.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">{article.category}</span>
+                    <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors">
+                      {article.title}
+                    </h4>
+                    <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
+                      {article.excerpt}
                     </p>
-                    <p className="text-white/50 text-sm mt-4">January 10, 2026</p>
+                    <p className="text-[#6b6560]/60 dark:text-white/40 text-sm mt-4">{new Date(article.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
                   </div>
                 </div>
               </article>
-            </div>
-
-            {/* News Card */}
-            <article className="group">
-              <div className="bg-[#f5f0e8] dark:bg-[#2d3548] rounded-2xl overflow-hidden">
-                <div className="h-48 overflow-hidden relative">
-                  <Image
-                    src="https://images.unsplash.com/photo-1757031299944-5028e556613d?w=500&q=80"
-                    alt="Training"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">Training</span>
-                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors">
-                    Youth Academy Open Day Success
-                  </h4>
-                  <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
-                    Over 200 young players attended our talent identification program.
-                  </p>
-                  <p className="text-[#6b6560]/60 dark:text-white/40 text-sm mt-4">January 8, 2026</p>
-                </div>
-              </div>
-            </article>
-
-            {/* News Card */}
-            <article className="group">
-              <div className="bg-[#f5f0e8] dark:bg-[#2d3548] rounded-2xl overflow-hidden">
-                <div className="h-48 overflow-hidden relative">
-                  <Image
-                    src="https://images.unsplash.com/photo-1629977007398-a17feb6ddf14?w=500&q=80"
-                    alt="Community"
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">Community</span>
-                  <h4 className="font-dm-serif text-xl mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors">
-                    Season Ticket Renewals Now Open
-                  </h4>
-                  <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
-                    Secure your seat for another season of unforgettable moments.
-                  </p>
-                  <p className="text-[#6b6560]/60 dark:text-white/40 text-sm mt-4">January 5, 2026</p>
-                </div>
-              </div>
-            </article>
+            ))}
           </div>
         </div>
       </section>
