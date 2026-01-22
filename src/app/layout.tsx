@@ -141,12 +141,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         {/* Additional meta tags for better sharing */}
         <meta name="theme-color" content="#c9a227" />
         <meta name="msapplication-TileColor" content="#1a1f2e" />
         <link rel="manifest" href="/manifest.json" />
+        {/* Blocking script to prevent theme flash - runs before page renders */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('swaggerfc-theme');
+                  if (theme === 'light') {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body
         className={`${inter.variable} ${oswald.variable} ${sourceSans.variable} ${dmSans.variable} ${dmSerifDisplay.variable} antialiased`}

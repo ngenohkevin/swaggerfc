@@ -64,16 +64,19 @@ export default async function NewsPage() {
             <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
           </div>
           {/* Mobile Navigation */}
-          <MobileNav
-            items={[
-              { href: "/", label: "Home" },
-              { href: "/news", label: "News" },
-              { href: "/shop", label: "Shop", isButton: true },
-            ]}
-            logoUrl={logoUrl}
-            siteName={siteName}
-            foundedYear={foundedYear}
-          />
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
+            <MobileNav
+              items={[
+                { href: "/", label: "Home" },
+                { href: "/news", label: "News" },
+                { href: "/shop", label: "Shop", isButton: true },
+              ]}
+              logoUrl={logoUrl}
+              siteName={siteName}
+              foundedYear={foundedYear}
+            />
+          </div>
         </div>
       </nav>
 

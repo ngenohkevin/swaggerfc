@@ -228,17 +228,20 @@ export default async function Home() {
             <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
           </div>
           {/* Mobile Navigation */}
-          <MobileNav
-            items={[
-              { href: "#news", label: "News" },
-              { href: "#achievements", label: "Gallery" },
-              { href: "#about", label: "About" },
-              { href: "#shop", label: "Shop", isButton: true },
-            ]}
-            logoUrl={logoUrl}
-            siteName={settings.siteName}
-            foundedYear={settings.foundedYear}
-          />
+          <div className="flex md:hidden items-center gap-2">
+            <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
+            <MobileNav
+              items={[
+                { href: "#news", label: "News" },
+                { href: "#achievements", label: "Gallery" },
+                { href: "#about", label: "About" },
+                { href: "#shop", label: "Shop", isButton: true },
+              ]}
+              logoUrl={logoUrl}
+              siteName={settings.siteName}
+              foundedYear={settings.foundedYear}
+            />
+          </div>
         </div>
       </nav>
 

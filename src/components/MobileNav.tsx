@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ThemeToggle } from "./ThemeToggle";
 
 interface NavItem {
   href: string;
@@ -137,13 +136,6 @@ export function MobileNav({ items, logoUrl, siteName, foundedYear }: MobileNavPr
               </ul>
             </nav>
 
-            {/* Theme Toggle */}
-            <div className="p-4 border-t border-black/10 dark:border-white/10 bg-[#faf8f5] dark:bg-[#1a1f2e]">
-              <div className="flex items-center justify-between">
-                <span className="text-sm text-[#6b6560] dark:text-white/60">Theme</span>
-                <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
-              </div>
-            </div>
           </div>
         </div>
       </div>
