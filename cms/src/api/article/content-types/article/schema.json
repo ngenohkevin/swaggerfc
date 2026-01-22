@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": "News articles"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "excerpt": {
+      "type": "text",
+      "required": true
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": ["Match Day", "Training", "Community", "Club News", "Transfers"],
+      "default": "Club News"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

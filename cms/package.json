@@ -1,0 +1,28 @@
+{
+  "name": "swaggerfc-cms",
+  "private": true,
+  "version": "1.0.0",
+  "description": "SwaggerFC CMS - Strapi Headless CMS",
+  "license": "MIT",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@sensinum/strapi-plugin-mcp": "^1.1.0",
+    "@strapi/strapi": "5.33.2",
+    "@strapi/plugin-cloud": "5.33.2",
+    "@strapi/plugin-users-permissions": "5.33.2",
+    "better-sqlite3": "11.7.0",
+    "pg": "8.8.0"
+  },
+  "engines": {
+    "node": ">=18.0.0 <=22.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "swaggerfc-cms-uuid"
+  }
+}

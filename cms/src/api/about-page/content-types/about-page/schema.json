@@ -1,0 +1,63 @@
+{
+  "kind": "singleType",
+  "collectionName": "about_pages",
+  "info": {
+    "singularName": "about-page",
+    "pluralName": "about-pages",
+    "displayName": "About Page",
+    "description": "About page content"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "About Swagger FC"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    },
+    "foundedYear": {
+      "type": "integer",
+      "default": 2018
+    },
+    "mission": {
+      "type": "text"
+    },
+    "vision": {
+      "type": "text"
+    },
+    "heroImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "teamPhoto": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "statsYears": {
+      "type": "integer",
+      "default": 7
+    },
+    "statsTrophies": {
+      "type": "integer",
+      "default": 12
+    },
+    "statsSupporters": {
+      "type": "integer",
+      "default": 5000
+    },
+    "statsMatches": {
+      "type": "integer",
+      "default": 250
+    }
+  }
+}

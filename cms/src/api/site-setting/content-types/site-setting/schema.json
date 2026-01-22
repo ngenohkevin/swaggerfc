@@ -1,0 +1,40 @@
+{
+  "kind": "singleType",
+  "collectionName": "site_settings",
+  "info": {
+    "singularName": "site-setting",
+    "pluralName": "site-settings",
+    "displayName": "Site Settings",
+    "description": "Global site configuration"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "siteName": {
+      "type": "string",
+      "required": true,
+      "default": "Swagger FC"
+    },
+    "tagline": {
+      "type": "string",
+      "default": "More Than Just Football"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": ["images"]
+    },
+    "whatsappNumber": {
+      "type": "string",
+      "default": "254700000000"
+    },
+    "email": {
+      "type": "email"
+    },
+    "address": {
+      "type": "text"
+    }
+  }
+}

@@ -2,9 +2,47 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ImageLightbox } from "@/components/ImageLightbox";
+import { SocialLinks } from "@/components/SocialLinks";
+
+interface GalleryItem {
+  image: string;
+  year: string;
+  title: string;
+  description: string;
+}
+
+const galleryItems: GalleryItem[] = [
+  {
+    image: "https://images.unsplash.com/photo-1560003991-545650ee5f07?w=700&q=80",
+    year: "2025",
+    title: "League Champions",
+    description: "Our first ever league title - a historic achievement that marked the culmination of years of dedication and hard work from players, staff, and supporters alike.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1620567253244-6f340f675bca?w=700&q=80",
+    year: "2024",
+    title: "Cup Final Victory",
+    description: "A thrilling win that brought the whole town together. The atmosphere at the stadium was electric as we lifted the trophy under the floodlights.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1718246425786-894821186deb?w=700&q=80",
+    year: "2023",
+    title: "Record Attendance",
+    description: "15,000 fans packed into our new home stadium for the first time, creating memories that will last a lifetime for everyone present.",
+  },
+  {
+    image: "https://images.unsplash.com/photo-1647101678383-9f179e1dd2c0?w=700&q=80",
+    year: "2022",
+    title: "Youth Award",
+    description: "Recognized as the best youth development program in the region, a testament to our commitment to nurturing young talent.",
+  },
+];
 
 export default function DesignC() {
+  const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
   return (
     <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
       {/* Navigation */}
@@ -30,32 +68,73 @@ export default function DesignC() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16">
-        <div className="max-w-6xl mx-auto px-6">
+      <section className="pt-24 pb-16 relative overflow-hidden">
+        {/* Background decoration */}
+        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-to-br from-[#c9a227]/5 to-transparent rounded-full blur-3xl pointer-events-none dark:from-[#c9a227]/10" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#c9a227]/5 to-transparent rounded-full blur-3xl pointer-events-none dark:from-[#c9a227]/10" />
+
+        <div className="max-w-6xl mx-auto px-6 relative">
           <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
             <div className="order-2 lg:order-1">
-              <span className="inline-block bg-[#c9a227]/10 dark:bg-[#c9a227]/30 text-[#c9a227] dark:text-[#fcd34d] px-4 py-2 rounded-full text-sm font-medium mb-6">
+              {/* Animated badge */}
+              <div className="inline-flex items-center gap-2 bg-[#c9a227]/10 dark:bg-[#c9a227]/20 text-[#c9a227] dark:text-[#fcd34d] px-4 py-2 rounded-full text-sm font-medium mb-6 border border-[#c9a227]/20 dark:border-[#c9a227]/30">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#c9a227] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#c9a227]"></span>
+                </span>
                 Welcome to our family
-              </span>
-              <h1 className="font-dm-serif text-5xl md:text-6xl lg:text-7xl leading-tight mb-6">
+              </div>
+
+              <h1 className="font-dm-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-6">
                 More Than<br/>
-                <span className="text-[#c9a227] dark:text-[#fcd34d]">Just Football</span>
+                <span className="text-[#c9a227] dark:text-[#fcd34d] relative">
+                  Just Football
+                  <svg className="absolute -bottom-2 left-0 w-full h-3 text-[#c9a227]/30 dark:text-[#fcd34d]/30" viewBox="0 0 200 12" preserveAspectRatio="none">
+                    <path d="M0,8 Q50,0 100,8 T200,8" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round"/>
+                  </svg>
+                </span>
               </h1>
+
               <p className="text-[#6b6560] dark:text-white/70 text-lg mb-8 max-w-md leading-relaxed">
                 A community united by passion for the beautiful game. Where every supporter is family and every match day is a celebration.
               </p>
-              <div className="flex flex-wrap gap-4">
-                <a href="#news" className="bg-[#c9a227] text-[#1a1f2e] px-8 py-4 rounded-full font-medium hover:bg-[#d4af37] transition-colors">
+
+              <div className="flex flex-wrap gap-4 mb-12">
+                <a href="#news" className="group bg-[#c9a227] text-[#1a1f2e] px-8 py-4 rounded-full font-medium hover:bg-[#d4af37] transition-all hover:shadow-lg hover:shadow-[#c9a227]/25 flex items-center gap-2">
                   Read Our Story
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                  </svg>
                 </a>
-                <a href="#shop" className="border-2 border-[#2d2926]/20 dark:border-white/20 text-[#2d2926] dark:text-white px-8 py-4 rounded-full font-medium hover:border-[#c9a227] dark:hover:border-[#fcd34d] hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors">
+                <a href="#shop" className="border-2 border-[#2d2926]/20 dark:border-white/20 text-[#2d2926] dark:text-white px-8 py-4 rounded-full font-medium hover:border-[#c9a227] dark:hover:border-[#fcd34d] hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-all hover:bg-[#c9a227]/5">
                   Visit Shop
                 </a>
               </div>
+
+              {/* Stats row */}
+              <div className="flex gap-8 pt-8 border-t border-black/10 dark:border-white/10">
+                <div>
+                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">7+</p>
+                  <p className="text-sm text-[#6b6560] dark:text-white/60">Years Strong</p>
+                </div>
+                <div>
+                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">12</p>
+                  <p className="text-sm text-[#6b6560] dark:text-white/60">Trophies Won</p>
+                </div>
+                <div>
+                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">5K+</p>
+                  <p className="text-sm text-[#6b6560] dark:text-white/60">Supporters</p>
+                </div>
+              </div>
             </div>
+
             <div className="order-1 lg:order-2">
               <div className="relative">
-                <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/10">
+                {/* Decorative ring */}
+                <div className="absolute -inset-4 border-2 border-dashed border-[#c9a227]/20 dark:border-[#fcd34d]/20 rounded-[3rem] animate-spin-slow pointer-events-none" style={{ animationDuration: '30s' }} />
+
+                {/* Main image */}
+                <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-2xl shadow-black/20 dark:shadow-black/40 relative">
                   <Image
                     src="https://images.unsplash.com/photo-1629977007371-0ba395424741?w=800&q=80"
                     alt="Football Action"
@@ -63,21 +142,35 @@ export default function DesignC() {
                     className="object-cover"
                     priority
                   />
+                  {/* Image overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                 </div>
-                {/* Floating Card */}
-                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-[#2d3548] p-6 rounded-2xl shadow-xl max-w-[250px]">
-                  <div className="flex items-center gap-4 mb-3">
-                    <div className="w-12 h-12 bg-[#c9a227]/10 dark:bg-[#c9a227]/30 rounded-full flex items-center justify-center">
-                      <svg className="w-6 h-6 text-[#c9a227] dark:text-[#fcd34d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+
+                {/* Floating Card - Bottom Left */}
+                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-[#2d3548] p-5 rounded-2xl shadow-xl shadow-black/10 dark:shadow-black/30 max-w-[220px] backdrop-blur-sm border border-black/5 dark:border-white/10">
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className="w-10 h-10 bg-[#c9a227]/10 dark:bg-[#c9a227]/30 rounded-full flex items-center justify-center">
+                      <svg className="w-5 h-5 text-[#c9a227] dark:text-[#fcd34d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
                       </svg>
                     </div>
                     <div>
-                      <p className="font-dm-serif text-2xl text-[#c9a227] dark:text-[#fcd34d]">5,000+</p>
-                      <p className="text-sm text-[#6b6560] dark:text-white/60">Supporters</p>
+                      <p className="font-dm-serif text-xl text-[#c9a227] dark:text-[#fcd34d]">5,000+</p>
+                      <p className="text-xs text-[#6b6560] dark:text-white/60">Active Supporters</p>
                     </div>
                   </div>
-                  <p className="text-sm text-[#6b6560] dark:text-white/60">Growing stronger every matchday</p>
+                  <p className="text-xs text-[#6b6560] dark:text-white/50">Growing stronger every matchday</p>
+                </div>
+
+                {/* Floating Card - Top Right */}
+                <div className="absolute -top-4 -right-4 bg-[#c9a227] text-[#1a1f2e] px-4 py-3 rounded-xl shadow-lg shadow-[#c9a227]/30">
+                  <div className="flex items-center gap-2">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                    <span className="font-dm-serif text-lg">Champions</span>
+                  </div>
+                  <p className="text-xs opacity-80 mt-1">2025 League Winners</p>
                 </div>
               </div>
             </div>
@@ -195,35 +288,21 @@ export default function DesignC() {
           <div className="carousel-auto flex gap-4">
             {[...Array(2)].map((_, setIndex) => (
               <div key={setIndex} className="flex gap-4">
-                <GalleryCard
-                  image="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=700&q=80"
-                  year="2025"
-                  title="League Champions"
-                  description="Our first ever league title - a historic achievement"
-                />
-                <GalleryCard
-                  image="https://images.unsplash.com/photo-1620567253244-6f340f675bca?w=700&q=80"
-                  year="2024"
-                  title="Cup Final Victory"
-                  description="A thrilling win that brought the whole town together"
-                />
-                <GalleryCard
-                  image="https://images.unsplash.com/photo-1718246425786-894821186deb?w=700&q=80"
-                  year="2023"
-                  title="Record Attendance"
-                  description="15,000 fans packed into our new home stadium"
-                />
-                <GalleryCard
-                  image="https://images.unsplash.com/photo-1647101678383-9f179e1dd2c0?w=700&q=80"
-                  year="2022"
-                  title="Youth Award"
-                  description="Best youth development program in the region"
-                />
+                {galleryItems.map((item, index) => (
+                  <GalleryCard
+                    key={`${setIndex}-${index}`}
+                    item={item}
+                    onClick={() => setSelectedImage(item)}
+                  />
+                ))}
               </div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Lightbox Modal */}
+      <ImageLightbox item={selectedImage} onClose={() => setSelectedImage(null)} />
 
       {/* Shop Section */}
       <section id="shop" className="py-20 bg-[#faf8f5] dark:bg-[#1a1f2e]">
@@ -295,17 +374,7 @@ export default function DesignC() {
             </div>
             <div>
               <h4 className="font-dm-serif text-lg mb-4">Follow Us</h4>
-              <div className="flex gap-3">
-                <SocialIcon href="#">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
-                </SocialIcon>
-                <SocialIcon href="#">
-                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                </SocialIcon>
-                <SocialIcon href="#">
-                  <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
-                </SocialIcon>
-              </div>
+              <SocialLinks />
             </div>
           </div>
           <div className="border-t border-white/10 mt-12 pt-8 text-center text-white/40 text-sm">
@@ -322,7 +391,7 @@ export default function DesignC() {
         Back to Designs
       </Link>
 
-      <style jsx>{`
+      <style jsx global>{`
         @keyframes scrollRight {
           0% { transform: translateX(0); }
           100% { transform: translateX(calc(-380px * 4 - 4rem)); }
@@ -334,24 +403,58 @@ export default function DesignC() {
         .carousel-auto:hover {
           animation-play-state: paused;
         }
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .animate-fade-in {
+          animation: fade-in 0.3s ease-out forwards;
+        }
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-spin-slow {
+          animation: spin-slow 30s linear infinite;
+        }
       `}</style>
     </div>
   );
 }
 
-function GalleryCard({ image, year, title, description }: { image: string; year: string; title: string; description: string }) {
+function GalleryCard({ item, onClick }: { item: GalleryItem; onClick: () => void }) {
   return (
-    <div className="flex-shrink-0 w-[380px] group">
+    <button
+      onClick={onClick}
+      className="flex-shrink-0 w-[380px] group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fcd34d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1f2e] rounded-2xl"
+    >
       <div className="relative h-[480px] rounded-2xl overflow-hidden">
-        <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-500"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent group-hover:from-black/80 transition-colors duration-300"></div>
         <div className="absolute bottom-6 left-6 right-6">
-          <span className="text-[#fcd34d] text-sm font-medium">{year}</span>
-          <h3 className="text-white font-dm-serif text-xl mt-1">{title}</h3>
-          <p className="text-white/60 text-sm mt-2">{description}</p>
+          <span className="text-[#fcd34d] text-sm font-medium">{item.year}</span>
+          <h3 className="text-white font-dm-serif text-xl mt-1 group-hover:text-[#fcd34d] transition-colors">{item.title}</h3>
+          <p className="text-white/60 text-sm mt-2 line-clamp-2">{item.description}</p>
+        </div>
+        {/* Click indicator */}
+        <div className="absolute top-4 right-4 w-10 h-10 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+          </svg>
         </div>
       </div>
-    </div>
+    </button>
   );
 }
 
@@ -381,10 +484,3 @@ function ShopPreviewCard({ image, title, price, isNew }: { image: string; title:
   );
 }
 
-function SocialIcon({ href, children }: { href: string; children: React.ReactNode }) {
-  return (
-    <a href={href} className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-white/20 transition-colors">
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">{children}</svg>
-    </a>
-  );
-}

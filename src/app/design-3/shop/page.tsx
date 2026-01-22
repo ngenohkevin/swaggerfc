@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const products = [
   {
@@ -55,9 +56,9 @@ const sizes = ["S", "M", "L", "XL", "XXL"];
 
 export default function ShopPage() {
   return (
-    <div className="bg-[#faf8f5] text-[#2d2926] font-dm-sans min-h-screen">
+    <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 backdrop-blur-sm border-b border-black/5">
+      <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <Link href="/design-3" className="flex items-center gap-3">
             <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
@@ -65,21 +66,24 @@ export default function ShopPage() {
             </div>
             <div>
               <span className="font-dm-serif text-lg sm:text-xl">Swagger FC</span>
-              <p className="text-xs text-[#6b6560] hidden sm:block">Est. 2018</p>
+              <p className="text-xs text-[#6b6560] dark:text-white/50 hidden sm:block">Est. 2018</p>
             </div>
           </Link>
-          <Link href="/design-3" className="text-[#6b6560] hover:text-[#c9a227] transition-colors text-sm font-medium">
-            Back to Home
-          </Link>
+          <div className="flex items-center gap-4">
+            <Link href="/design-3" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors text-sm font-medium">
+              Back to Home
+            </Link>
+            <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
+          </div>
         </div>
       </nav>
 
       {/* Header */}
-      <div className="pt-24 sm:pt-28 pb-8 sm:pb-12 bg-white">
+      <div className="pt-24 sm:pt-28 pb-8 sm:pb-12 bg-white dark:bg-[#0f1219]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
-          <span className="text-[#c9a227] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
+          <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
           <h1 className="font-dm-serif text-4xl sm:text-5xl md:text-6xl mt-2">Club Shop</h1>
-          <p className="text-[#6b6560] mt-4 max-w-xl">
+          <p className="text-[#6b6560] dark:text-white/60 mt-4 max-w-xl">
             Wear your support. Select your size and order through WhatsApp.
           </p>
         </div>
@@ -93,6 +97,21 @@ export default function ShopPage() {
           ))}
         </div>
       </div>
+
+      {/* Footer */}
+      <footer className="bg-[#1a1f2e] text-white py-12 mt-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 bg-[#c9a227] rounded-full flex items-center justify-center">
+                <span className="text-[#1a1f2e] font-bold">SF</span>
+              </div>
+              <span className="font-dm-serif text-lg">Swagger FC</span>
+            </div>
+            <p className="text-white/50 text-sm">&copy; 2026 Swagger FC. Built with passion.</p>
+          </div>
+        </div>
+      </footer>
 
       {/* Back to designs link */}
       <Link href="/" className="fixed bottom-6 left-6 bg-[#c9a227] text-[#1a1f2e] px-4 py-2 rounded-full font-medium flex items-center gap-2 hover:bg-[#d4af37] transition-colors z-50">
@@ -121,7 +140,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
   };
 
   return (
-    <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+    <div className="bg-white dark:bg-[#2d3548] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl dark:shadow-black/20 transition-shadow duration-300 group">
       <div className="relative h-64 sm:h-72 overflow-hidden">
         <Image
           src={product.image}
@@ -137,11 +156,11 @@ function ProductCard({ product }: { product: typeof products[0] }) {
       </div>
       <div className="p-5 sm:p-6">
         <h3 className="font-dm-serif text-xl">{product.name}</h3>
-        <p className="text-[#6b6560] text-sm mt-2 line-clamp-2">{product.description}</p>
+        <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">{product.description}</p>
 
         {/* Size Selection */}
         <div className="mt-4">
-          <p className="text-[#6b6560] text-sm mb-2">Select Size:</p>
+          <p className="text-[#6b6560] dark:text-white/60 text-sm mb-2">Select Size:</p>
           <div className="flex flex-wrap gap-2">
             {sizes.map((size) => (
               <button
@@ -153,7 +172,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
                 className={`px-3 py-1.5 text-sm font-medium rounded-full transition-all ${
                   selectedSize === size
                     ? "bg-[#c9a227] text-[#1a1f2e]"
-                    : "bg-[#f5f0e8] text-[#6b6560] hover:bg-[#c9a227]/10 hover:text-[#c9a227]"
+                    : "bg-[#f5f0e8] dark:bg-white/10 text-[#6b6560] dark:text-white/70 hover:bg-[#c9a227]/10 dark:hover:bg-[#c9a227]/20 hover:text-[#c9a227] dark:hover:text-[#fcd34d]"
                 }`}
               >
                 {size}
@@ -164,8 +183,8 @@ function ProductCard({ product }: { product: typeof products[0] }) {
 
         <div className="flex items-center justify-between mt-6">
           <div>
-            <span className="text-sm text-[#6b6560]">Price</span>
-            <p className="font-dm-serif text-2xl text-[#c9a227]">KES {product.price}</p>
+            <span className="text-sm text-[#6b6560] dark:text-white/50">Price</span>
+            <p className="font-dm-serif text-2xl text-[#c9a227] dark:text-[#fcd34d]">KES {product.price}</p>
           </div>
           <div className="relative">
             <a
@@ -176,7 +195,7 @@ function ProductCard({ product }: { product: typeof products[0] }) {
               className={`px-4 py-2.5 font-medium flex items-center gap-2 transition-colors rounded-full ${
                 selectedSize
                   ? "bg-[#25D366] text-white hover:bg-[#1fbd5a]"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  : "bg-gray-200 dark:bg-white/10 text-gray-400 dark:text-white/30 cursor-not-allowed"
               }`}
             >
               <WhatsAppIcon />
