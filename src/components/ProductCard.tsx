@@ -39,8 +39,8 @@ export function ProductCard({ product, whatsappNumber }: ProductCardProps) {
   };
 
   return (
-    <div className="bg-white dark:bg-[#2d3548] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl dark:shadow-black/20 transition-shadow duration-300 group">
-      <div className="relative h-64 sm:h-72 overflow-hidden">
+    <div className="bg-white dark:bg-[#2d3548] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl dark:shadow-black/20 transition-shadow duration-300 group h-full flex flex-col">
+      <div className="relative h-64 sm:h-72 overflow-hidden flex-shrink-0">
         <Image
           src={product.image}
           alt={product.name}
@@ -54,9 +54,9 @@ export function ProductCard({ product, whatsappNumber }: ProductCardProps) {
           </div>
         )}
       </div>
-      <div className="p-5 sm:p-6">
-        <h3 className="font-dm-serif text-xl">{product.name}</h3>
-        <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">{product.description}</p>
+      <div className="p-5 sm:p-6 flex-1 flex flex-col">
+        <h3 className="font-dm-serif text-xl line-clamp-1">{product.name}</h3>
+        <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2 flex-1">{product.description}</p>
 
         {/* Size Selection */}
         <div className="mt-4">

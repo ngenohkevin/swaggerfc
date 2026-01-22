@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { MobileNav } from "@/components/MobileNav";
 import { ShareButtons } from "@/components/ShareButtons";
 import {
   getArticleBySlug,
@@ -138,8 +139,8 @@ export default async function ArticlePage({
     <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2 sm:gap-3">
             {logoUrl ? (
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden relative">
                 <Image src={logoUrl} alt={siteName} fill className="object-cover" sizes="48px" />
@@ -154,12 +155,27 @@ export default async function ArticlePage({
               <p className="text-xs text-[#6b6560] dark:text-white/50 hidden sm:block">Est. {foundedYear}</p>
             </div>
           </Link>
-          <div className="flex items-center gap-4">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-4">
             <Link href="/news" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors text-sm font-medium">
               All News
             </Link>
+            <Link href="/shop" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors text-sm font-medium">
+              Shop
+            </Link>
             <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
           </div>
+          {/* Mobile Navigation */}
+          <MobileNav
+            items={[
+              { href: "/", label: "Home" },
+              { href: "/news", label: "News" },
+              { href: "/shop", label: "Shop", isButton: true },
+            ]}
+            logoUrl={logoUrl}
+            siteName={siteName}
+            foundedYear={foundedYear}
+          />
         </div>
       </nav>
 
@@ -233,10 +249,10 @@ export default async function ArticlePage({
           <h2 className="font-dm-serif text-2xl sm:text-3xl mb-8">More News</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedArticles.map((related) => (
-              <article key={related.id} className="group">
-                <Link href={`/news/${related.slug}`} className="block">
-                  <div className="bg-white dark:bg-[#2d3548] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl dark:shadow-black/20 transition-shadow duration-300">
-                    <div className="relative h-48 overflow-hidden">
+              <article key={related.id} className="group h-full">
+                <Link href={`/news/${related.slug}`} className="block h-full">
+                  <div className="bg-white dark:bg-[#2d3548] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl dark:shadow-black/20 transition-shadow duration-300 h-full flex flex-col">
+                    <div className="relative h-48 overflow-hidden flex-shrink-0">
                       <Image
                         src={related.image}
                         alt={related.title}
@@ -245,11 +261,11 @@ export default async function ArticlePage({
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-5">
+                    <div className="p-5 flex-1 flex flex-col">
                       <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">
                         {related.category}
                       </span>
-                      <h3 className="font-dm-serif text-lg mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors line-clamp-2">
+                      <h3 className="font-dm-serif text-lg mt-2 group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors line-clamp-2 flex-1">
                         {related.title}
                       </h3>
                     </div>

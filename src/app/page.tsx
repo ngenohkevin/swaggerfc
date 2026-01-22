@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { MobileNav } from "@/components/MobileNav";
 import { GallerySection, type DisplayGalleryItem } from "@/components/GallerySection";
 import { SocialLinks } from "@/components/SocialLinks";
 import {
@@ -202,22 +203,23 @@ export default async function Home() {
     <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <a href="#" className="flex items-center gap-3">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
+          <a href="#" className="flex items-center gap-2 sm:gap-3">
             {logoUrl ? (
-              <div className="w-12 h-12 rounded-full overflow-hidden relative">
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden relative">
                 <Image src={logoUrl} alt={settings.siteName} fill className="object-cover" sizes="48px" />
               </div>
             ) : (
-              <div className="w-12 h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
-                <span className="text-[#1a1f2e] font-bold text-xl">SS</span>
+              <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#c9a227] rounded-full flex items-center justify-center">
+                <span className="text-[#1a1f2e] font-bold text-lg sm:text-xl">SS</span>
               </div>
             )}
             <div>
-              <span className="font-dm-serif text-xl">{settings.siteName}</span>
-              <p className="text-xs text-[#6b6560] dark:text-white/50">Est. {settings.foundedYear}</p>
+              <span className="font-dm-serif text-lg sm:text-xl">{settings.siteName}</span>
+              <p className="text-xs text-[#6b6560] dark:text-white/50 hidden sm:block">Est. {settings.foundedYear}</p>
             </div>
           </a>
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             <a href="#news" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors">News</a>
             <a href="#achievements" className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors">Gallery</a>
@@ -225,17 +227,29 @@ export default async function Home() {
             <a href="#shop" className="bg-[#c9a227] text-[#1a1f2e] px-6 py-2.5 rounded-full hover:bg-[#d4af37] transition-colors font-medium">Shop</a>
             <ThemeToggle className="text-[#6b6560] dark:text-white/70 hover:text-[#c9a227] dark:hover:text-[#fcd34d] hover:bg-black/5 dark:hover:bg-white/10" />
           </div>
+          {/* Mobile Navigation */}
+          <MobileNav
+            items={[
+              { href: "#news", label: "News" },
+              { href: "#achievements", label: "Gallery" },
+              { href: "#about", label: "About" },
+              { href: "#shop", label: "Shop", isButton: true },
+            ]}
+            logoUrl={logoUrl}
+            siteName={settings.siteName}
+            foundedYear={settings.foundedYear}
+          />
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 relative overflow-hidden">
+      <section className="pt-20 sm:pt-24 pb-12 sm:pb-16 relative overflow-hidden">
         {/* Background decoration */}
-        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-gradient-to-br from-[#c9a227]/5 to-transparent rounded-full blur-3xl pointer-events-none dark:from-[#c9a227]/10" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-gradient-to-tr from-[#c9a227]/5 to-transparent rounded-full blur-3xl pointer-events-none dark:from-[#c9a227]/10" />
+        <div className="absolute top-20 right-0 w-[300px] sm:w-[600px] h-[300px] sm:h-[600px] bg-gradient-to-br from-[#c9a227]/5 to-transparent rounded-full blur-3xl pointer-events-none dark:from-[#c9a227]/10" />
+        <div className="absolute bottom-0 left-0 w-[200px] sm:w-[400px] h-[200px] sm:h-[400px] bg-gradient-to-tr from-[#c9a227]/5 to-transparent rounded-full blur-3xl pointer-events-none dark:from-[#c9a227]/10" />
 
-        <div className="max-w-6xl mx-auto px-6 relative">
-          <div className="grid lg:grid-cols-2 gap-12 items-center min-h-[80vh]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 relative">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center min-h-[auto] lg:min-h-[80vh]">
             <div className="order-2 lg:order-1">
               {/* Animated badge */}
               <div className="inline-flex items-center gap-2 bg-[#c9a227]/10 dark:bg-[#c9a227]/20 text-[#c9a227] dark:text-[#fcd34d] px-4 py-2 rounded-full text-sm font-medium mb-6 border border-[#c9a227]/20 dark:border-[#c9a227]/30">
@@ -246,7 +260,7 @@ export default async function Home() {
                 {settings.heroSubtitle}
               </div>
 
-              <h1 className="font-dm-serif text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-6">
+              <h1 className="font-dm-serif text-3xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-4 sm:mb-6">
                 {settings.tagline.includes(" ") ? (
                   <>
                     {settings.tagline.split(" ").slice(0, -2).join(" ")}<br/>
@@ -262,35 +276,35 @@ export default async function Home() {
                 )}
               </h1>
 
-              <p className="text-[#6b6560] dark:text-white/70 text-lg mb-8 max-w-md leading-relaxed">
+              <p className="text-[#6b6560] dark:text-white/70 text-base sm:text-lg mb-6 sm:mb-8 max-w-md leading-relaxed">
                 {settings.heroDescription}
               </p>
 
-              <div className="flex flex-wrap gap-4 mb-12">
-                <a href="#news" className="group bg-[#c9a227] text-[#1a1f2e] px-8 py-4 rounded-full font-medium hover:bg-[#d4af37] transition-all hover:shadow-lg hover:shadow-[#c9a227]/25 flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12">
+                <a href="#news" className="group bg-[#c9a227] text-[#1a1f2e] px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:bg-[#d4af37] transition-all hover:shadow-lg hover:shadow-[#c9a227]/25 flex items-center justify-center gap-2 text-sm sm:text-base">
                   Read Our Story
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
                   </svg>
                 </a>
-                <a href="#shop" className="border-2 border-[#2d2926]/20 dark:border-white/20 text-[#2d2926] dark:text-white px-8 py-4 rounded-full font-medium hover:border-[#c9a227] dark:hover:border-[#fcd34d] hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-all hover:bg-[#c9a227]/5">
+                <a href="#shop" className="border-2 border-[#2d2926]/20 dark:border-white/20 text-[#2d2926] dark:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-medium hover:border-[#c9a227] dark:hover:border-[#fcd34d] hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-all hover:bg-[#c9a227]/5 text-center text-sm sm:text-base">
                   Visit Shop
                 </a>
               </div>
 
               {/* Stats row */}
-              <div className="flex gap-8 pt-8 border-t border-black/10 dark:border-white/10">
+              <div className="flex gap-6 sm:gap-8 pt-6 sm:pt-8 border-t border-black/10 dark:border-white/10">
                 <div>
-                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.yearsStrong}</p>
-                  <p className="text-sm text-[#6b6560] dark:text-white/60">Years Strong</p>
+                  <p className="font-dm-serif text-2xl sm:text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.yearsStrong}</p>
+                  <p className="text-xs sm:text-sm text-[#6b6560] dark:text-white/60">Years Strong</p>
                 </div>
                 <div>
-                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.trophiesWon}</p>
-                  <p className="text-sm text-[#6b6560] dark:text-white/60">Trophies Won</p>
+                  <p className="font-dm-serif text-2xl sm:text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.trophiesWon}</p>
+                  <p className="text-xs sm:text-sm text-[#6b6560] dark:text-white/60">Trophies Won</p>
                 </div>
                 <div>
-                  <p className="font-dm-serif text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.supportersCount}</p>
-                  <p className="text-sm text-[#6b6560] dark:text-white/60">Supporters</p>
+                  <p className="font-dm-serif text-2xl sm:text-3xl text-[#c9a227] dark:text-[#fcd34d]">{settings.supportersCount}</p>
+                  <p className="text-xs sm:text-sm text-[#6b6560] dark:text-white/60">Supporters</p>
                 </div>
               </div>
             </div>
@@ -315,30 +329,30 @@ export default async function Home() {
                 </div>
 
                 {/* Floating Card - Bottom Left */}
-                <div className="absolute -bottom-6 -left-6 bg-white dark:bg-[#2d3548] p-5 rounded-2xl shadow-xl shadow-black/10 dark:shadow-black/30 max-w-[220px] backdrop-blur-sm border border-black/5 dark:border-white/10">
-                  <div className="flex items-center gap-3 mb-2">
-                    <div className="w-10 h-10 bg-[#c9a227]/10 dark:bg-[#c9a227]/30 rounded-full flex items-center justify-center">
-                      <svg className="w-5 h-5 text-[#c9a227] dark:text-[#fcd34d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="absolute -bottom-4 sm:-bottom-6 -left-2 sm:-left-6 bg-white dark:bg-[#2d3548] p-3 sm:p-5 rounded-xl sm:rounded-2xl shadow-xl shadow-black/10 dark:shadow-black/30 max-w-[180px] sm:max-w-[220px] backdrop-blur-sm border border-black/5 dark:border-white/10 hidden sm:block">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2">
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[#c9a227]/10 dark:bg-[#c9a227]/30 rounded-full flex items-center justify-center">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-[#c9a227] dark:text-[#fcd34d]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/>
                       </svg>
                     </div>
                     <div>
-                      <p className="font-dm-serif text-xl text-[#c9a227] dark:text-[#fcd34d]">{settings.supportersCount}</p>
-                      <p className="text-xs text-[#6b6560] dark:text-white/60">Active Supporters</p>
+                      <p className="font-dm-serif text-lg sm:text-xl text-[#c9a227] dark:text-[#fcd34d]">{settings.supportersCount}</p>
+                      <p className="text-[10px] sm:text-xs text-[#6b6560] dark:text-white/60">Active Supporters</p>
                     </div>
                   </div>
-                  <p className="text-xs text-[#6b6560] dark:text-white/50">Growing stronger every matchday</p>
+                  <p className="text-[10px] sm:text-xs text-[#6b6560] dark:text-white/50">Growing stronger every matchday</p>
                 </div>
 
                 {/* Floating Card - Top Right */}
-                <div className="absolute -top-4 -right-4 bg-[#c9a227] text-[#1a1f2e] px-4 py-3 rounded-xl shadow-lg shadow-[#c9a227]/30">
-                  <div className="flex items-center gap-2">
-                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <div className="absolute -top-2 sm:-top-4 -right-2 sm:-right-4 bg-[#c9a227] text-[#1a1f2e] px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl shadow-lg shadow-[#c9a227]/30">
+                  <div className="flex items-center gap-1.5 sm:gap-2">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                     </svg>
-                    <span className="font-dm-serif text-lg">{settings.championsTitle}</span>
+                    <span className="font-dm-serif text-sm sm:text-lg">{settings.championsTitle}</span>
                   </div>
-                  <p className="text-xs opacity-80 mt-1">{settings.championsSubtitle}</p>
+                  <p className="text-[10px] sm:text-xs opacity-80 mt-0.5 sm:mt-1">{settings.championsSubtitle}</p>
                 </div>
               </div>
             </div>
@@ -347,12 +361,12 @@ export default async function Home() {
       </section>
 
       {/* News Section */}
-      <section id="news" className="py-20 bg-white dark:bg-[#0f1219]">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <section id="news" className="py-12 sm:py-20 bg-white dark:bg-[#0f1219]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12">
             <div>
               <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">What&apos;s Happening</span>
-              <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Club News</h2>
+              <h2 className="font-dm-serif text-3xl sm:text-4xl md:text-5xl mt-2">Club News</h2>
             </div>
             <Link href="/news" className="text-[#c9a227] dark:text-[#fcd34d] font-medium hover:underline mt-4 md:mt-0 flex items-center gap-2">
               All Articles
@@ -424,12 +438,12 @@ export default async function Home() {
       </section>
 
       {/* Achievements Gallery */}
-      <section id="achievements" className="py-20 bg-[#1a1f2e] overflow-hidden">
-        <div className="max-w-6xl mx-auto px-6 mb-12">
+      <section id="achievements" className="py-12 sm:py-20 bg-[#1a1f2e] overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 mb-8 sm:mb-12">
           <div className="text-center text-white">
             <span className="text-[#fcd34d] text-sm font-medium uppercase tracking-wider">Our Journey</span>
-            <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Moments of Glory</h2>
-            <p className="text-white/60 mt-4 max-w-xl mx-auto">
+            <h2 className="font-dm-serif text-3xl sm:text-4xl md:text-5xl mt-2">Moments of Glory</h2>
+            <p className="text-white/60 mt-3 sm:mt-4 max-w-xl mx-auto text-sm sm:text-base">
               Every trophy tells a story of dedication, teamwork, and the unwavering support of our community.
             </p>
           </div>
@@ -439,8 +453,8 @@ export default async function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-white dark:bg-[#0f1219]">
-        <div className="max-w-6xl mx-auto px-6">
+      <section id="about" className="py-12 sm:py-20 bg-white dark:bg-[#0f1219]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image Side */}
             <div className="relative">
@@ -463,11 +477,11 @@ export default async function Home() {
             {/* Content Side */}
             <div>
               <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">Our Story</span>
-              <h2 className="font-dm-serif text-4xl md:text-5xl mt-2 mb-6">About {settings.siteName}</h2>
-              <p className="text-[#6b6560] dark:text-white/70 text-lg mb-6 leading-relaxed">
+              <h2 className="font-dm-serif text-3xl sm:text-4xl md:text-5xl mt-2 mb-4 sm:mb-6">About {settings.siteName}</h2>
+              <p className="text-[#6b6560] dark:text-white/70 text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
                 Founded in {settings.foundedYear}, {settings.siteName} started as a group of friends with a shared passion for football. What began as casual weekend matches has grown into a community of over {settings.supportersCount} supporters who believe in the beautiful game.
               </p>
-              <p className="text-[#6b6560] dark:text-white/70 mb-8 leading-relaxed">
+              <p className="text-[#6b6560] dark:text-white/70 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
                 Our mission is simple: to provide a platform where talent meets opportunity, where community comes first, and where every match day is a celebration of what we can achieve together.
               </p>
 
@@ -524,12 +538,12 @@ export default async function Home() {
       </section>
 
       {/* Shop Section */}
-      <section id="shop" className="py-20 bg-[#faf8f5] dark:bg-[#1a1f2e]">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-16">
+      <section id="shop" className="py-12 sm:py-20 bg-[#faf8f5] dark:bg-[#1a1f2e]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
+          <div className="text-center mb-10 sm:mb-16">
             <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">Show Your Colors</span>
-            <h2 className="font-dm-serif text-4xl md:text-5xl mt-2">Club Shop</h2>
-            <p className="text-[#6b6560] dark:text-white/60 mt-4 max-w-md mx-auto">
+            <h2 className="font-dm-serif text-3xl sm:text-4xl md:text-5xl mt-2">Club Shop</h2>
+            <p className="text-[#6b6560] dark:text-white/60 mt-3 sm:mt-4 max-w-md mx-auto text-sm sm:text-base">
               Wear your support. Order easily through WhatsApp.
             </p>
           </div>
@@ -558,8 +572,8 @@ export default async function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#1a1f2e] text-white py-16">
-        <div className="max-w-6xl mx-auto px-6">
+      <footer className="bg-[#1a1f2e] text-white py-12 sm:py-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="grid md:grid-cols-4 gap-12">
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
@@ -607,22 +621,22 @@ export default async function Home() {
 
 function ShopPreviewCard({ image, title, price, isNew }: { image: string; title: string; price: string; isNew?: boolean }) {
   return (
-    <Link href="/shop" className="bg-white dark:bg-[#2d3548] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group block cursor-pointer">
-      <div className="relative h-80 overflow-hidden">
-        <Image src={image} alt={title} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+    <Link href="/shop" className="bg-white dark:bg-[#2d3548] rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group block cursor-pointer h-full flex flex-col">
+      <div className="relative h-64 sm:h-80 overflow-hidden flex-shrink-0">
+        <Image src={image} alt={title} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" className="object-cover group-hover:scale-105 transition-transform duration-500" />
         {isNew && (
           <div className="absolute top-4 left-4">
             <span className="bg-[#c9a227] text-[#1a1f2e] px-3 py-1 rounded-full text-sm font-medium">New</span>
           </div>
         )}
       </div>
-      <div className="p-6">
-        <h3 className="font-dm-serif text-xl">{title}</h3>
+      <div className="p-5 sm:p-6 flex-1 flex flex-col">
+        <h3 className="font-dm-serif text-lg sm:text-xl line-clamp-1">{title}</h3>
         <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2">Available in S, M, L, XL, XXL</p>
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex items-center justify-between mt-auto pt-4">
           <div>
             <span className="text-sm text-[#6b6560] dark:text-white/50">From</span>
-            <p className="font-dm-serif text-2xl text-[#c9a227] dark:text-[#fcd34d]">KES {price}</p>
+            <p className="font-dm-serif text-xl sm:text-2xl text-[#c9a227] dark:text-[#fcd34d]">KES {price}</p>
           </div>
           <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">View in Shop →</span>
         </div>

@@ -130,10 +130,10 @@ export function ArticlesList({ articles }: ArticlesListProps) {
 
 function ArticleCard({ article }: { article: DisplayArticle }) {
   return (
-    <article className="group">
-      <Link href={`/news/${article.slug}`} className="block">
-        <div className="bg-white dark:bg-[#2d3548] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl dark:shadow-black/20 transition-shadow duration-300">
-          <div className="relative h-48 sm:h-56 overflow-hidden">
+    <article className="group h-full">
+      <Link href={`/news/${article.slug}`} className="block h-full">
+        <div className="bg-white dark:bg-[#2d3548] rounded-2xl overflow-hidden shadow-sm hover:shadow-xl dark:shadow-black/20 transition-shadow duration-300 h-full flex flex-col">
+          <div className="relative h-48 sm:h-56 overflow-hidden flex-shrink-0">
             <Image
               src={article.image}
               alt={article.title}
@@ -142,7 +142,7 @@ function ArticleCard({ article }: { article: DisplayArticle }) {
               className="object-cover group-hover:scale-105 transition-transform duration-500"
             />
           </div>
-          <div className="p-5 sm:p-6">
+          <div className="p-5 sm:p-6 flex-1 flex flex-col">
             <div className="flex items-center gap-2 mb-3">
               <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium">
                 {article.category}
@@ -159,7 +159,7 @@ function ArticleCard({ article }: { article: DisplayArticle }) {
             <h3 className="font-dm-serif text-xl group-hover:text-[#c9a227] dark:group-hover:text-[#fcd34d] transition-colors line-clamp-2">
               {article.title}
             </h3>
-            <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2">
+            <p className="text-[#6b6560] dark:text-white/60 text-sm mt-2 line-clamp-2 flex-1">
               {article.excerpt}
             </p>
             <div className="mt-4 flex items-center text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium group-hover:gap-2 transition-all">
