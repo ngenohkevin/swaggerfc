@@ -9,11 +9,13 @@ import { SocialLinks } from "@/components/SocialLinks";
 import {
   getGalleryItems,
   getSiteSettings,
+  getAboutPage,
   getProducts,
   getArticles,
   getStrapiImageUrl,
   type GalleryItem as StrapiGalleryItem,
   type SiteSettings,
+  type AboutPage,
   type Product,
   type Article,
 } from "@/lib/strapi";
@@ -152,9 +154,10 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      const [galleryData, settingsData, productsData, articlesData] = await Promise.all([
+      const [galleryData, settingsData, aboutData, productsData, articlesData] = await Promise.all([
         getGalleryItems(),
         getSiteSettings(),
+        getAboutPage(),
         getProducts(),
         getArticles(),
       ]);
@@ -212,17 +215,18 @@ export default function Home() {
         setArticles(displayArticles);
       }
 
-      // Set hero image: prefer site settings, fallback to first gallery item
-      const heroImgUrl = getStrapiImageUrl(settingsData?.heroImage);
+      // Set hero image: use About Page heroImage (main hero for homepage)
+      const heroImgUrl = getStrapiImageUrl(aboutData?.heroImage);
       if (heroImgUrl) {
         setHeroImage(heroImgUrl);
       } else if (galleryData.length > 0 && galleryData[0].image) {
         setHeroImage(getStrapiImageUrl(galleryData[0].image) || fallbackImages.hero);
       }
 
-      // Set about image: use second gallery item if available
-      if (galleryData.length > 1 && galleryData[1].image) {
-        setAboutImage(getStrapiImageUrl(galleryData[1].image) || fallbackImages.about);
+      // Set about section image: use About Page teamPhoto
+      const aboutImgUrl = getStrapiImageUrl(aboutData?.teamPhoto);
+      if (aboutImgUrl) {
+        setAboutImage(aboutImgUrl);
       } else if (galleryData.length > 0 && galleryData[0].image) {
         setAboutImage(getStrapiImageUrl(galleryData[0].image) || fallbackImages.about);
       }
