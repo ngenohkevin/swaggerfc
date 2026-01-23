@@ -218,7 +218,8 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getArticles(featured?: boolean): Promise<Article[]> {
   try {
-    let endpoint = '/articles?populate[image]=*&populate[category]=*&sort=publishedAt:desc';
+    // Use populate=* to get all relations including category
+    let endpoint = '/articles?populate=*&sort=publishedAt:desc';
     if (featured) {
       endpoint += '&filters[featured][$eq]=true';
     }
@@ -233,7 +234,7 @@ export async function getArticles(featured?: boolean): Promise<Article[]> {
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
     const response = await fetchFromStrapi<StrapiResponse<Article[]>>(
-      `/articles?populate[image]=*&populate[category]=*&filters[slug][$eq]=${slug}`
+      `/articles?populate=*&filters[slug][$eq]=${slug}`
     );
     return response.data[0] || null;
   } catch (error) {
