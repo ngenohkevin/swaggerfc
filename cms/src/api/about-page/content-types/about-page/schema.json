@@ -5,7 +5,7 @@
     "singularName": "about-page",
     "pluralName": "about-pages",
     "displayName": "About Page",
-    "description": "About page content"
+    "description": "About section content displayed on the homepage"
   },
   "options": {
     "draftAndPublish": true
@@ -21,27 +21,17 @@
       "required": true,
       "default": "About Swagger Sports Academy"
     },
-    "subtitle": {
-      "type": "string"
-    },
     "storyParagraph1": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "storyParagraph2": {
-      "type": "text"
-    },
-    "content": {
-      "type": "richtext"
+      "type": "text",
+      "required": true
     },
     "foundedYear": {
       "type": "integer",
       "default": 2018
-    },
-    "mission": {
-      "type": "text"
-    },
-    "vision": {
-      "type": "text"
     },
     "heroImage": {
       "type": "media",
@@ -52,22 +42,6 @@
       "type": "media",
       "multiple": false,
       "allowedTypes": ["images"]
-    },
-    "statsYears": {
-      "type": "integer",
-      "default": 7
-    },
-    "statsTrophies": {
-      "type": "integer",
-      "default": 12
-    },
-    "statsSupporters": {
-      "type": "integer",
-      "default": 5000
-    },
-    "statsMatches": {
-      "type": "integer",
-      "default": 250
     },
     "value1Title": {
       "type": "string",
