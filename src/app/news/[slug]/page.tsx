@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { marked } from "marked";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { MobileNav } from "@/components/MobileNav";
 import { ShareButtons } from "@/components/ShareButtons";
@@ -234,7 +235,7 @@ export default async function ArticlePage({
                 prose-strong:text-[#2d2926] dark:prose-strong:text-white
                 prose-ul:text-[#6b6560] dark:prose-ul:text-white/70
                 prose-ol:text-[#6b6560] dark:prose-ol:text-white/70"
-              dangerouslySetInnerHTML={{ __html: article.content || '<p>No content available.</p>' }}
+              dangerouslySetInnerHTML={{ __html: article.content ? marked.parse(article.content) as string : '<p>No content available.</p>' }}
             />
 
             {/* Share */}
