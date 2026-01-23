@@ -484,20 +484,20 @@ export default async function Home() {
               </div>
               {/* Floating stat card */}
               <div className="absolute -bottom-6 -right-6 bg-[#c9a227] text-[#1a1f2e] p-6 rounded-2xl shadow-lg max-w-[200px]">
-                <p className="font-dm-serif text-4xl">{settings.foundedYear}</p>
+                <p className="font-dm-serif text-4xl">{aboutData?.foundedYear || settings.foundedYear}</p>
                 <p className="text-sm opacity-80">Year Founded</p>
               </div>
             </div>
 
             {/* Content Side */}
             <div>
-              <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">Our Story</span>
-              <h2 className="font-dm-serif text-3xl sm:text-4xl md:text-5xl mt-2 mb-4 sm:mb-6">About {settings.siteName}</h2>
+              <span className="text-[#c9a227] dark:text-[#fcd34d] text-sm font-medium uppercase tracking-wider">{aboutData?.sectionLabel || "Our Story"}</span>
+              <h2 className="font-dm-serif text-3xl sm:text-4xl md:text-5xl mt-2 mb-4 sm:mb-6">{aboutData?.title || `About ${settings.siteName}`}</h2>
               <p className="text-[#6b6560] dark:text-white/70 text-base sm:text-lg mb-4 sm:mb-6 leading-relaxed">
-                Founded in {settings.foundedYear}, {settings.siteName} started as a group of friends with a shared passion for football. What began as casual weekend matches has grown into a community of over {settings.supportersCount} supporters who believe in the beautiful game.
+                {aboutData?.storyParagraph1 || `Founded in ${settings.foundedYear}, ${settings.siteName} started as a group of friends with a shared passion for football. What began as casual weekend matches has grown into a community of over ${settings.supportersCount} supporters who believe in the beautiful game.`}
               </p>
               <p className="text-[#6b6560] dark:text-white/70 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base">
-                Our mission is simple: to provide a platform where talent meets opportunity, where community comes first, and where every match day is a celebration of what we can achieve together.
+                {aboutData?.storyParagraph2 || "Our mission is simple: to provide a platform where talent meets opportunity, where community comes first, and where every match day is a celebration of what we can achieve together."}
               </p>
 
               {/* Values */}
@@ -509,8 +509,8 @@ export default async function Home() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-dm-serif text-lg">Community</h4>
-                    <p className="text-sm text-[#6b6560] dark:text-white/60">Family-first approach to football</p>
+                    <h4 className="font-dm-serif text-lg">{aboutData?.value1Title || "Community"}</h4>
+                    <p className="text-sm text-[#6b6560] dark:text-white/60">{aboutData?.value1Description || "Family-first approach to football"}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -520,8 +520,8 @@ export default async function Home() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-dm-serif text-lg">Excellence</h4>
-                    <p className="text-sm text-[#6b6560] dark:text-white/60">Striving for the best every day</p>
+                    <h4 className="font-dm-serif text-lg">{aboutData?.value2Title || "Excellence"}</h4>
+                    <p className="text-sm text-[#6b6560] dark:text-white/60">{aboutData?.value2Description || "Striving for the best every day"}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -531,8 +531,8 @@ export default async function Home() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-dm-serif text-lg">Passion</h4>
-                    <p className="text-sm text-[#6b6560] dark:text-white/60">Love for the beautiful game</p>
+                    <h4 className="font-dm-serif text-lg">{aboutData?.value3Title || "Passion"}</h4>
+                    <p className="text-sm text-[#6b6560] dark:text-white/60">{aboutData?.value3Description || "Love for the beautiful game"}</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
@@ -542,8 +542,8 @@ export default async function Home() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="font-dm-serif text-lg">Integrity</h4>
-                    <p className="text-sm text-[#6b6560] dark:text-white/60">Fair play on and off the pitch</p>
+                    <h4 className="font-dm-serif text-lg">{aboutData?.value4Title || "Integrity"}</h4>
+                    <p className="text-sm text-[#6b6560] dark:text-white/60">{aboutData?.value4Description || "Fair play on and off the pitch"}</p>
                   </div>
                 </div>
               </div>

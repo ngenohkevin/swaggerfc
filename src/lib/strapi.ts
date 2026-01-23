@@ -86,8 +86,11 @@ export interface SocialLink {
 export interface AboutPage {
   id: number;
   documentId: string;
+  sectionLabel: string;
   title: string;
   subtitle: string;
+  storyParagraph1: string;
+  storyParagraph2: string;
   content: string;
   foundedYear: number;
   mission: string;
@@ -98,6 +101,14 @@ export interface AboutPage {
   statsTrophies: number;
   statsSupporters: number;
   statsMatches: number;
+  value1Title: string;
+  value1Description: string;
+  value2Title: string;
+  value2Description: string;
+  value3Title: string;
+  value3Description: string;
+  value4Title: string;
+  value4Description: string;
 }
 
 export interface SiteSettings {
