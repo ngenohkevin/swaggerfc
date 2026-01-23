@@ -60,6 +60,15 @@ export interface Product {
   updatedAt: string;
 }
 
+export interface Category {
+  id: number;
+  documentId: string;
+  name: string;
+  slug: string;
+  description: string | null;
+  color: string;
+}
+
 export interface Article {
   id: number;
   documentId: string;
@@ -67,7 +76,7 @@ export interface Article {
   slug: string;
   excerpt: string;
   content: string;
-  category: string;
+  category: Category | string | null;
   image: StrapiImage;
   featured: boolean;
   publishedAt: string;
@@ -209,7 +218,7 @@ export async function getProducts(): Promise<Product[]> {
 
 export async function getArticles(featured?: boolean): Promise<Article[]> {
   try {
-    let endpoint = '/articles?populate=image&sort=publishedAt:desc';
+    let endpoint = '/articles?populate[image]=*&populate[category]=*&sort=publishedAt:desc';
     if (featured) {
       endpoint += '&filters[featured][$eq]=true';
     }
@@ -224,12 +233,24 @@ export async function getArticles(featured?: boolean): Promise<Article[]> {
 export async function getArticleBySlug(slug: string): Promise<Article | null> {
   try {
     const response = await fetchFromStrapi<StrapiResponse<Article[]>>(
-      `/articles?populate=image&filters[slug][$eq]=${slug}`
+      `/articles?populate[image]=*&populate[category]=*&filters[slug][$eq]=${slug}`
     );
     return response.data[0] || null;
   } catch (error) {
     console.error('Failed to fetch article:', error);
     return null;
+  }
+}
+
+export async function getCategories(): Promise<Category[]> {
+  try {
+    const response = await fetchFromStrapi<StrapiResponse<Category[]>>(
+      '/categories?sort=name:asc'
+    );
+    return response.data;
+  } catch (error) {
+    console.error('Failed to fetch categories:', error);
+    return [];
   }
 }
 
@@ -267,4 +288,18 @@ export async function getSiteSettings(): Promise<SiteSettings | null> {
     console.error('Failed to fetch site settings:', error);
     return null;
   }
+}
+
+// Helper to get category name from Article (handles both relation and legacy string)
+export function getCategoryName(category: Category | string | null | undefined): string {
+  if (!category) return 'Uncategorized';
+  if (typeof category === 'string') return category;
+  return category.name || 'Uncategorized';
+}
+
+// Helper to get category color from Article
+export function getCategoryColor(category: Category | string | null | undefined): string {
+  if (!category) return '#c9a227';
+  if (typeof category === 'string') return '#c9a227';
+  return category.color || '#c9a227';
 }

@@ -11,6 +11,7 @@ import {
   getArticles,
   getSiteSettings,
   getStrapiImageUrl,
+  getCategoryName,
 } from "@/lib/strapi";
 
 interface DisplayArticle {
@@ -52,7 +53,7 @@ export async function generateMetadata({
   return {
     title: article.title,
     description: article.excerpt,
-    keywords: [article.category, siteName, "news", "football", "sports academy"].filter(Boolean),
+    keywords: [getCategoryName(article.category), siteName, "news", "football", "sports academy"].filter(Boolean),
     authors: [{ name: siteName }],
     openGraph: {
       type: "article",
@@ -109,7 +110,7 @@ export default async function ArticlePage({
     slug: articleData.slug,
     excerpt: articleData.excerpt,
     content: articleData.content,
-    category: articleData.category,
+    category: getCategoryName(articleData.category),
     image: getStrapiImageUrl(articleData.image) || "https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=800&q=80",
     featured: articleData.featured,
     publishedAt: articleData.publishedAt,
@@ -126,7 +127,7 @@ export default async function ArticlePage({
       slug: a.slug,
       excerpt: a.excerpt,
       content: a.content,
-      category: a.category,
+      category: getCategoryName(a.category),
       image: getStrapiImageUrl(a.image) || "https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=800&q=80",
       featured: a.featured,
       publishedAt: a.publishedAt,

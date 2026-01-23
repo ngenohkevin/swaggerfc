@@ -11,6 +11,7 @@ import {
   getProducts,
   getArticles,
   getStrapiImageUrl,
+  getCategoryName,
 } from "@/lib/strapi";
 
 // Fallback gallery items when Strapi is empty
@@ -183,7 +184,7 @@ export default async function Home() {
         title: article.title || fallbackArticles[index % fallbackArticles.length].title,
         slug: article.slug || fallbackArticles[index % fallbackArticles.length].slug,
         excerpt: article.excerpt || fallbackArticles[index % fallbackArticles.length].excerpt,
-        category: article.category || fallbackArticles[index % fallbackArticles.length].category,
+        category: getCategoryName(article.category) || fallbackArticles[index % fallbackArticles.length].category,
         image: getStrapiImageUrl(article.image) || fallbackArticles[index % fallbackArticles.length].image,
         featured: article.featured || false,
         publishedAt: article.publishedAt || fallbackArticles[index % fallbackArticles.length].publishedAt,

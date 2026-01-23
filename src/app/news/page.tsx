@@ -7,6 +7,7 @@ import {
   getArticles,
   getSiteSettings,
   getStrapiImageUrl,
+  getCategoryName,
 } from "@/lib/strapi";
 
 export default async function NewsPage() {
@@ -23,7 +24,7 @@ export default async function NewsPage() {
     slug: article.slug,
     excerpt: article.excerpt,
     content: article.content,
-    category: article.category,
+    category: getCategoryName(article.category),
     image: getStrapiImageUrl(article.image) || "https://images.unsplash.com/photo-1544366981-2150548c9c1c?w=800&q=80",
     featured: article.featured,
     publishedAt: article.publishedAt,
