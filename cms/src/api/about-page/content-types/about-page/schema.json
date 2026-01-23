@@ -12,13 +12,23 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "sectionLabel": {
+      "type": "string",
+      "default": "OUR STORY"
+    },
     "title": {
       "type": "string",
       "required": true,
-      "default": "About Swagger FC"
+      "default": "About Swagger Sports Academy"
     },
     "subtitle": {
       "type": "string"
+    },
+    "storyParagraph1": {
+      "type": "text"
+    },
+    "storyParagraph2": {
+      "type": "text"
     },
     "content": {
       "type": "richtext"
@@ -58,6 +68,38 @@
     "statsMatches": {
       "type": "integer",
       "default": 250
+    },
+    "value1Title": {
+      "type": "string",
+      "default": "Community"
+    },
+    "value1Description": {
+      "type": "string",
+      "default": "Family-first approach to football"
+    },
+    "value2Title": {
+      "type": "string",
+      "default": "Excellence"
+    },
+    "value2Description": {
+      "type": "string",
+      "default": "Striving for the best every day"
+    },
+    "value3Title": {
+      "type": "string",
+      "default": "Passion"
+    },
+    "value3Description": {
+      "type": "string",
+      "default": "Love for the beautiful game"
+    },
+    "value4Title": {
+      "type": "string",
+      "default": "Integrity"
+    },
+    "value4Description": {
+      "type": "string",
+      "default": "Fair play on and off the pitch"
     }
   }
 }

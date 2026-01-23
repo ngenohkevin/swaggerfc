@@ -29,9 +29,10 @@
       "type": "richtext"
     },
     "category": {
-      "type": "enumeration",
-      "enum": ["Match Day", "Training", "Community", "Club News", "Transfers"],
-      "default": "Club News"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
     },
     "image": {
       "type": "media",
