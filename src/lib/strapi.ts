@@ -165,7 +165,7 @@ async function fetchFromStrapi<T>(
       ...headers,
       ...options?.headers,
     },
-    next: { revalidate: 60 }, // Revalidate every 60 seconds
+    next: { revalidate: 10 }, // Revalidate every 10 seconds
   });
 
   if (!response.ok) {
