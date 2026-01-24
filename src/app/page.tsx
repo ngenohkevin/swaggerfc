@@ -202,7 +202,7 @@ export default async function Home() {
     || fallbackImages.about;
 
   return (
-    <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
+    <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
@@ -216,8 +216,8 @@ export default async function Home() {
                 <span className="text-[#1a1f2e] font-bold text-lg sm:text-xl">SS</span>
               </div>
             )}
-            <div>
-              <span className="font-dm-serif text-lg sm:text-xl">{settings.siteName}</span>
+            <div className="min-w-0">
+              <span className="font-dm-serif text-sm sm:text-lg md:text-xl block truncate max-w-[140px] sm:max-w-[200px] md:max-w-none">{settings.siteName}</span>
               <p className="text-xs text-[#6b6560] dark:text-white/50 hidden sm:block">Est. {settings.foundedYear}</p>
             </div>
           </a>
@@ -602,8 +602,8 @@ export default async function Home() {
                     <span className="text-[#1a1f2e] font-bold text-xl">SS</span>
                   </div>
                 )}
-                <div>
-                  <span className="font-dm-serif text-xl">{settings.siteName}</span>
+                <div className="min-w-0">
+                  <span className="font-dm-serif text-base sm:text-xl block truncate">{settings.siteName}</span>
                   <p className="text-white/50 text-sm">Est. {settings.foundedYear}</p>
                 </div>
               </div>

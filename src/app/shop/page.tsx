@@ -124,7 +124,7 @@ export default async function ShopPage() {
   const logoUrl = getStrapiImageUrl(settingsData?.logo);
 
   return (
-    <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors">
+    <div className="bg-[#faf8f5] dark:bg-[#1a1f2e] text-[#2d2926] dark:text-white font-dm-sans min-h-screen transition-colors overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#faf8f5]/95 dark:bg-[#1a1f2e]/95 backdrop-blur-sm border-b border-black/5 dark:border-white/10">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between">
@@ -138,8 +138,8 @@ export default async function ShopPage() {
                 <span className="text-[#1a1f2e] font-bold text-lg sm:text-xl">SS</span>
               </div>
             )}
-            <div>
-              <span className="font-dm-serif text-lg sm:text-xl">{siteName}</span>
+            <div className="min-w-0">
+              <span className="font-dm-serif text-sm sm:text-lg md:text-xl block truncate max-w-[140px] sm:max-w-[200px] md:max-w-none">{siteName}</span>
               <p className="text-xs text-[#6b6560] dark:text-white/50 hidden sm:block">Est. {foundedYear}</p>
             </div>
           </Link>
@@ -194,19 +194,19 @@ export default async function ShopPage() {
       <footer className="bg-[#1a1f2e] text-white py-12 mt-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3 min-w-0">
               {logoUrl ? (
-                <div className="w-10 h-10 rounded-full overflow-hidden relative">
+                <div className="w-10 h-10 rounded-full overflow-hidden relative flex-shrink-0">
                   <Image src={logoUrl} alt={siteName} fill className="object-cover" sizes="40px" />
                 </div>
               ) : (
-                <div className="w-10 h-10 bg-[#c9a227] rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-[#c9a227] rounded-full flex items-center justify-center flex-shrink-0">
                   <span className="text-[#1a1f2e] font-bold">SS</span>
                 </div>
               )}
-              <span className="font-dm-serif text-lg">{siteName}</span>
+              <span className="font-dm-serif text-base sm:text-lg truncate">{siteName}</span>
             </div>
-            <p className="text-white/50 text-sm">&copy; {new Date().getFullYear()} {siteName}. Built with passion.</p>
+            <p className="text-white/50 text-sm text-center md:text-right">&copy; {new Date().getFullYear()} {siteName}. Built with passion.</p>
           </div>
         </div>
       </footer>
