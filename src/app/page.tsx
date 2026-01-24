@@ -216,8 +216,8 @@ export default async function Home() {
                 <span className="text-[#1a1f2e] font-bold text-lg sm:text-xl">SS</span>
               </div>
             )}
-            <div className="min-w-0">
-              <span className="font-dm-serif text-sm sm:text-lg md:text-xl block truncate max-w-[140px] sm:max-w-[200px] md:max-w-none">{settings.siteName}</span>
+            <div>
+              <span className="font-dm-serif text-[11px] sm:text-base md:text-lg lg:text-xl">{settings.siteName}</span>
               <p className="text-xs text-[#6b6560] dark:text-white/50 hidden sm:block">Est. {settings.foundedYear}</p>
             </div>
           </a>
@@ -602,8 +602,8 @@ export default async function Home() {
                     <span className="text-[#1a1f2e] font-bold text-xl">SS</span>
                   </div>
                 )}
-                <div className="min-w-0">
-                  <span className="font-dm-serif text-base sm:text-xl block truncate">{settings.siteName}</span>
+                <div>
+                  <span className="font-dm-serif text-base sm:text-xl">{settings.siteName}</span>
                   <p className="text-white/50 text-sm">Est. {settings.foundedYear}</p>
                 </div>
               </div>
