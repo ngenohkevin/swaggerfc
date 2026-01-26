@@ -50,7 +50,7 @@ function GalleryCard({ item, onClick, priority = false }: { item: DisplayGallery
       onClick={onClick}
       className="flex-shrink-0 w-[380px] group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#fcd34d] focus-visible:ring-offset-2 focus-visible:ring-offset-[#1a1f2e] rounded-2xl"
     >
-      <div className="relative h-[480px] rounded-2xl overflow-hidden">
+      <div className="!relative h-[480px] rounded-2xl overflow-hidden">
         <Image
           src={item.image}
           alt={item.title}
