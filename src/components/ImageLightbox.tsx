@@ -59,12 +59,12 @@ export function ImageLightbox({ item, onClose }: ImageLightboxProps) {
         </button>
 
         {/* Image */}
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+        <div className="relative w-full h-[50vh] sm:h-[60vh] rounded-2xl overflow-hidden shadow-2xl bg-black/40">
           <Image
             src={item.image}
             alt={item.title}
             fill
-            className="object-cover"
+            className="object-contain"
             sizes="(max-width: 768px) 100vw, 80vw"
             priority
           />
