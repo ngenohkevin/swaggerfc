@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 interface ProductImageZoomProps {
   src: string;
@@ -14,10 +14,21 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
   const [selectedImage, setSelectedImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
   const [zoomPosition, setZoomPosition] = useState({ x: 50, y: 50 });
+  const [isMobile, setIsMobile] = useState(false);
   const imageRef = useRef<HTMLDivElement>(null);
 
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia('(max-width: 768px)').matches || 'ontouchstart' in window);
+    };
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!imageRef.current) return;
+    if (!imageRef.current || isMobile) return;
 
     const rect = imageRef.current.getBoundingClientRect();
     const x = ((e.clientX - rect.left) / rect.width) * 100;
@@ -27,7 +38,8 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
   };
 
   const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
-    if (!imageRef.current || !e.touches[0]) return;
+    if (!imageRef.current || !e.touches[0] || !isZoomed) return;
+    e.preventDefault();
 
     const rect = imageRef.current.getBoundingClientRect();
     const x = ((e.touches[0].clientX - rect.left) / rect.width) * 100;
@@ -39,17 +51,25 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
     });
   };
 
+  const handleClick = () => {
+    if (isMobile) {
+      setIsZoomed(!isZoomed);
+      if (!isZoomed) {
+        setZoomPosition({ x: 50, y: 50 });
+      }
+    }
+  };
+
   return (
     <div className="space-y-4">
       {/* Main Image with Zoom */}
       <div
         ref={imageRef}
-        className="relative aspect-square rounded-3xl overflow-hidden bg-[#f5f0e8] dark:bg-[#2d3548] cursor-zoom-in"
-        onMouseEnter={() => setIsZoomed(true)}
-        onMouseLeave={() => setIsZoomed(false)}
+        className={`relative aspect-square rounded-3xl overflow-hidden bg-[#f5f0e8] dark:bg-[#2d3548] ${isZoomed ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
+        onMouseEnter={() => !isMobile && setIsZoomed(true)}
+        onMouseLeave={() => !isMobile && setIsZoomed(false)}
         onMouseMove={handleMouseMove}
-        onTouchStart={() => setIsZoomed(true)}
-        onTouchEnd={() => setIsZoomed(false)}
+        onClick={handleClick}
         onTouchMove={handleTouchMove}
       >
         <Image
@@ -58,7 +78,7 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className={`object-cover transition-transform duration-300 ${
-            isZoomed ? "scale-150" : "scale-100"
+            isZoomed ? "scale-200" : "scale-100"
           }`}
           style={isZoomed ? {
             transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%`
@@ -71,7 +91,8 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
           </svg>
-          Hover to zoom
+          <span className="hidden sm:inline">Hover to zoom</span>
+          <span className="sm:hidden">Tap to zoom</span>
         </div>
       </div>
 
