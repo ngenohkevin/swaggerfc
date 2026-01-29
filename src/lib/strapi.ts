@@ -57,6 +57,7 @@ export interface Product {
   isNew: boolean;
   sizes: ProductSize[];
   inStock: boolean;
+  stock: number;
   order: number;
   createdAt: string;
   updatedAt: string;

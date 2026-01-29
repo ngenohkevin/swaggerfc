@@ -118,6 +118,7 @@ export default async function ProductPage({
       { size: "XXL", available: true },
     ],
     inStock: productData.inStock,
+    stock: productData.stock || 0,
   };
 
   // Get related products (exclude current)

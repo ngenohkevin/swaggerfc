@@ -12,6 +12,7 @@ interface Product {
   price: number;
   sizes: ProductSize[];
   inStock: boolean;
+  stock: number;
 }
 
 interface ProductOrderFormProps {
@@ -23,6 +24,10 @@ export function ProductOrderForm({ product, whatsappNumber }: ProductOrderFormPr
   const [selectedSize, setSelectedSize] = useState<string>("");
   const [quantity, setQuantity] = useState(1);
   const [showTooltip, setShowTooltip] = useState(false);
+
+  // Stock is unlimited if 0 (legacy products), otherwise use the stock value
+  const maxQuantity = product.stock > 0 ? product.stock : 999;
+  const isOutOfStock = product.stock === 0 && !product.inStock;
 
   const whatsappMessage = `Hi! I want to order:\n\nProduct: ${product.name}\nSize: ${selectedSize || "Not selected"}\nQuantity: ${quantity}\nTotal: KES ${(product.price * quantity).toLocaleString()}\n\nPlease confirm availability and delivery details.`;
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -37,6 +42,17 @@ export function ProductOrderForm({ product, whatsappNumber }: ProductOrderFormPr
 
   return (
     <div className="space-y-6">
+      {/* Stock Info */}
+      {product.stock > 0 && (
+        <div className={`text-sm font-medium ${product.stock <= 5 ? 'text-orange-500' : 'text-green-600 dark:text-green-400'}`}>
+          {product.stock <= 5 ? (
+            <span>Only {product.stock} left in stock!</span>
+          ) : (
+            <span>{product.stock} in stock</span>
+          )}
+        </div>
+      )}
+
       {/* Size Selection */}
       <div>
         <div className="flex items-center justify-between mb-3">
@@ -74,7 +90,12 @@ export function ProductOrderForm({ product, whatsappNumber }: ProductOrderFormPr
 
       {/* Quantity */}
       <div>
-        <label className="font-medium mb-3 block">Quantity</label>
+        <div className="flex items-center justify-between mb-3">
+          <label className="font-medium">Quantity</label>
+          {product.stock > 0 && quantity >= maxQuantity && (
+            <span className="text-sm text-orange-500">Max available</span>
+          )}
+        </div>
         <div className="flex items-center gap-4">
           <button
             onClick={() => setQuantity(Math.max(1, quantity - 1))}
@@ -84,8 +105,13 @@ export function ProductOrderForm({ product, whatsappNumber }: ProductOrderFormPr
           </button>
           <span className="w-12 text-center font-dm-serif text-xl">{quantity}</span>
           <button
-            onClick={() => setQuantity(quantity + 1)}
-            className="w-12 h-12 rounded-xl bg-[#f5f0e8] dark:bg-white/10 text-[#6b6560] dark:text-white/70 hover:bg-[#c9a227]/10 dark:hover:bg-[#c9a227]/20 hover:text-[#c9a227] dark:hover:text-[#fcd34d] transition-colors flex items-center justify-center text-xl font-medium"
+            onClick={() => setQuantity(Math.min(maxQuantity, quantity + 1))}
+            disabled={quantity >= maxQuantity}
+            className={`w-12 h-12 rounded-xl transition-colors flex items-center justify-center text-xl font-medium ${
+              quantity >= maxQuantity
+                ? "bg-gray-200 dark:bg-white/5 text-gray-400 dark:text-white/30 cursor-not-allowed"
+                : "bg-[#f5f0e8] dark:bg-white/10 text-[#6b6560] dark:text-white/70 hover:bg-[#c9a227]/10 dark:hover:bg-[#c9a227]/20 hover:text-[#c9a227] dark:hover:text-[#fcd34d]"
+            }`}
           >
             +
           </button>
@@ -102,18 +128,18 @@ export function ProductOrderForm({ product, whatsappNumber }: ProductOrderFormPr
 
       {/* Order Button */}
       <a
-        href={selectedSize ? whatsappLink : "#"}
-        target={selectedSize ? "_blank" : undefined}
+        href={selectedSize && !isOutOfStock ? whatsappLink : "#"}
+        target={selectedSize && !isOutOfStock ? "_blank" : undefined}
         rel="noopener noreferrer"
         onClick={handleOrderClick}
         className={`w-full py-4 rounded-2xl font-medium text-lg flex items-center justify-center gap-3 transition-all ${
-          selectedSize && product.inStock
+          selectedSize && !isOutOfStock
             ? "bg-[#25D366] text-white hover:bg-[#1fbd5a] hover:shadow-lg hover:shadow-[#25D366]/25"
             : "bg-gray-200 dark:bg-white/10 text-gray-400 dark:text-white/30 cursor-not-allowed"
         }`}
       >
         <WhatsAppIcon />
-        {product.inStock ? "Order via WhatsApp" : "Out of Stock"}
+        {isOutOfStock ? "Out of Stock" : "Order via WhatsApp"}
       </a>
 
       <p className="text-center text-sm text-[#6b6560] dark:text-white/50">
