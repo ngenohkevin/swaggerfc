@@ -49,9 +49,11 @@ export interface Product {
   id: number;
   documentId: string;
   name: string;
+  slug: string;
   description: string;
   price: number;
   image: StrapiImage;
+  gallery?: StrapiImage[];
   isNew: boolean;
   sizes: ProductSize[];
   inStock: boolean;
@@ -199,12 +201,41 @@ export async function getGalleryItems(): Promise<GalleryItem[]> {
 export async function getProducts(): Promise<Product[]> {
   try {
     const response = await fetchFromStrapi<StrapiResponse<Product[]>>(
-      '/products?populate=image&sort=order:asc&filters[inStock][$eq]=true'
+      '/products?populate=*&sort=order:asc&filters[inStock][$eq]=true'
     );
     return response.data;
   } catch (error) {
     console.error('Failed to fetch products:', error);
     return [];
+  }
+}
+
+// Helper to generate slug from name
+export function generateSlug(name: string): string {
+  return name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+export async function getProductBySlug(slug: string): Promise<Product | null> {
+  try {
+    // First try to find by slug field
+    const response = await fetchFromStrapi<StrapiResponse<Product[]>>(
+      `/products?populate=*&filters[slug][$eq]=${slug}`
+    );
+    if (response.data[0]) {
+      return response.data[0];
+    }
+
+    // If not found, fetch all products and match by generated slug from name
+    const allProducts = await fetchFromStrapi<StrapiResponse<Product[]>>(
+      '/products?populate=*'
+    );
+    const matchedProduct = allProducts.data.find(
+      (p) => generateSlug(p.name) === slug
+    );
+    return matchedProduct || null;
+  } catch (error) {
+    console.error('Failed to fetch product:', error);
+    return null;
   }
 }
 

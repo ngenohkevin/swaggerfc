@@ -177,18 +177,29 @@ export default async function Home() {
       }))
     : fallbackProducts;
 
-  // Transform articles from Strapi
+  // Transform articles from Strapi, prioritizing featured article for prominent display
   const articles: DisplayArticle[] = articlesData.length > 0
-    ? articlesData.slice(0, 3).map((article, index) => ({
-        id: article.id,
-        title: article.title || fallbackArticles[index % fallbackArticles.length].title,
-        slug: article.slug || fallbackArticles[index % fallbackArticles.length].slug,
-        excerpt: article.excerpt || fallbackArticles[index % fallbackArticles.length].excerpt,
-        category: getCategoryName(article.category) || fallbackArticles[index % fallbackArticles.length].category,
-        image: getStrapiImageUrl(article.image) || fallbackArticles[index % fallbackArticles.length].image,
-        featured: article.featured || false,
-        publishedAt: article.publishedAt || fallbackArticles[index % fallbackArticles.length].publishedAt,
-      }))
+    ? (() => {
+        // Find featured article and non-featured articles
+        const featuredArticle = articlesData.find(a => a.featured);
+        const nonFeaturedArticles = articlesData.filter(a => !a.featured);
+
+        // Put featured first, then fill with non-featured (total of 3)
+        const orderedArticles = featuredArticle
+          ? [featuredArticle, ...nonFeaturedArticles.slice(0, 2)]
+          : articlesData.slice(0, 3);
+
+        return orderedArticles.map((article, index) => ({
+          id: article.id,
+          title: article.title || fallbackArticles[index % fallbackArticles.length].title,
+          slug: article.slug || fallbackArticles[index % fallbackArticles.length].slug,
+          excerpt: article.excerpt || fallbackArticles[index % fallbackArticles.length].excerpt,
+          category: getCategoryName(article.category) || fallbackArticles[index % fallbackArticles.length].category,
+          image: getStrapiImageUrl(article.image) || fallbackArticles[index % fallbackArticles.length].image,
+          featured: article.featured || false,
+          publishedAt: article.publishedAt || fallbackArticles[index % fallbackArticles.length].publishedAt,
+        }));
+      })()
     : fallbackArticles;
 
   // Set hero image: use About Page heroImage

@@ -3,13 +3,14 @@ import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { MobileNav } from "@/components/MobileNav";
 import { ProductCard, type DisplayProduct, type ProductSize } from "@/components/ProductCard";
-import { getProducts, getSiteSettings, getStrapiImageUrl } from "@/lib/strapi";
+import { getProducts, getSiteSettings, getStrapiImageUrl, generateSlug } from "@/lib/strapi";
 
 // Fallback products when Strapi is empty
 const fallbackProducts: DisplayProduct[] = [
   {
     id: 1,
     name: "Home Jersey 2025/26",
+    slug: "home-jersey-2025-26",
     description: "Official match-day jersey with breathable fabric and embroidered club crest",
     price: 3500,
     image: "https://images.unsplash.com/photo-1763656812756-3539efd3e301?w=600&q=80",
@@ -25,6 +26,7 @@ const fallbackProducts: DisplayProduct[] = [
   {
     id: 2,
     name: "Away Jersey 2025/26",
+    slug: "away-jersey-2025-26",
     description: "Premium away kit with moisture-wicking technology",
     price: 3500,
     image: "https://images.unsplash.com/photo-1759447946445-397b1c034768?w=600&q=80",
@@ -40,6 +42,7 @@ const fallbackProducts: DisplayProduct[] = [
   {
     id: 3,
     name: "Supporters Hoodie",
+    slug: "supporters-hoodie",
     description: "Premium cotton blend hoodie with embroidered crest and kangaroo pocket",
     price: 2800,
     image: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80",
@@ -55,6 +58,7 @@ const fallbackProducts: DisplayProduct[] = [
   {
     id: 4,
     name: "Training Jacket",
+    slug: "training-jacket",
     description: "Lightweight training jacket with full zip and club branding",
     price: 3200,
     image: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?w=600&q=80",
@@ -70,6 +74,7 @@ const fallbackProducts: DisplayProduct[] = [
   {
     id: 5,
     name: "Classic Polo Shirt",
+    slug: "classic-polo-shirt",
     description: "Classic polo with woven club badge, perfect for match days",
     price: 2200,
     image: "https://images.unsplash.com/photo-1763656813028-3eb492fa7bcf?w=600&q=80",
@@ -85,6 +90,7 @@ const fallbackProducts: DisplayProduct[] = [
   {
     id: 6,
     name: "Club T-Shirt",
+    slug: "club-t-shirt",
     description: "Comfortable cotton t-shirt with printed club logo",
     price: 1500,
     image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80",
@@ -110,6 +116,7 @@ export default async function ShopPage() {
     ? productsData.map((p, index) => ({
         id: p.id,
         name: p.name,
+        slug: p.slug || generateSlug(p.name),
         description: p.description,
         price: p.price,
         image: getStrapiImageUrl(p.image) || fallbackProducts[index % fallbackProducts.length].image,
