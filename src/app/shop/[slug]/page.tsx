@@ -11,6 +11,7 @@ import {
   getProducts,
   getSiteSettings,
   getStrapiImageUrl,
+  generateSlug,
   type StrapiImage,
 } from "@/lib/strapi";
 
@@ -121,12 +122,15 @@ export default async function ProductPage({
 
   // Get related products (exclude current)
   const relatedProducts = allProducts
-    .filter((p) => p.slug !== slug)
+    .filter((p) => {
+      const productSlug = p.slug || generateSlug(p.name);
+      return productSlug !== slug && p.name;
+    })
     .slice(0, 4)
     .map((p) => ({
       id: p.id,
       name: p.name,
-      slug: p.slug,
+      slug: p.slug || generateSlug(p.name),
       price: p.price,
       image: getStrapiImageUrl(p.image) || "https://images.unsplash.com/photo-1763656812756-3539efd3e301?w=600&q=80",
       isNew: p.isNew,
