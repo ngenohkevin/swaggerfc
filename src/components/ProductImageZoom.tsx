@@ -98,7 +98,7 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
 
       {/* Thumbnail Gallery */}
       {allImages.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-2">
+        <div className="flex gap-3 overflow-x-auto pb-2 mt-6">
           {allImages.map((image, index) => (
             <button
               key={index}
