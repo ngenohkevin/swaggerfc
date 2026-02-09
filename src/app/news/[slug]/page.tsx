@@ -46,7 +46,7 @@ export async function generateMetadata({
   }
 
   const siteName = settings?.siteName || "Swagger Sports Academy";
-  const siteUrl = "https://swaggerfc.iopulse.cloud";
+  const siteUrl = "https://swaggersportsacademy.co.ke";
   const articleUrl = `${siteUrl}/news/${slug}`;
   const imageUrl = getStrapiImageUrl(article.image) || `${siteUrl}/logo.png`;
 
