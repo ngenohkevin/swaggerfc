@@ -21,12 +21,12 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
   const [mobileZoom, setMobileZoom] = useState({ x: 50, y: 50 });
   const imageRef = useRef<HTMLDivElement>(null);
 
-  const LENS_SIZE = 150;
-  const ZOOM_LEVEL = 2.5;
+  const LENS_SIZE = 120;
+  const ZOOM_LEVEL = 4;
 
   useEffect(() => {
     const checkMobile = () => {
-      setIsMobile(window.matchMedia('(max-width: 1024px)').matches || 'ontouchstart' in window);
+      setIsMobile(window.matchMedia('(max-width: 1024px)').matches && 'ontouchstart' in window);
     };
     checkMobile();
     window.addEventListener('resize', checkMobile);
