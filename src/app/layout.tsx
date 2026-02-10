@@ -16,7 +16,7 @@ const dmSerifDisplay = DM_Serif_Display({
 const siteUrl = "https://swaggersportsacademy.co.ke";
 const siteName = "Swagger Sports Academy";
 const siteDescription = "More than just football. A community united by passion for the beautiful game. Where every player is family and every training day is a celebration.";
-const logoUrl = "https://swaggerfc-cms.iopulse.cloud/uploads/logo_r_f7fc248a82.png";
+const logoUrl = `${siteUrl}/logo.png`;
 
 export const metadata: Metadata = {
   // Basic metadata
