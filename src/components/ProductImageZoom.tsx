@@ -21,8 +21,8 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
   const [mobileZoom, setMobileZoom] = useState({ x: 50, y: 50 });
   const imageRef = useRef<HTMLDivElement>(null);
 
-  const LENS_SIZE = 120;
-  const ZOOM_LEVEL = 4;
+  const LENS_SIZE = 140;
+  const ZOOM_LEVEL = 3;
 
   useEffect(() => {
     const checkMobile = () => {
@@ -150,7 +150,7 @@ export function ProductImageZoom({ src, alt, gallery = [] }: ProductImageZoomPro
       {/* Zoom panel - fixed to viewport, floats over product info */}
       {isHovering && !isMobile && (
         <div
-          className="rounded-2xl overflow-hidden border border-black/10 dark:border-white/10 bg-white dark:bg-[#2d3548] shadow-2xl z-[100] pointer-events-none"
+          className="overflow-hidden border-2 border-[#c9a227] bg-white dark:bg-[#2d3548] shadow-[0_0_40px_rgba(0,0,0,0.4)] z-[100] pointer-events-none"
           style={{
             ...panelStyle,
             backgroundImage: `url(${allImages[selectedImage]})`,
